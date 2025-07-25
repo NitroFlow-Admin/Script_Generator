@@ -189,17 +189,33 @@ def push_to_salesdrip():
 
         success = save_script_to_crm(rep_data["rep_email"], rep_data, target_data, script_items)
 
+        prompt_descriptions = [
+            f"Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company.",
+            f"A closed-ended question about the target company's customer base.",
+            f"A closed-ended question about the customer’s needs.",
+            f"A closed-ended question that includes a risk and the consequence of not addressing it.",
+            f"A closed-ended question involving a solution and the risk of not implementing it.",
+            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_needs']}\"",
+            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_service']}\"",
+            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_source']}\"",
+            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_price']}\"",
+            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_time']}\"",
+            "One short, professional yes/no question to close the call."
+        ]
+
         return render_template(
             "index.html",
             script_items=script_items,
             rep_data=rep_data,
             target_data=target_data,
-            crm_status="✅ Synced with SalesDrip" if success else "❌ Failed to sync"
+            crm_status="✅ Synced with SalesDrip" if success else "❌ Failed to sync",
+            prompt_descriptions=prompt_descriptions
         )
 
     except Exception as e:
         logging.exception("Error pushing to SalesDrip")
         return f"❌ Error: {str(e)}", 500
+
 
 
 if __name__ == "__main__":
