@@ -4,77 +4,116 @@
   <meta charset="UTF-8">
   <title>Salescriptor Intake</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
+    }
+    h2 {
+      margin-top: 0;
+      color: #007BFF;
+    }
     label {
       font-weight: bold;
       display: block;
-      margin-top: 10px;
+      margin-top: 12px;
     }
-    textarea, input[type="text"] {
+    textarea, input[type="text"], input[type="email"], input[type="url"] {
       width: 100%;
       padding: 8px;
       margin-top: 4px;
       margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      box-sizing: border-box;
     }
-    .section { display: none; }
-    .section.active { display: block; }
-    button { padding: 10px 16px; font-weight: bold; }
+    .section {
+      display: none;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .section.active {
+      display: block;
+    }
+    button {
+      padding: 10px 16px;
+      font-weight: bold;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      margin-top: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
 
-  <h2>Sales Rep Info</h2>
-  <form method="POST">
+  <form method="POST" action="/" onsubmit="return validateSections()">
+    <!-- Rep Section -->
     <div id="rep-section" class="section active">
-      <label>Sales Rep Name:</label>
-      <input type="text" name="rep_name" required>
+      <h2>Sales Rep Info</h2>
 
-      <label>Sales Rep's Company Name:</label>
-      <input type="text" name="rep_company" required>
+      <label for="rep_name">Name:</label>
+      <input type="text" name="rep_name" id="rep_name" required>
 
-      <label>Product or Service Being Sold:</label>
-      <textarea name="product" required></textarea>
+      <label for="rep_email">Email (for CRM export):</label>
+      <input type="email" name="rep_email" id="rep_email" required>
 
-      <label>Needs Objection:</label>
-      <textarea name="objection_needs"></textarea>
+      <label for="rep_company">Company:</label>
+      <input type="text" name="rep_company" id="rep_company" required>
 
-      <label>Service Objection:</label>
-      <textarea name="objection_service"></textarea>
+      <label for="product">What are you selling?</label>
+      <textarea name="product" id="product" rows="3" required></textarea>
 
-      <label>Source Objection:</label>
-      <textarea name="objection_source"></textarea>
+      <label for="objection_needs">Typical Needs Objection:</label>
+      <textarea name="objection_needs" id="objection_needs" rows="2"></textarea>
 
-      <label>Price Objection:</label>
-      <textarea name="objection_price"></textarea>
+      <label for="objection_service">Typical Service Objection:</label>
+      <textarea name="objection_service" id="objection_service" rows="2"></textarea>
 
-      <label>Time Objection:</label>
-      <textarea name="objection_time"></textarea>
+      <label for="objection_source">Typical Source Objection:</label>
+      <textarea name="objection_source" id="objection_source" rows="2"></textarea>
+
+      <label for="objection_price">Typical Price Objection:</label>
+      <textarea name="objection_price" id="objection_price" rows="2"></textarea>
+
+      <label for="objection_time">Typical Time Objection:</label>
+      <textarea name="objection_time" id="objection_time" rows="2"></textarea>
 
       <button type="button" onclick="nextSection()">Next</button>
     </div>
 
+    <!-- Target Section -->
     <div id="target-section" class="section">
       <h2>Target Company Info</h2>
 
-      <label>Target Company Name:</label>
-      <input type="text" name="target_name" required>
+      <label for="target_name">Company Name:</label>
+      <input type="text" name="target_name" id="target_name" required>
 
-      <label>Target Company URL:</label>
-      <input type="text" name="target_url" required>
+      <label for="target_url">Company Website:</label>
+      <input type="url" name="target_url" id="target_url" required>
 
-      <label>Recent News:</label>
-      <textarea name="recent_news"></textarea>
+      <label for="recent_news">Recent News or Headlines:</label>
+      <textarea name="recent_news" id="recent_news" rows="3"></textarea>
 
-      <label>Locations:</label>
-      <textarea name="locations"></textarea>
+      <label for="locations">Locations:</label>
+      <textarea name="locations" id="locations" rows="2"></textarea>
 
-      <label>Company Facts:</label>
-      <textarea name="facts"></textarea>
+      <label for="facts">Company Facts or Stats:</label>
+      <textarea name="facts" id="facts" rows="2"></textarea>
 
-      <label>Products & Services:</label>
-      <textarea name="products_services"></textarea>
+      <label for="products_services">Products / Services:</label>
+      <textarea name="products_services" id="products_services" rows="2"></textarea>
 
-      <label>Social Media:</label>
-      <textarea name="social_media"></textarea>
+      <label for="social_media">Social Media (URLs or handles):</label>
+      <textarea name="social_media" id="social_media" rows="2"></textarea>
 
       <button type="submit">Generate Cold Call Script</button>
     </div>
@@ -84,7 +123,26 @@
     function nextSection() {
       document.getElementById("rep-section").classList.remove("active");
       document.getElementById("target-section").classList.add("active");
+      window.scrollTo(0, 0);
+    }
+
+    function validateSections() {
+      const requiredFields = [
+        "rep_name", "rep_email", "rep_company", "product"
+      ];
+      for (let id of requiredFields) {
+        const el = document.getElementById(id);
+        if (!el || !el.value.trim()) {
+          alert("Please complete the Sales Rep section before submitting.");
+          document.getElementById("rep-section").classList.add("active");
+          document.getElementById("target-section").classList.remove("active");
+          el.focus();
+          return false;
+        }
+      }
+      return true;
     }
   </script>
+
 </body>
 </html>
