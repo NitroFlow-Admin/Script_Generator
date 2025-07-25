@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Salescriptor Intake</title>
+  <style>
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+    }
+    .section { display: none; }
+    .section.active { display: block; }
+    button { padding: 10px 16px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>Sales Rep Info</h2>
+  <form method="POST">
+    <div id="rep-section" class="section active">
+      <label>Sales Rep Name:</label>
+      <input type="text" name="rep_name" required>
+
+      <label>Sales Rep's Company Name:</label>
+      <input type="text" name="rep_company" required>
+
+      <label>Product or Service Being Sold:</label>
+      <textarea name="product" required></textarea>
+
+      <label>Needs Objection:</label>
+      <textarea name="objection_needs"></textarea>
+
+      <label>Service Objection:</label>
+      <textarea name="objection_service"></textarea>
+
+      <label>Source Objection:</label>
+      <textarea name="objection_source"></textarea>
+
+      <label>Price Objection:</label>
+      <textarea name="objection_price"></textarea>
+
+      <label>Time Objection:</label>
+      <textarea name="objection_time"></textarea>
+
+      <button type="button" onclick="nextSection()">Next</button>
+    </div>
+
+    <div id="target-section" class="section">
+      <h2>Target Company Info</h2>
+
+      <label>Target Company Name:</label>
+      <input type="text" name="target_name" required>
+
+      <label>Target Company URL:</label>
+      <input type="text" name="target_url" required>
+
+      <label>Recent News:</label>
+      <textarea name="recent_news"></textarea>
+
+      <label>Locations:</label>
+      <textarea name="locations"></textarea>
+
+      <label>Company Facts:</label>
+      <textarea name="facts"></textarea>
+
+      <label>Products & Services:</label>
+      <textarea name="products_services"></textarea>
+
+      <label>Social Media:</label>
+      <textarea name="social_media"></textarea>
+
+      <button type="submit">Generate Cold Call Script</button>
+    </div>
+  </form>
+
+  <script>
+    function nextSection() {
+      document.getElementById("rep-section").classList.remove("active");
+      document.getElementById("target-section").classList.add("active");
+    }
+  </script>
+</body>
+</html>
