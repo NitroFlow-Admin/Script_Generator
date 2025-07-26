@@ -11,7 +11,7 @@
     }
     h2 {
       margin-top: 0;
-      color: #007BFF;
+      color: 006A3B;
     }
     label {
       font-weight: bold;
@@ -41,7 +41,7 @@
     button {
       padding: 10px 16px;
       font-weight: bold;
-      background-color: #007BFF;
+      background-color: #006A3B;
       color: white;
       border: none;
       border-radius: 4px;
@@ -49,100 +49,192 @@
       cursor: pointer;
     }
     button:hover {
-      background-color: #0056b3;
+      background-color: #006A3B;
+    }
+    .grecaptcha-badge {
+      visibility: visible !important;
+      opacity: 1 !important;
     }
   </style>
 </head>
 <body>
 
-  <form method="POST" action="/" onsubmit="return validateSections()">
+  <form id="mainForm" method="POST" action="/" onsubmit="return handleFormSubmit(event)">
     <!-- Rep Section -->
     <div id="rep-section" class="section active">
-      <h2>Sales Rep Info</h2>
+<h2>Sales Rep Info</h2>
+<label>Your Name:</label>
+<input type="text" name="rep_name" value="Chase Cordova">
 
-      <label for="rep_name">Name:</label>
-      <input type="text" name="rep_name" id="rep_name" required>
+<label>Email:</label>
+<input type="email" name="rep_email" placeholder="tom@salesdrip.com" value="">
 
-      <label for="rep_email">Email (for CRM export):</label>
-      <input type="email" name="rep_email" id="rep_email" required>
+<label>Your Company:</label>
+<input type="text" name="rep_company" value="Freight Pro Logistics">
 
-      <label for="rep_company">Company:</label>
-      <input type="text" name="rep_company" id="rep_company" required>
+<label>Product or Service:</label>
+<textarea name="product">Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.</textarea>
 
-      <label for="product">What are you selling?</label>
-      <textarea name="product" id="product" rows="3" required></textarea>
+<label>Needs Objection:</label>
+<textarea name="objection_needs">We are happy with our current carrier.</textarea>
 
-      <label for="objection_needs">Typical Needs Objection:</label>
-      <textarea name="objection_needs" id="objection_needs" rows="2"></textarea>
+<label>Service Objection:</label>
+<textarea name="objection_service">We used you in the past and switched because you didn’t meet our needs.</textarea>
 
-      <label for="objection_service">Typical Service Objection:</label>
-      <textarea name="objection_service" id="objection_service" rows="2"></textarea>
+<label>Source Objection:</label>
+<textarea name="objection_source">We’ve been burned by brokers.</textarea>
 
-      <label for="objection_source">Typical Source Objection:</label>
-      <textarea name="objection_source" id="objection_source" rows="2"></textarea>
+<label>Price Objection:</label>
+<textarea name="objection_price">You are 10% higher than my other quote.</textarea>
 
-      <label for="objection_price">Typical Price Objection:</label>
-      <textarea name="objection_price" id="objection_price" rows="2"></textarea>
+<label>Time Objection:</label>
+<textarea name="objection_time">This is our slow season.</textarea>
 
-      <label for="objection_time">Typical Time Objection:</label>
-      <textarea name="objection_time" id="objection_time" rows="2"></textarea>
-
+    
       <button type="button" onclick="nextSection()">Next</button>
     </div>
-
+  
     <!-- Target Section -->
     <div id="target-section" class="section">
-      <h2>Target Company Info</h2>
+<h2>Target Company Info</h2>
 
-      <label for="target_name">Company Name:</label>
-      <input type="text" name="target_name" id="target_name" required>
+<label>Company Name:</label>
+<input type="text" name="target_name" value="JDH Corp">
 
-      <label for="target_url">Company Website:</label>
-      <input type="url" name="target_url" id="target_url" required>
+<label>Website:</label>
+<input type="url" name="target_url" value="https://www.jhdcorp.com/">
 
-      <label for="recent_news">Recent News or Headlines:</label>
-      <textarea name="recent_news" id="recent_news" rows="3"></textarea>
+<label>Recent News:</label>
+<textarea name="recent_news">None</textarea>
 
-      <label for="locations">Locations:</label>
-      <textarea name="locations" id="locations" rows="2"></textarea>
+<label>Company Locations:</label>
+<textarea name="locations">Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia
 
-      <label for="facts">Company Facts or Stats:</label>
-      <textarea name="facts" id="facts" rows="2"></textarea>
+USA/Canada/China/German/Netherlands worldwide warehouses</textarea>
 
-      <label for="products_services">Products / Services:</label>
-      <textarea name="products_services" id="products_services" rows="2"></textarea>
+<label>Company Facts:</label>
+<textarea name="facts">20+ years herbal extract manufacturer in China
 
-      <label for="social_media">Social Media (URLs or handles):</label>
-      <textarea name="social_media" id="social_media" rows="2"></textarea>
+We have our own dedicated plantation with a wide range of planting areas and a wide variety of planting types.
 
+We have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.
+
+We boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.
+
+Certificate
+BRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated</textarea>
+
+<label>Products & Services:</label>
+<textarea name="products_services">Products
+700+ herbal extract, fruit & vegetable powders, herbal extracts</textarea>
+
+<label>Social Media or Other Notes:</label>
+<textarea name="social_media">Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! 🎉 The energy on the floor was electric—so many inspiring conversations, brilliant innovations shared, and new connections made.​
+A huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! 🔬💡​
+If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next day, ready to chat more about our latest p… See more</textarea>
+
+    
       <button type="submit">Generate Cold Call Script</button>
     </div>
   </form>
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.95); z-index: 9999; align-items:center; justify-content:center; flex-direction:column; font-family: Arial, sans-serif; display: none;">
 
+  <div class="spinner" style="width: 48px; height: 48px; border: 5px solid #ddd; border-top: 5px solid #006A3B; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
+  <h2 id="loadingText" style="color:#006A3B;">Compiling Research...</h2>
+</div>
+
+<style>
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+  
+
+  <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
   <script>
     function nextSection() {
       document.getElementById("rep-section").classList.remove("active");
       document.getElementById("target-section").classList.add("active");
       window.scrollTo(0, 0);
     }
-
-    function validateSections() {
-      const requiredFields = [
-        "rep_name", "rep_email", "rep_company", "product"
+  
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Stop the default form submit
+  
+      // Show overlay immediately
+      const overlay = document.getElementById("loadingOverlay");
+      const loadingText = document.getElementById("loadingText");
+      const steps = [
+        "Compiling research...",
+        "Building Script Version 1...",
+        "Building Script Version 2...",
+        "Building Script Version 3...",
+        "Building Script Version 4...",
+        "Finishing up..."
       ];
-      for (let id of requiredFields) {
-        const el = document.getElementById(id);
+      let step = 0;
+  
+      overlay.style.display = "flex";
+      loadingText.textContent = steps[0];
+  
+      const interval = setInterval(() => {
+        step++;
+        if (step < steps.length) {
+          loadingText.textContent = steps[step];
+        } else {
+          clearInterval(interval);
+        }
+      }, 800);
+  
+      // ✅ Fill in placeholder values if fields are empty (MOVED ABOVE VALIDATION)
+      const fields = document.querySelectorAll("input, textarea");
+      fields.forEach(field => {
+        if (!field.value.trim() && field.placeholder) {
+          field.value = field.placeholder;
+        }
+      });
+  
+      // ✅ Validate required fields by name
+      const requiredFields = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
+      for (let name of requiredFields) {
+        const el = document.querySelector(`[name="${name}"]`);
         if (!el || !el.value.trim()) {
-          alert("Please complete the Sales Rep section before submitting.");
-          document.getElementById("rep-section").classList.add("active");
-          document.getElementById("target-section").classList.remove("active");
-          el.focus();
+          alert("Please complete all required fields.");
+          document.getElementById("loadingOverlay").style.display = "none";
+  
+          if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
+            document.getElementById("rep-section").classList.add("active");
+            document.getElementById("target-section").classList.remove("active");
+          } else {
+            document.getElementById("rep-section").classList.remove("active");
+            document.getElementById("target-section").classList.add("active");
+          }
+  
+          el?.focus();
           return false;
         }
       }
-      return true;
+  
+      // Run reCAPTCHA and submit
+      grecaptcha.ready(function () {
+        grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "g-recaptcha-response";
+          input.value = token;
+          document.getElementById("mainForm").appendChild(input);
+          document.getElementById("mainForm").submit();
+        });
+      });
+  
+      return false;
     }
   </script>
+  
+  
 
 </body>
 </html>

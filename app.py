@@ -7,10 +7,12 @@ import logging
 import os
 import sys
 import atexit
+import requests
 
 load_dotenv()
 
 RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY")
+RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 def log_exit():
@@ -38,9 +40,26 @@ logging.basicConfig(
 @app.route("/", methods=["GET", "POST"])
 def handle_form():
     if request.method == "GET":
-        return render_template("form.html")
+        return render_template("form.html", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
 
     try:
+        # reCAPTCHA v3 verification
+        recaptcha_response = request.form.get("g-recaptcha-response", "")
+        if not recaptcha_response:
+            return render_template("form.html", error="Missing reCAPTCHA response.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+        verify_resp = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data={
+                "secret": RECAPTCHA_SECRET_KEY,
+                "response": recaptcha_response
+            }
+        )
+        result = verify_resp.json()
+        if not result.get("success") or result.get("score", 0) < 0.5:
+            return render_template("form.html", error="reCAPTCHA verification failed. Please try again.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+        # Sales rep + target form data
         rep_data = {key: request.form.get(key, "") for key in [
             "rep_email", "rep_name", "rep_company", "product",
             "objection_needs", "objection_service", "objection_source",
@@ -51,9 +70,9 @@ def handle_form():
             "facts", "products_services", "social_media"]}
 
         if not rep_data["rep_name"] or not rep_data["rep_company"] or not rep_data["product"]:
-            return render_template("form.html", error="Missing required Sales Rep fields.")
+            return render_template("form.html", error="Missing required Sales Rep fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
         if not target_data["target_name"] or not target_data["target_url"]:
-            return render_template("form.html", error="Missing required Target Company fields.")
+            return render_template("form.html", error="Missing required Target Company fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
 
         company_info = f"""
 Website: {target_data['target_url']}
@@ -73,18 +92,20 @@ Social Media: {target_data['social_media']}
         ]
 
         prompt_descriptions = request.form.getlist("prompt_descriptions") if "prompt_descriptions" in request.form else [
-            f"Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company.",
-            f"A closed-ended question about the target company's customer base.",
-            f"A closed-ended question about the customer’s needs.",
-            f"A closed-ended question that includes a risk and the consequence of not addressing it.",
-            f"A closed-ended question involving a solution and the risk of not implementing it.",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_needs']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_service']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_source']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_price']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_time']}\"",
-            "One short, professional yes/no question to close the call."
-        ]
+    "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",
+    "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",
+    "A closed-ended question about the customer’s freight service needs relating to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada."
+]
+
+
 
         script_items = [{"label": label, "options": []} for label in labels]
         attempts = 0
@@ -148,22 +169,18 @@ Return each result as a numbered list, with no explanation or extra commentary.
         logging.debug("RENDER: target_data = %s", target_data)
         logging.debug("RENDER: prompt_descriptions = %s", prompt_descriptions)
 
-        try:
-            return render_template(
-                "index.html",
-                script_items=script_items,
-                rep_data=rep_data,
-                target_data=target_data,
-                prompt_descriptions=prompt_descriptions
-            )
-        except Exception as e:
-            logging.exception("🔥 Template rendering failed!")
-            raise
+        return render_template(
+            "index.html",
+            script_items=script_items,
+            rep_data=rep_data,
+            target_data=target_data,
+            prompt_descriptions=prompt_descriptions,
+            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
+        )
 
     except Exception as e:
         logging.exception("Error during script generation")
-        return render_template("form.html", error=f"An internal error occurred: {str(e)}")
-
+        return render_template("form.html", error=f"An internal error occurred: {str(e)}", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
 
 @app.route("/push-to-salesdrip", methods=["POST"])
 def push_to_salesdrip():
@@ -179,9 +196,9 @@ def push_to_salesdrip():
             "facts", "products_services", "social_media"]}
         
         if not rep_data["rep_name"] or not rep_data["rep_company"] or not rep_data["product"]:
-            return render_template("form.html", error="Missing required Sales Rep fields.")
+            return render_template("form.html", error="Missing required Sales Rep fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
         if not target_data["target_name"] or not target_data["target_url"]:
-            return render_template("form.html", error="Missing required Target Company fields.")
+            return render_template("form.html", error="Missing required Target Company fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
 
         script_items = [
             {"label": f"Line {i+1}", "options": [request.form.get(f"script_item_{i}", "")]} for i in range(11)
@@ -190,18 +207,19 @@ def push_to_salesdrip():
         success = save_script_to_crm(rep_data["rep_email"], rep_data, target_data, script_items)
 
         prompt_descriptions = [
-            f"Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company.",
-            f"A closed-ended question about the target company's customer base.",
-            f"A closed-ended question about the customer’s needs.",
-            f"A closed-ended question that includes a risk and the consequence of not addressing it.",
-            f"A closed-ended question involving a solution and the risk of not implementing it.",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_needs']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_service']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_source']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_price']}\"",
-            f"One closed-ended question that helps the buyer resolve this objection: \"{rep_data['objection_time']}\"",
-            "One short, professional yes/no question to close the call."
-        ]
+    "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",
+    "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",
+    "A closed-ended question about the customer’s freight service needs relating to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",
+    "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada."
+]
+
 
         return render_template(
             "index.html",
@@ -209,14 +227,13 @@ def push_to_salesdrip():
             rep_data=rep_data,
             target_data=target_data,
             crm_status="✅ Synced with SalesDrip" if success else "❌ Failed to sync",
-            prompt_descriptions=prompt_descriptions
+            prompt_descriptions=prompt_descriptions,
+            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
         )
 
     except Exception as e:
         logging.exception("Error pushing to SalesDrip")
         return f"❌ Error: {str(e)}", 500
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")

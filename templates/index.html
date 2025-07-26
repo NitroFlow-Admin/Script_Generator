@@ -8,10 +8,12 @@
       background: #f9f9f9;
       padding: 2rem;
     }
+
     h1 {
       margin-bottom: 1rem;
       color: #333;
     }
+
     .section {
       background: #fff;
       padding: 1.5rem;
@@ -19,15 +21,18 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
+
     .section h3 {
       margin-top: 0;
-      color: #007BFF;
+      color: #006A3B;
     }
+
     label {
       display: block;
       margin-top: 1rem;
       font-weight: bold;
     }
+
     input[type="text"], textarea {
       width: 100%;
       padding: 0.5rem;
@@ -36,32 +41,38 @@
       border-radius: 4px;
       font-size: 1rem;
     }
+
     .qa-blocks {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
+
     .qa-box {
       background: #ffffff;
       padding: 1rem;
-      border-left: 5px solid #007BFF;
+      border-left: 5px solid #006A3B;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
       font-size: 1rem;
     }
+
     .qa-label {
-      color: #007BFF;
+      color: #006A3B;
       font-weight: bold;
       margin-bottom: 0.5rem;
     }
+
     .qa-prompt {
       margin-bottom: 0.5rem;
     }
+
     .version-buttons {
       display: flex;
       gap: 0.5rem;
       margin-top: 0.5rem;
     }
+
     .version-buttons button {
       width: 30px;
       height: 30px;
@@ -71,128 +82,169 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     .version-buttons button.active {
-      background-color: #007BFF;
+      background-color: #ffbe00;
       color: white;
     }
+
     .button {
       padding: 0.75rem 1.5rem;
-      background: #007BFF;
+      background: #006A3B;
       color: #fff;
       border: none;
       border-radius: 4px;
       text-decoration: none;
       font-size: 1rem;
+      cursor: pointer;
     }
+
     .button:hover {
-      background: #0056b3;
+      background: #006A3B;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background: #fff;
+      border-right: 1px solid #ccc;
+      box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 998;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar-toggle {
+      position: fixed;
+      top: 0%;
+      left: 0;
+      width: 36px;
+      height: 70px;
+      background: #006A3B;
+      color: white;
+      writing-mode: vertical-rl;
+      text-align: center;
+      font-weight: bold;
+      line-height: 100px;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+      z-index: 999;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.15);
+      transition: left 0.3s ease;
+    }
+
+    .sidebar-toggle:hover {
+      background: #ffbe00;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .sidebar-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-left: 4%;
+    }
+
+    .sidebar-content label {
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .sidebar-content input,
+    .sidebar-content textarea {
+      width: 100%;
+      max-width: 90%;
+      padding: 6px 8px;
+      font-size: 0.95rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .sidebar-content button {
+      margin-top: 1rem;
+      padding: 10px;
+      background: #006A3B;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sidebar-content button:hover {
+      background: #006A3B;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 6px;
+      padding-right: 8px;
+    }
+
+    .hamburger span {
+      width: 3px;
+      height: 48px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-content">
+      <form id="editInputsForm" method="POST" action="/" onsubmit="return handleRegenerate(event)">
+        <h3>Sales Rep Info</h3>
+        <label>Name:</label><input type="text" name="rep_name" value="{{ rep_data.rep_name }}">
+        <label>Email:</label><input type="email" name="rep_email" value="{{ rep_data.rep_email }}">
+        <label>Company:</label><input type="text" name="rep_company" value="{{ rep_data.rep_company }}">
+        <label>What are you selling?</label><textarea name="product">{{ rep_data.product }}</textarea>
+        <label>Needs Objection:</label><textarea name="objection_needs">{{ rep_data.objection_needs }}</textarea>
+        <label>Service Objection:</label><textarea name="objection_service">{{ rep_data.objection_service }}</textarea>
+        <label>Source Objection:</label><textarea name="objection_source">{{ rep_data.objection_source }}</textarea>
+        <label>Price Objection:</label><textarea name="objection_price">{{ rep_data.objection_price }}</textarea>
+        <label>Time Objection:</label><textarea name="objection_time">{{ rep_data.objection_time }}</textarea>
+
+        <h3>Target Company Info</h3>
+        <label>Company Name:</label><input type="text" name="target_name" value="{{ target_data.target_name }}">
+        <label>Website:</label><input type="url" name="target_url" value="{{ target_data.target_url }}">
+        <label>Recent News:</label><textarea name="recent_news">{{ target_data.recent_news }}</textarea>
+        <label>Locations:</label><textarea name="locations">{{ target_data.locations }}</textarea>
+        <label>Facts or Stats:</label><textarea name="facts">{{ target_data.facts }}</textarea>
+        <label>Products/Services:</label><textarea name="products_services">{{ target_data.products_services }}</textarea>
+        <label>Social Media:</label><textarea name="social_media">{{ target_data.social_media }}</textarea>
+
+        <button type="submit">Regenerate</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="sidebar-toggle" class="sidebar-toggle" onclick="toggleSidebar()">
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 
   <h1>Cold Call Script Generator</h1>
 
-  <form action="/" method="POST">
-    <!-- Rep Info -->
-    <div class="section">
-      <h3>Sales Rep Info</h3>
-      <label for="rep_name">Your Name:</label>
-      <input type="text" name="rep_name" value="{{ rep_data.rep_name }}">
-
-      <label for="rep_company">Your Company:</label>
-      <input type="text" name="rep_company" value="{{ rep_data.rep_company }}">
-
-      <label for="product">Product or Service:</label>
-      <input type="text" name="product" value="{{ rep_data.product }}">
-
-      <label for="objection_needs">Needs Objection:</label>
-      <input type="text" name="objection_needs" value="{{ rep_data.objection_needs }}">
-
-      <label for="objection_service">Service Objection:</label>
-      <input type="text" name="objection_service" value="{{ rep_data.objection_service }}">
-
-      <label for="objection_source">Source Objection:</label>
-      <input type="text" name="objection_source" value="{{ rep_data.objection_source }}">
-
-      <label for="objection_price">Price Objection:</label>
-      <input type="text" name="objection_price" value="{{ rep_data.objection_price }}">
-
-      <label for="objection_time">Time Objection:</label>
-      <input type="text" name="objection_time" value="{{ rep_data.objection_time }}">
-    </div>
-
-    <!-- Target Info -->
-    <div class="section">
-      <h3>Target Company Info</h3>
-      <label for="target_name">Company Name:</label>
-      <input type="text" name="target_name" value="{{ target_data.target_name }}">
-
-      <label for="target_url">Company Website:</label>
-      <input type="text" name="target_url" value="{{ target_data.target_url }}">
-
-      <label for="recent_news">Recent News:</label>
-      <textarea name="recent_news">{{ target_data.recent_news }}</textarea>
-
-      <label for="locations">Company Locations:</label>
-      <textarea name="locations">{{ target_data.locations }}</textarea>
-
-      <label for="facts">Company Facts:</label>
-      <textarea name="facts">{{ target_data.facts }}</textarea>
-
-      <label for="products_services">Products & Services:</label>
-      <textarea name="products_services">{{ target_data.products_services }}</textarea>
-
-      <label for="social_media">Social Media or Other Notes:</label>
-      <textarea name="social_media">{{ target_data.social_media }}</textarea>
-    </div>
-
-    {% if script_items %}
-    <div class="section">
-      <h3>AI-Generated Sales Call Prompts</h3>
-      <div class="qa-blocks">
-        {% for item in script_items %}
-          {% set group_index = loop.index %}
-          <div class="qa-box" id="qa-box-{{ group_index }}">
-            <div class="qa-label">{{ item.label }}</div>
-
-            <!-- Editable Prompt Description -->
-            <div class="qa-prompt">
-              <label for="prompt-{{ group_index }}">Prompt Instruction:</label>
-              <textarea name="prompt_descriptions" rows="2">{{ prompt_descriptions[loop.index0] }}</textarea>
-            </div>
-
-            <!-- Editable AI Output -->
-            <div class="qa-output">
-              <label for="qa-text-{{ group_index }}">Selected AI Output:</label>
-              <textarea class="qa-text" id="qa-text-{{ group_index }}" rows="2">{{ item.options[0] if item.options|length > 0 else '' }}</textarea>
-            </div>
-
-            <!-- Version Buttons -->
-            <div class="version-buttons">
-              {% for opt in item.options %}
-                <button 
-                  type="button"
-                  data-group="{{ group_index }}"
-                  data-option="{{ loop.index0 }}"
-                  id="btn-{{ group_index }}-{{ loop.index0 }}"
-                  class="{% if loop.index0 == 0 %}active{% endif %}"
-                  onclick="handleToggle(this)">
-                  {{ loop.index }}
-                </button>
-              {% endfor %}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-
-    <button type="submit" class="button">Generate Script</button>
-
-    
-  </form>
-  <form method="POST" action="/push-to-salesdrip">
+  <form id="regenForm" method="POST" action="/">
     <input type="hidden" name="rep_email" value="{{ rep_data.rep_email }}">
     <input type="hidden" name="rep_name" value="{{ rep_data.rep_name }}">
     <input type="hidden" name="rep_company" value="{{ rep_data.rep_company }}">
@@ -202,7 +254,6 @@
     <input type="hidden" name="objection_source" value="{{ rep_data.objection_source }}">
     <input type="hidden" name="objection_price" value="{{ rep_data.objection_price }}">
     <input type="hidden" name="objection_time" value="{{ rep_data.objection_time }}">
-  
     <input type="hidden" name="target_name" value="{{ target_data.target_name }}">
     <input type="hidden" name="target_url" value="{{ target_data.target_url }}">
     <input type="hidden" name="recent_news" value="{{ target_data.recent_news }}">
@@ -210,34 +261,180 @@
     <input type="hidden" name="facts" value="{{ target_data.facts }}">
     <input type="hidden" name="products_services" value="{{ target_data.products_services }}">
     <input type="hidden" name="social_media" value="{{ target_data.social_media }}">
-  
+
+    {% for item in script_items %}
+      <input type="hidden" name="prompt_descriptions" value="{{ prompt_descriptions[loop.index0] }}">
+    {% endfor %}
+
+    {% if script_items %}
+    <div class="section">
+      <h3>AI-Generated Sales Call Prompts</h3>
+      <div class="qa-blocks">
+        {% for item in script_items %}
+        {% set group_index = loop.index %}
+        <div class="qa-box" id="qa-box-{{ group_index }}">
+          <div class="qa-label">{{ item.label }}</div>
+          <div class="qa-prompt">
+            <label for="prompt-{{ group_index }}">Prompt Instruction:</label>
+            <textarea name="prompt_descriptions" rows="2">{{ prompt_descriptions[loop.index0] }}</textarea>
+          </div>
+          <div class="qa-output">
+            <label for="qa-text-{{ group_index }}">Selected AI Output:</label>
+            <textarea class="qa-text" id="qa-text-{{ group_index }}" rows="2">{{ item.options[0] if item.options|length > 0 else '' }}</textarea>
+          </div>
+          <div class="version-buttons">
+            {% for opt in item.options[:4] %}
+              <button 
+                type="button"
+                data-group="{{ group_index }}"
+                data-option="{{ loop.index0 }}"
+                id="btn-{{ group_index }}-{{ loop.index0 }}"
+                class="{% if loop.index0 == 0 %}active{% endif %}"
+                onclick="handleToggle(this)">
+                {{ loop.index }}
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    <button type="button" class="button" onclick="generateWithCaptcha()">Generate Script</button>
+  </form>
+
+  <form method="POST" action="/push-to-salesdrip">
+    <!-- same hidden fields for CRM push -->
     {% for item in script_items %}
     <input type="hidden" name="script_item_{{ loop.index0 }}" value="{{ item.options[0] }}">
-  {% endfor %}
-  
-  
+    {% endfor %}
     <button type="submit" style="margin-top: 1rem;">📤 Push to SalesDrip</button>
   </form>
-  <!-- Inject data -->
+
+  <div id="loadingOverlay" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.95); z-index: 9999; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family: Arial, sans-serif;">
+    <div class="spinner" style="width: 48px; height: 48px; border: 5px solid #ddd; border-top: 5px solid #006A3B; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
+    <h2 id="loadingText" style="color:#006A3B;">Compiling Research...</h2>
+  </div>
+
   <script type="application/json" id="script-data">
     {{ script_items | tojson }}
   </script>
-
   <script>
     const scriptItems = JSON.parse(document.getElementById("script-data").textContent);
 
     function handleToggle(btn) {
       const groupIndex = parseInt(btn.getAttribute("data-group"));
       const optionIndex = parseInt(btn.getAttribute("data-option"));
-
       const qaText = document.getElementById(`qa-text-${groupIndex}`);
       qaText.value = scriptItems[groupIndex - 1].options[optionIndex];
-
       const buttons = document.querySelectorAll(`#qa-box-${groupIndex} .version-buttons button`);
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
     }
-  </script>
 
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const toggle = document.getElementById("sidebar-toggle");
+      const isOpen = sidebar.classList.toggle("open");
+      toggle.style.left = isOpen ? "300px" : "0px";
+    }
+
+    function generateWithCaptcha() {
+      const overlay = document.getElementById("loadingOverlay");
+      if (overlay) overlay.style.display = "flex";
+
+      grecaptcha.ready(function () {
+        grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "g-recaptcha-response";
+          input.value = token;
+          document.getElementById("regenForm").appendChild(input);
+          showLoadingProgressAndSubmit();
+        });
+      });
+    }
+
+    function showLoadingProgressAndSubmit() {
+      const overlay = document.getElementById("loadingOverlay");
+      const text = document.getElementById("loadingText");
+      const steps = [
+        "Compiling research...",
+        "Building Script Version 1...",
+        "Building Script Version 2...",
+        "Building Script Version 3...",
+        "Building Script Version 4...",
+        "Finishing up..."
+      ];
+      let step = 0;
+
+      const interval = setInterval(() => {
+        text.textContent = steps[step];
+        step++;
+        if (step >= steps.length) {
+          clearInterval(interval);
+          document.getElementById("regenForm").submit();
+        }
+      }, 800);
+
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 15000);
+    }
+
+    function handleRegenerate(event) {
+      event.preventDefault();
+      const overlay = document.getElementById("loadingOverlay");
+      const loadingText = document.getElementById("loadingText");
+      const steps = [
+        "Compiling research...",
+        "Building Script Version 1...",
+        "Building Script Version 2...",
+        "Building Script Version 3...",
+        "Building Script Version 4...",
+        "Finishing up..."
+      ];
+      let step = 0;
+      overlay.style.display = "flex";
+      loadingText.textContent = steps[0];
+      const interval = setInterval(() => {
+        step++;
+        if (step < steps.length) {
+          loadingText.textContent = steps[step];
+        } else {
+          clearInterval(interval);
+        }
+      }, 800);
+
+      grecaptcha.ready(function () {
+        grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "g-recaptcha-response";
+          input.value = token;
+          document.getElementById("editInputsForm").appendChild(input);
+          document.getElementById("editInputsForm").submit();
+        });
+      });
+      return false;
+    }
+
+    window.onload = function () {
+      const overlay = document.getElementById("loadingOverlay");
+      if (overlay) overlay.style.display = "none";
+
+      const sidebarToggle = document.getElementById("sidebar-toggle");
+      if (sidebarToggle) sidebarToggle.style.left = "0px";
+
+      const sidebarForm = document.getElementById("editInputsForm");
+      if (sidebarForm) {
+        sidebarForm.addEventListener("submit", () => {
+          document.getElementById("sidebar").classList.remove("open");
+          sidebarToggle.style.left = "0px";
+        });
+      }
+    };
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
 </body>
 </html>
