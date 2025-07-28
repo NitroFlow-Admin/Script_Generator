@@ -1,10 +1,13 @@
 # gunicorn.conf.py
 
-errorlog = 'gunicorn.log'         # Log errors here
-accesslog = 'access.log'          # (Optional) Log HTTP access here
-capture_output = True             # Capture stdout/stderr into log
-loglevel = 'debug'                # 'info' or 'debug' for development
-timeout = 60                      # Worker timeout in seconds
+# Logging
+errorlog = 'gunicorn.log'         # Log uncaught errors and exceptions
+accesslog = 'access.log'          # HTTP access log (optional but helpful)
+capture_output = True             # Capture print() and stdout/stderr
+loglevel = 'debug'                # Use 'debug' for development, 'info' for prod
 
+# Server behavior
+timeout = 60                      # Worker timeout in seconds (60 is typical)
+
+# Bind to all interfaces (use with caution on public servers)
 bind = "0.0.0.0:8080"
-

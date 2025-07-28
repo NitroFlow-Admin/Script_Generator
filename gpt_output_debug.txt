@@ -1,0 +1,9 @@
+```json
+{
+  "products_services": "JHD Corp is a supplier of herbal extracts and healthy raw materials. They focus on providing these materials to various markets, likely including food, health, and wellness sectors, given their certifications and global reach.",
+  "recent_news": "No recent news pages found.",
+  "locations": "JHD Corp is located in Ontario, California. They have worldwide warehouses in the USA, Canada, and Germany. Their manufacturing operations are based in China.",
+  "facts": "JHD Corp has over 24 years of experience in the industry. They hold certifications from BRC, ISO22000 with HACCP, along with Kosher, Halal, and Organic certificates, indicating a commitment to quality and compliance with international standards.",
+  "social_media": "No specific social media mentions or user-generated insights were found."
+}
+```

@@ -1,29 +1,39 @@
-from flask import Flask, render_template, request
+import os
+import sys
+import logging
+import atexit
+import requests
+from dotenv import load_dotenv
+from flask import Flask, render_template, request, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from openai import OpenAI
-from dotenv import load_dotenv
-import logging
-import os
-import sys
-import atexit
-import requests
+from research_engine import run_auto_research as run_research_pipeline
 
+# Load environment variables and configure Puppeteer
 load_dotenv()
+os.environ["PYPPETEER_BROWSER_REVISION"] = "1181205"
+
 
 RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY")
 RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+import traceback
+
+import traceback
+
 def log_exit():
     logging.warning("⚠️ Python interpreter is exiting unexpectedly.")
-atexit.register(log_exit)
+    print("⚠️ Python is exiting unexpectedly!", flush=True)
+    traceback.print_stack()
+
+
 
 def handle_exception(exc_type, exc_value, exc_traceback):
-    if issubclass(exc_type, SystemExit):
-        logging.error("🔻 SystemExit detected. Exit code: %s", exc_value)
-    else:
+    if not issubclass(exc_type, SystemExit):
         logging.critical("💥 Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
 
 sys.excepthook = handle_exception
 
@@ -234,6 +244,32 @@ def push_to_salesdrip():
     except Exception as e:
         logging.exception("Error pushing to SalesDrip")
         return f"❌ Error: {str(e)}", 500
+    
 
-if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+import traceback
+import logging
+logging.basicConfig(level=logging.INFO)
+
+@app.route('/run-autoresearch', methods=['POST'])
+def run_autoresearch():
+    data = request.get_json()
+    url = data.get('url')
+    name = data.get('name')
+
+    if not url or not name:
+        return jsonify({"error": "Missing company URL or name"}), 400
+
+    try:
+        research_data = run_research_pipeline(name, url)
+        if not research_data or not isinstance(research_data, dict):
+            raise ValueError("Empty or invalid research result")
+        return jsonify(research_data)
+    except Exception as e:
+        logging.error("Auto-research failed", exc_info=True)
+        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
+
+print("✅ Flask app has started", flush=True)
+
+
+if __name__ == '__main__':
+    app.run()

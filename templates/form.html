@@ -94,48 +94,51 @@
       <button type="button" onclick="nextSection()">Next</button>
     </div>
   
-    <!-- Target Section -->
-    <div id="target-section" class="section">
-<h2>Target Company Info</h2>
+ <!-- Target Section -->
+<!-- Target Section -->
+<div id="target-section" class="section">
+  <h2>Target Company Info</h2>
 
-<label>Company Name:</label>
-<input type="text" name="target_name" value="JDH Corp">
+  <label>Company Name:</label>
+  <input type="text" name="target_name" placeholder="JDH Corp">
 
-<label>Website:</label>
-<input type="url" name="target_url" value="https://www.jhdcorp.com/">
+  <label>Company Website:</label>
+  <input type="url" name="target_url" placeholder="https://www.jhdcorp.com/">
+  <button type="button" onclick="runAutoResearch()" style="margin-bottom: 20px;">🔍 Auto-Research</button>
 
-<label>Recent News:</label>
-<textarea name="recent_news">None</textarea>
+  <label>Recent News:</label>
+  <textarea name="recent_news" placeholder="None"></textarea>
 
-<label>Company Locations:</label>
-<textarea name="locations">Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia
+  <label>Company Locations:</label>
+  <textarea name="locations" placeholder="Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia
 
-USA/Canada/China/German/Netherlands worldwide warehouses</textarea>
+USA/Canada/China/German/Netherlands worldwide warehouses"></textarea>
 
-<label>Company Facts:</label>
-<textarea name="facts">20+ years herbal extract manufacturer in China
+  <label>Company Facts:</label>
+  <textarea name="facts" placeholder="20+ years herbal extract manufacturer in China
 
-We have our own dedicated plantation with a wide range of planting areas and a wide variety of planting types.
+We have our own dedicated plantation with a wide range of planting areas and  a wide variety of planting types.
 
 We have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.
 
 We boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.
 
 Certificate
-BRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated</textarea>
+BRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated"></textarea>
 
-<label>Products & Services:</label>
-<textarea name="products_services">Products
-700+ herbal extract, fruit & vegetable powders, herbal extracts</textarea>
+  <label>Products & Services:</label>
+  <textarea name="products_services" placeholder="Products
+700+ herbal extract, fruit & vegetable powders, herbal extracts"></textarea>
 
-<label>Social Media or Other Notes:</label>
-<textarea name="social_media">Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! 🎉 The energy on the floor was electric—so many inspiring conversations, brilliant innovations shared, and new connections made.​
+  <label>Social Media or Other Notes:</label>
+  <textarea name="social_media" placeholder="Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! 🎉 The energy on the floor was electric—so many inspiring conversations, brilliant innovations shared, and new connections made.​
 A huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! 🔬💡​
-If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next day, ready to chat more about our latest p… See more</textarea>
+If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next day, ready to chat more about our latest p… See more"></textarea>
 
-    
-      <button type="submit">Generate Cold Call Script</button>
-    </div>
+  <button type="submit">Generate Cold Call Script</button>
+</div>
+
+
   </form>
   <!-- Loading overlay -->
   <div id="loadingOverlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.95); z-index: 9999; align-items:center; justify-content:center; flex-direction:column; font-family: Arial, sans-serif; display: none;">
@@ -150,91 +153,151 @@ If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next
   100% { transform: rotate(360deg); }
 }
 </style>
+<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
 
-  
+<script>
+  function nextSection() {
+    document.getElementById("rep-section").classList.remove("active");
+    document.getElementById("target-section").classList.add("active");
+    window.scrollTo(0, 0);
+  }
 
-  <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
-  <script>
-    function nextSection() {
-      document.getElementById("rep-section").classList.remove("active");
-      document.getElementById("target-section").classList.add("active");
-      window.scrollTo(0, 0);
-    }
-  
-    function handleFormSubmit(event) {
-      event.preventDefault(); // Stop the default form submit
-  
-      // Show overlay immediately
-      const overlay = document.getElementById("loadingOverlay");
-      const loadingText = document.getElementById("loadingText");
-      const steps = [
-        "Compiling research...",
-        "Building Script Version 1...",
-        "Building Script Version 2...",
-        "Building Script Version 3...",
-        "Building Script Version 4...",
-        "Finishing up..."
-      ];
-      let step = 0;
-  
-      overlay.style.display = "flex";
-      loadingText.textContent = steps[0];
-  
-      const interval = setInterval(() => {
-        step++;
-        if (step < steps.length) {
-          loadingText.textContent = steps[step];
-        } else {
-          clearInterval(interval);
-        }
-      }, 800);
-  
-      // ✅ Fill in placeholder values if fields are empty (MOVED ABOVE VALIDATION)
-      const fields = document.querySelectorAll("input, textarea");
-      fields.forEach(field => {
-        if (!field.value.trim() && field.placeholder) {
-          field.value = field.placeholder;
-        }
-      });
-  
-      // ✅ Validate required fields by name
-      const requiredFields = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
-      for (let name of requiredFields) {
-        const el = document.querySelector(`[name="${name}"]`);
-        if (!el || !el.value.trim()) {
-          alert("Please complete all required fields.");
-          document.getElementById("loadingOverlay").style.display = "none";
-  
-          if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
-            document.getElementById("rep-section").classList.add("active");
-            document.getElementById("target-section").classList.remove("active");
-          } else {
-            document.getElementById("rep-section").classList.remove("active");
-            document.getElementById("target-section").classList.add("active");
-          }
-  
-          el?.focus();
-          return false;
-        }
+  function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const overlay = document.getElementById("loadingOverlay");
+    const loadingText = document.getElementById("loadingText");
+    const steps = [
+      "Compiling research...",
+      "Building Script Version 1...",
+      "Building Script Version 2...",
+      "Building Script Version 3...",
+      "Building Script Version 4...",
+      "Finishing up..."
+    ];
+    let step = 0;
+
+    overlay.style.display = "flex";
+    loadingText.textContent = steps[0];
+
+    const interval = setInterval(() => {
+      step++;
+      if (step < steps.length) {
+        loadingText.textContent = steps[step];
+      } else {
+        clearInterval(interval);
       }
-  
-      // Run reCAPTCHA and submit
-      grecaptcha.ready(function () {
-        grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
-          const input = document.createElement("input");
-          input.type = "hidden";
-          input.name = "g-recaptcha-response";
-          input.value = token;
-          document.getElementById("mainForm").appendChild(input);
-          document.getElementById("mainForm").submit();
-        });
-      });
-  
-      return false;
+    }, 800);
+
+    // Fill empty fields with their placeholders
+    document.querySelectorAll("input, textarea").forEach(field => {
+      if (!field.value.trim() && field.placeholder) {
+        field.value = field.placeholder;
+      }
+    });
+
+    // Validate required fields
+    const required = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
+    for (let name of required) {
+      const el = document.querySelector(`[name="${name}"]`);
+      if (!el || !el.value.trim()) {
+        alert("Please complete all required fields.");
+        overlay.style.display = "none";
+
+        if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
+          document.getElementById("rep-section").classList.add("active");
+          document.getElementById("target-section").classList.remove("active");
+        } else {
+          document.getElementById("rep-section").classList.remove("active");
+          document.getElementById("target-section").classList.add("active");
+        }
+
+        el?.focus();
+        return false;
+      }
     }
-  </script>
-  
-  
+
+    grecaptcha.ready(function () {
+      grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "g-recaptcha-response";
+        input.value = token;
+        document.getElementById("mainForm").appendChild(input);
+        document.getElementById("mainForm").submit();
+      });
+    });
+
+    return false;
+  }
+
+  async function runAutoResearch() {
+    const urlField = document.querySelector('[name="target_url"]');
+const nameField = document.querySelector('[name="target_name"]');
+const url = urlField.value.trim() || urlField.placeholder;
+const name = nameField.value.trim() || nameField.placeholder;
+
+    const overlay = document.getElementById("loadingOverlay");
+    const loadingText = document.getElementById("loadingText");
+
+    if (!url || !name) {
+      alert("Please enter both the company name and website before running Auto-Research.");
+      return;
+    }
+
+    overlay.style.display = "flex";
+    loadingText.textContent = "Scanning Website & News...";
+
+    // Clear fields
+    ["recent_news", "locations", "facts", "products_services", "social_media"].forEach(name => {
+      const el = document.querySelector(`[name="${name}"]`);
+      if (el) el.value = '';
+    });
+
+    try {
+      const response = await fetch("/run-autoresearch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, name })
+      });
+
+      const data = await response.json();
+      overlay.style.display = "none";
+
+      if (data.error) {
+        alert("Error: " + data.error);
+        return;
+      }
+
+      // Populate fields
+      document.querySelector('[name="recent_news"]').value = (data.recent_news || '').toString().trim();
+      document.querySelector('[name="locations"]').value = (data.locations || '').toString().trim();
+      document.querySelector('[name="social_media"]').value = (data.social_media || '').toString().trim();
+
+      let facts = data.facts;
+      if (typeof facts === 'object' && facts !== null) {
+        facts = Object.entries(facts).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join('\n');
+      }
+      document.querySelector('[name="facts"]').value = facts || '';
+
+      let products = data.products_services;
+      if (typeof products === 'object' && products !== null) {
+        products = Object.entries(products).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join('\n');
+      }
+      document.querySelector('[name="products_services"]').value = products || '';
+
+    } catch (err) {
+      overlay.style.display = "none";
+      alert("An unexpected error occurred while fetching research.");
+    }
+  }
+
+  // ✅ Unified reliable onload
+  window.addEventListener("load", () => {
+    const overlay = document.getElementById("loadingOverlay");
+    if (overlay) overlay.style.display = "none";
+  });
+</script>
 
 </body>
 </html>

@@ -210,27 +210,60 @@
     <div class="sidebar-content">
       <form id="editInputsForm" method="POST" action="/" onsubmit="return handleRegenerate(event)">
         <h3>Sales Rep Info</h3>
-        <label>Name:</label><input type="text" name="rep_name" value="{{ rep_data.rep_name }}">
-        <label>Email:</label><input type="email" name="rep_email" value="{{ rep_data.rep_email }}">
-        <label>Company:</label><input type="text" name="rep_company" value="{{ rep_data.rep_company }}">
-        <label>What are you selling?</label><textarea name="product">{{ rep_data.product }}</textarea>
-        <label>Needs Objection:</label><textarea name="objection_needs">{{ rep_data.objection_needs }}</textarea>
-        <label>Service Objection:</label><textarea name="objection_service">{{ rep_data.objection_service }}</textarea>
-        <label>Source Objection:</label><textarea name="objection_source">{{ rep_data.objection_source }}</textarea>
-        <label>Price Objection:</label><textarea name="objection_price">{{ rep_data.objection_price }}</textarea>
-        <label>Time Objection:</label><textarea name="objection_time">{{ rep_data.objection_time }}</textarea>
-
+      
+        <label>Name:</label>
+        <input type="text" name="rep_name" value="{{ rep_data.rep_name }}">
+      
+        <label>Email:</label>
+        <input type="email" name="rep_email" value="{{ rep_data.rep_email }}">
+      
+        <label>Company:</label>
+        <input type="text" name="rep_company" value="{{ rep_data.rep_company }}">
+      
+        <label>What are you selling?</label>
+        <textarea name="product">{{ rep_data.product }}</textarea>
+      
+        <label>Needs Objection:</label>
+        <textarea name="objection_needs">{{ rep_data.objection_needs }}</textarea>
+      
+        <label>Service Objection:</label>
+        <textarea name="objection_service">{{ rep_data.objection_service }}</textarea>
+      
+        <label>Source Objection:</label>
+        <textarea name="objection_source">{{ rep_data.objection_source }}</textarea>
+      
+        <label>Price Objection:</label>
+        <textarea name="objection_price">{{ rep_data.objection_price }}</textarea>
+      
+        <label>Time Objection:</label>
+        <textarea name="objection_time">{{ rep_data.objection_time }}</textarea>
+      
         <h3>Target Company Info</h3>
-        <label>Company Name:</label><input type="text" name="target_name" value="{{ target_data.target_name }}">
-        <label>Website:</label><input type="url" name="target_url" value="{{ target_data.target_url }}">
-        <label>Recent News:</label><textarea name="recent_news">{{ target_data.recent_news }}</textarea>
-        <label>Locations:</label><textarea name="locations">{{ target_data.locations }}</textarea>
-        <label>Facts or Stats:</label><textarea name="facts">{{ target_data.facts }}</textarea>
-        <label>Products/Services:</label><textarea name="products_services">{{ target_data.products_services }}</textarea>
-        <label>Social Media:</label><textarea name="social_media">{{ target_data.social_media }}</textarea>
-
+      
+        <label>Company Name:</label>
+        <input type="text" name="target_name" value="{{ target_data.target_name }}">
+      
+        <label>Website:</label>
+        <input type="url" name="target_url" value="{{ target_data.target_url }}">
+      
+        <label>Recent News:</label>
+        <textarea name="recent_news">{{ target_data.recent_news }}</textarea>
+      
+        <label>Locations:</label>
+        <textarea name="locations">{{ target_data.locations }}</textarea>
+      
+        <label>Facts or Stats:</label>
+        <textarea name="facts">{{ target_data.facts }}</textarea>
+      
+        <label>Products/Services:</label>
+        <textarea name="products_services">{{ target_data.products_services }}</textarea>
+      
+        <label>Social Media:</label>
+        <textarea name="social_media">{{ target_data.social_media }}</textarea>
+      
         <button type="submit">Regenerate</button>
       </form>
+      
     </div>
   </div>
 
@@ -316,12 +349,15 @@
     <h2 id="loadingText" style="color:#006A3B;">Compiling Research...</h2>
   </div>
 
+  <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+
   <script type="application/json" id="script-data">
     {{ script_items | tojson }}
   </script>
+  
   <script>
     const scriptItems = JSON.parse(document.getElementById("script-data").textContent);
-
+  
     function handleToggle(btn) {
       const groupIndex = parseInt(btn.getAttribute("data-group"));
       const optionIndex = parseInt(btn.getAttribute("data-option"));
@@ -331,18 +367,18 @@
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
     }
-
+  
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       const toggle = document.getElementById("sidebar-toggle");
       const isOpen = sidebar.classList.toggle("open");
       toggle.style.left = isOpen ? "300px" : "0px";
     }
-
+  
     function generateWithCaptcha() {
       const overlay = document.getElementById("loadingOverlay");
       if (overlay) overlay.style.display = "flex";
-
+  
       grecaptcha.ready(function () {
         grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
           const input = document.createElement("input");
@@ -354,7 +390,7 @@
         });
       });
     }
-
+  
     function showLoadingProgressAndSubmit() {
       const overlay = document.getElementById("loadingOverlay");
       const text = document.getElementById("loadingText");
@@ -366,22 +402,28 @@
         "Building Script Version 4...",
         "Finishing up..."
       ];
+      
       let step = 0;
-
+      text.textContent = steps[step];
+  
       const interval = setInterval(() => {
-        text.textContent = steps[step];
         step++;
-        if (step >= steps.length) {
+        if (step < steps.length) {
+          text.textContent = steps[step];
+        } else {
           clearInterval(interval);
-          document.getElementById("regenForm").submit();
         }
       }, 800);
-
+  
+      setTimeout(() => {
+        document.getElementById("regenForm").submit();
+      }, 2400);
+  
       setTimeout(() => {
         overlay.style.display = "none";
       }, 15000);
     }
-
+  
     function handleRegenerate(event) {
       event.preventDefault();
       const overlay = document.getElementById("loadingOverlay");
@@ -397,6 +439,7 @@
       let step = 0;
       overlay.style.display = "flex";
       loadingText.textContent = steps[0];
+  
       const interval = setInterval(() => {
         step++;
         if (step < steps.length) {
@@ -405,7 +448,7 @@
           clearInterval(interval);
         }
       }, 800);
-
+  
       grecaptcha.ready(function () {
         grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
           const input = document.createElement("input");
@@ -416,25 +459,39 @@
           document.getElementById("editInputsForm").submit();
         });
       });
+  
       return false;
     }
-
-    window.onload = function () {
+  
+    // ✅ Unifies all onload behavior
+    window.addEventListener("load", () => {
+      // Hide overlay if it somehow persisted
       const overlay = document.getElementById("loadingOverlay");
       if (overlay) overlay.style.display = "none";
-
-      const sidebarToggle = document.getElementById("sidebar-toggle");
-      if (sidebarToggle) sidebarToggle.style.left = "0px";
-
-      const sidebarForm = document.getElementById("editInputsForm");
-      if (sidebarForm) {
-        sidebarForm.addEventListener("submit", () => {
+  
+      // Clear stale form values
+      const fieldsToClear = [
+        "recent_news", "locations", "facts", "products_services", "social_media"
+      ];
+      fieldsToClear.forEach(name => {
+        const el = document.querySelector(`[name="${name}"]`);
+        if (el) el.value = '';
+      });
+  
+      // Reset sidebar toggle
+      const toggle = document.getElementById("sidebar-toggle");
+      if (toggle) toggle.style.left = "0px";
+  
+      // Collapse sidebar on form submit
+      const form = document.getElementById("editInputsForm");
+      if (form) {
+        form.addEventListener("submit", () => {
           document.getElementById("sidebar").classList.remove("open");
-          sidebarToggle.style.left = "0px";
+          toggle.style.left = "0px";
         });
       }
-    };
+    });
   </script>
-  <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+  
 </body>
 </html>
