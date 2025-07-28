@@ -1,0 +1,23 @@
+2025-07-28 22:02:43,209 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-07-28 22:02:43,235 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-07-28 22:02:43,421 - INFO - ⛔ Invalid article: https://www.jhdcorp.com/blog-posts-sitemap.xml
+2025-07-28 22:02:43,421 - INFO - ❌ No valid blog articles extracted.
+2025-07-28 22:02:58,581 - INFO - 📡 Starting research for: https://www.tianet.org/
+2025-07-28 22:02:58,662 - INFO - [robots.txt] Can fetch https://www.tianet.org/? False
+2025-07-28 22:02:58,663 - INFO - ❌ Scraping blocked by robots.txt for: https://www.tianet.org/
+2025-07-28 22:03:10,363 - INFO - 📡 Starting research for: https://www.greenrope.com/
+2025-07-28 22:03:10,420 - INFO - [robots.txt] Can fetch https://www.greenrope.com/? False
+2025-07-28 22:03:10,420 - INFO - ❌ Scraping blocked by robots.txt for: https://www.greenrope.com/
+2025-07-28 22:03:37,089 - INFO - 📡 Starting research for: https://www.atlanticpaper.com/
+2025-07-28 22:03:37,342 - INFO - [robots.txt] Can fetch https://www.atlanticpaper.com/? True
+2025-07-28 22:03:38,037 - INFO - ⚠️ No blog/resource links found.
+2025-07-28 22:03:56,497 - INFO - 📡 Starting research for: https://americantex.com/
+2025-07-28 22:03:56,650 - INFO - [robots.txt] Can fetch https://americantex.com/? False
+2025-07-28 22:03:56,651 - INFO - ❌ Scraping blocked by robots.txt for: https://americantex.com/
+2025-07-28 22:04:16,769 - INFO - 📡 Starting research for: https://www.longbehn.com/
+2025-07-28 22:04:16,917 - INFO - [robots.txt] Failed to parse: <urlopen error [Errno 104] Connection reset by peer>
+2025-07-28 22:04:17,769 - INFO - ✅ Found article:  (https://www.longbehn.com/blog/merch-for-bands-and-venues)
+2025-07-28 22:04:18,361 - INFO - ✅ Found article: Blog (https://www.longbehn.com/blog.htm)
+2025-07-28 22:04:18,565 - INFO - ✅ Found article: Our History (https://www.longbehn.com/our-history.htm)
+2025-07-28 22:04:18,940 - INFO - ✅ Found article:  (https://www.longbehn.com/blog/now-trending-fanny-packs)
+2025-07-28 22:04:18,940 - INFO - ✅ Total articles extracted: 4

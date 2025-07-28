@@ -2,24 +2,33 @@ import os
 import sys
 import logging
 import atexit
+import json
 import requests
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_cors import CORS
 from openai import OpenAI
-from research_engine import run_auto_research as run_research_pipeline
+from research_engine import run_ethical_scraper
 
-# Load environment variables and configure Puppeteer
+# Load environment variables and set Puppeteer
 load_dotenv()
-os.environ["PYPPETEER_BROWSER_REVISION"] = "1181205"
-
 
 RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY")
 RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-import traceback
+# Flask app setup
+app = Flask(__name__, template_folder="templates", static_folder="static")
+CORS(app)
+
+# Rate limiter setup
+limiter = Limiter(get_remote_address, app=app, default_limits=["5 per minute", "100 per day"])
+
+# OpenAI client setup
+client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 import traceback
 
@@ -37,9 +46,7 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 
 sys.excepthook = handle_exception
 
-app = Flask(__name__, template_folder="templates", static_folder="static")
-limiter = Limiter(get_remote_address, app=app, default_limits=["5 per minute", "100 per day"])
-client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -246,29 +253,39 @@ def push_to_salesdrip():
         return f"❌ Error: {str(e)}", 500
     
 
-import traceback
-import logging
-logging.basicConfig(level=logging.INFO)
-
-@app.route('/run-autoresearch', methods=['POST'])
-def run_autoresearch():
-    data = request.get_json()
-    url = data.get('url')
-    name = data.get('name')
-
-    if not url or not name:
-        return jsonify({"error": "Missing company URL or name"}), 400
-
+@app.route("/run-autoresearch", methods=["POST"])
+def handle_autoresearch():
     try:
-        research_data = run_research_pipeline(name, url)
-        if not research_data or not isinstance(research_data, dict):
-            raise ValueError("Empty or invalid research result")
-        return jsonify(research_data)
-    except Exception as e:
-        logging.error("Auto-research failed", exc_info=True)
-        return jsonify({"error": str(e), "trace": traceback.format_exc()}), 500
+        data = request.get_json(force=True)
+        url = data.get("url", "").strip()
+        name = data.get("name", "").strip()
 
-print("✅ Flask app has started", flush=True)
+        if not url or not name:
+            return jsonify({"error": "Missing company name or URL"}), 400
+
+        articles = run_ethical_scraper(url)
+        print(f"DEBUG: Articles found: {articles}")
+
+        summary = {
+            "recent_blog_posts": "\n\n".join(
+                f"{a.get('title', 'Untitled')} — {(a.get('content') or a.get('summary', '')).strip()[:750]} (Source: {a.get('url', '')})"
+                for a in articles
+                if a.get("content") or a.get("summary")
+            ) or "No recent blog posts found.",
+            "locations": "",
+           "facts": "",
+           "products_services": "",
+           "social_media": ""
+        }
+
+        print("SUMMARY OUTPUT:", json.dumps(summary, indent=2))
+
+        return jsonify(summary)
+
+    except Exception as e:
+        logging.exception("Error during auto-research")
+        return jsonify({"error": "Auto-research failed (site may be empty or inaccessible)."}), 500
+
 
 
 if __name__ == '__main__':

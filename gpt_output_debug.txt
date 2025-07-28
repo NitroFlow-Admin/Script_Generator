@@ -1,9 +1,9 @@
 ```json
 {
-  "products_services": "JHD Corp is a supplier of herbal extracts and healthy raw materials. They focus on providing these materials to various markets, likely including food, health, and wellness sectors, given their certifications and global reach.",
-  "recent_news": "No recent news pages found.",
-  "locations": "JHD Corp is located in Ontario, California. They have worldwide warehouses in the USA, Canada, and Germany. Their manufacturing operations are based in China.",
-  "facts": "JHD Corp has over 24 years of experience in the industry. They hold certifications from BRC, ISO22000 with HACCP, along with Kosher, Halal, and Organic certificates, indicating a commitment to quality and compliance with international standards.",
-  "social_media": "No specific social media mentions or user-generated insights were found."
+  "products_services": "SalesDrip provides CRM and automation software specifically designed for freight brokers, agents, and trucking companies. Their main products include freight broker CRM, freight automation software, and logistics sales automation tools. They offer features like email campaigns, lead tracking, AI tools, custom websites, and seamless CRM integration. Additionally, SalesDrip provides 1:1 training, sales and marketing strategies, management and growth consultation, and website design and hosting services.",
+  "recent_blog_posts": "SalesDrip's blog content focuses on providing insights and resources for freight sales management and tactics, website optimization, and effective communication strategies. They offer guides and blueprints such as the Free Freight Sales Follow-Up Blueprint, Freight Sales Playbook, and Cold Calling Script. The blog also discusses the best times to make sales calls, where to find the best freight shipper leads, common freight broker website mistakes, and the top website features for freight brokers.",
+  "locations": "SalesDrip is based in the United States, with their team being 100% U.S.-based. The specific locations of their offices or facilities are not mentioned.",
+  "facts": "SalesDrip was built by a freight industry veteran with over 30 years of experience. They claim to have deep industry insight and a unique understanding of the freight business. SalesDrip has received positive reviews and has a high rating, with a 5 out of 5 based on 6 reviews.",
+  "social_media": "John Valva, a reviewer, mentioned that SalesDrip transformed their freight sales pipeline management and praised the operational insight of Tom Acklam, a logistics veteran. Justin Bright, another reviewer, highlighted the prompt and efficient service from the SalesDrip team and their willingness to customize solutions to fit specific needs."
 }
 ```
