@@ -1,25 +1,27 @@
-2025-07-30 14:19:06,973 - INFO - 📡 Starting research for: https://www.salesdrip.com/
-2025-07-30 14:19:07,088 - INFO - [robots.txt] Can fetch https://www.salesdrip.com/? True
-2025-07-30 14:19:07,379 - INFO - Found 101 URLs in the sitemap
-2025-07-30 14:19:07,380 - INFO - Identified 13 potential blog links.
-2025-07-30 14:19:08,448 - INFO - [PAGE TEXT] https://www.salesdrip.com --> SalesDrip - Follow Up Forever Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Freight Broker CRM & Automation Software Built by Industry Veterans SalesDrip is the all-in-one freight broker CRM and freight 
+2025-07-30 14:42:05,799 - INFO - 📡 Starting research for: https://www.salesdrip.com/
+2025-07-30 14:42:05,995 - INFO - [robots.txt] Can fetch https://www.salesdrip.com/? True
+2025-07-30 14:42:06,467 - INFO - Found 101 URLs in the sitemap
+2025-07-30 14:42:06,468 - INFO - Identified 13 potential blog links.
+2025-07-30 14:42:07,883 - INFO - [PAGE TEXT] https://www.salesdrip.com --> SalesDrip - Follow Up Forever Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Freight Broker CRM & Automation Software Built by Industry Veterans SalesDrip is the all-in-one freight broker CRM and freight 
             automation software built by a freight industry veteran who started, scaled, and sold ...
-2025-07-30 14:19:08,907 - INFO - [PAGE TEXT] https://www.salesdrip.com/about --> About Us Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Freight Broker CRM & Automation Software Built by Industry Veterans SalesDrip is the all-in-one freight broker CRM and freight automation software built by professional brokers who started, scaled, and sold multiple freight brokerages. We’re more ...
-2025-07-30 14:19:09,069 - INFO - [SKIP] https://www.salesdrip.com/about-us not fetched.
-2025-07-30 14:19:09,469 - INFO - [PAGE TEXT] https://www.salesdrip.com/contact --> Contact SalesDrip Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Contact the SalesDrip Team We are always on standby to help in any way we can. Contact Sales Contact Support Headquarters: 1602 W. Chandler Drive, St. George, Utah 84770 United States (844) 966-4876 Sales sales@salesdrip.com Support suppo...
-2025-07-30 14:19:09,632 - INFO - [SKIP] https://www.salesdrip.com/contact-us not fetched.
-2025-07-30 14:19:09,790 - INFO - [SKIP] https://www.salesdrip.com/locations not fetched.
-2025-07-30 14:19:10,117 - INFO - [EXTRACTED LOCATIONS] ['United States', 'St. George', 'Utah', 'AI', 'Us']
-2025-07-30 14:19:10,504 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/ (8823 chars)
-2025-07-30 14:19:10,947 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/about (7222 chars)
-2025-07-30 14:19:11,107 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/about-us
-2025-07-30 14:19:11,517 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/company (5987 chars)
-2025-07-30 14:19:11,676 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/overview
-2025-07-30 14:19:11,836 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/who-we-are
-2025-07-30 14:19:12,015 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/our-story
-2025-07-30 14:19:12,177 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/mission
-2025-07-30 14:19:12,361 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/vision
-2025-07-30 14:19:12,524 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/contact-us
-2025-07-30 14:19:18,772 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-07-30 14:19:20,832 - INFO - [SOCIAL] Could not fetch https://www.salesdrip.com/home
-2025-07-30 14:19:20,832 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/salesdrip'}
+2025-07-30 14:42:08,342 - INFO - [PAGE TEXT] https://www.salesdrip.com/about --> About Us Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Freight Broker CRM & Automation Software Built by Industry Veterans SalesDrip is the all-in-one freight broker CRM and freight automation software built by professional brokers who started, scaled, and sold multiple freight brokerages. We’re more ...
+2025-07-30 14:42:08,505 - INFO - [SKIP] https://www.salesdrip.com/about-us not fetched.
+2025-07-30 14:42:08,979 - INFO - [PAGE TEXT] https://www.salesdrip.com/contact --> Contact SalesDrip Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Contact the SalesDrip Team We are always on standby to help in any way we can. Contact Sales Contact Support Headquarters: 1602 W. Chandler Drive, St. George, Utah 84770 United States (844) 966-4876 Sales sales@salesdrip.com Support suppo...
+2025-07-30 14:42:09,144 - INFO - [SKIP] https://www.salesdrip.com/contact-us not fetched.
+2025-07-30 14:42:09,367 - INFO - [SKIP] https://www.salesdrip.com/locations not fetched.
+2025-07-30 14:42:09,702 - INFO - [EXTRACTED LOCATIONS] ['United States', 'St. George', 'Utah', 'AI', 'Us']
+2025-07-30 14:42:10,101 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/ (8823 chars)
+2025-07-30 14:42:10,525 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/about (7222 chars)
+2025-07-30 14:42:10,688 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/about-us
+2025-07-30 14:42:11,092 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/company (5987 chars)
+2025-07-30 14:42:11,267 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/overview
+2025-07-30 14:42:11,432 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/who-we-are
+2025-07-30 14:42:11,595 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/our-story
+2025-07-30 14:42:11,753 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/mission
+2025-07-30 14:42:11,911 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/vision
+2025-07-30 14:42:12,070 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/contact-us
+2025-07-30 14:42:17,714 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:42:24,979 - INFO - [SOCIAL] Could not fetch https://www.salesdrip.com/home
+2025-07-30 14:42:24,979 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/salesdrip'}
+2025-07-30 14:42:25,254 - INFO - [BLOG] Skipped non-article: https://www.salesdrip.com/sitemap
+2025-07-30 14:42:32,674 - INFO - [BLOG] Skipping article with blank/untitled heading: https://www.salesdrip.com/resources/Blog16/Free_Freight_Sales_Follow_Up_Blueprint

@@ -270,13 +270,16 @@ const name = nameField.value.trim() || nameField.placeholder;
       }
 
       const blogBox = document.querySelector('[name="recent_blog_posts"]');
-if (Array.isArray(data.recent_blog_posts)) {
-  blogBox.value = data.recent_blog_posts.map(n => `• ${n.title}\n${n.details || ''}`).join('\n\n');
+      if (Array.isArray(data.recent_blog_posts)) {
+  blogBox.value = data.recent_blog_posts.map(post =>
+    `• ${post.title}\n${post.url}\n${post.excerpt}`
+  ).join('\n\n');
 } else if (typeof data.recent_blog_posts === 'string') {
   blogBox.value = data.recent_blog_posts.trim();
 } else {
   blogBox.value = '';
 }
+
  
 
 

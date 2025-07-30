@@ -78,7 +78,10 @@ def is_valid_article(soup):
 
 def extract_article_data(soup, url):
     title_tag = soup.find("h1") or soup.title
-    title = title_tag.get_text(strip=True) if title_tag else "Untitled"
+    title = title_tag.get_text(strip=True) if title_tag else None
+    if not title:
+        title = "Untitled"
+
     paragraphs = soup.find_all("p")
     content = " ".join(p.get_text(strip=True) for p in paragraphs)
     return {
@@ -86,6 +89,7 @@ def extract_article_data(soup, url):
         "url": url,
         "content": content[:2500]
     }
+
 
 def find_links_from_sitemap(domain):
     sitemap_url = urljoin(domain, "/sitemap.xml")
@@ -195,6 +199,55 @@ def extract_locations_from_main_pages(base_url):
     log_event(f"[EXTRACTED LOCATIONS] {deduped}")
     return deduped
 
+def is_valid_article(soup):
+    text = soup.get_text(" ", strip=True)
+    paragraphs = soup.find_all("p")
+    h1 = soup.find("h1")
+    word_count = sum(len(p.get_text(strip=True).split()) for p in paragraphs)
+
+    if not h1 or len(paragraphs) < 2 or word_count < 150 or len(text) < 300:
+        return False
+
+    bad_phrases = ["sitemap", "login", "privacy", "terms", "faq"]
+    title = (h1.get_text(strip=True).lower() if h1 else "").lower()
+    if any(phrase in title for phrase in bad_phrases):
+        return False
+
+    return True
+
+def extract_article_summaries(urls, max_articles=5):
+    summaries = []
+    for url in urls:
+        if len(summaries) >= max_articles:
+            break
+
+        res = safe_get(url)
+        if res and res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            if is_valid_article(soup):
+                article = extract_article_data(soup, url)
+
+                # Sanitize title
+                title = article["title"].strip() if article["title"] else ""
+                if not title or title.lower() == "untitled":
+                    log_event(f"[BLOG] Skipping article with blank/untitled heading: {url}")
+                    continue
+                if len(title) > 120:
+                    title = title[:117].strip() + "..."
+
+                # Prepare excerpt
+                excerpt = article["content"][:350].strip()
+                summaries.append({
+                    "title": title,
+                    "url": article["url"],
+                    "excerpt": excerpt + ("..." if len(article["content"]) > 350 else "")
+                })
+            else:
+                log_event(f"[BLOG] Skipped non-article: {url}")
+        else:
+            log_event(f"[BLOG] Failed to fetch: {url}")
+    return summaries
+
 
 def run_ethical_scraper(domain, max_articles=5):
     log_event(f"📡 Starting research for: {domain}")
@@ -223,12 +276,13 @@ def run_ethical_scraper(domain, max_articles=5):
     social = extract_social_media_links(domain)
 
     return {
-        "articles": blog_links,
+        "articles": extract_article_summaries(blog_links, max_articles=5),
         "locations": "; ".join(locations),
         "company_facts": company_facts.get("company_facts", {}),
         "products_services": company_facts.get("products_services", {}),
         "social_media": social
     }
+
 
 
 
