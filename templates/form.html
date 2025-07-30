@@ -296,9 +296,11 @@ if (Array.isArray(data.recent_blog_posts)) {
       document.querySelector('[name="products_services"]').value = products || '';
 
     } catch (err) {
-      overlay.style.display = "none";
-      alert("An unexpected error occurred while fetching research.");
-    }
+  console.error("Fetch error:", err);
+  overlay.style.display = "none";
+  alert("An unexpected error occurred while fetching research.");
+}
+
   }
 
   // ✅ Unified reliable onload
