@@ -200,9 +200,13 @@ def run_autoresearch():
         if not blog_posts:
             blog_posts = "No recent posts found."
 
-        social_media = results.get("social_media", "").strip()
-        if not social_media:
+        social_data = results.get("social_media", {})
+
+        if isinstance(social_data, dict) and social_data:
+            social_media = "; ".join(f"{platform}: {url}" for platform, url in social_data.items())
+        else:
             social_media = "No social media found."
+
 
         # --- Move fields from company_facts ---
         facts_raw = results.get("company_facts", {})

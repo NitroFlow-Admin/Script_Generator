@@ -120,6 +120,37 @@ def deduplicate_locations(locations):
     return final
 
 
+def extract_social_media_links(base_url: str) -> dict:
+    social_links = {}
+    patterns = {
+        "LinkedIn": r"(https?://(www\.)?linkedin\.com/company/[^\s\"']+)",
+        "Twitter": r"(https?://(www\.)?twitter\.com/[^\s\"']+)",
+        "Facebook": r"(https?://(www\.)?facebook\.com/[^\s\"']+)",
+        "Instagram": r"(https?://(www\.)?instagram\.com/[^\s\"']+)",
+        "YouTube": r"(https?://(www\.)?youtube\.com/[^\s\"']+)"
+    }
+
+    urls_to_check = [base_url]
+    for suffix in ["about", "contact", "home"]:
+        urls_to_check.append(urljoin(base_url, suffix))
+
+    for page_url in urls_to_check:
+        res = safe_get(page_url)
+        if res and res.status_code == 200:
+            soup = BeautifulSoup(res.text, "html.parser")
+            html = soup.prettify()
+            for platform, regex in patterns.items():
+                match = re.search(regex, html, re.I)
+                if match and platform not in social_links:
+                    social_links[platform] = match.group(1)
+        else:
+            log_event(f"[SOCIAL] Could not fetch {page_url}")
+
+    log_event(f"[SOCIAL MEDIA FOUND] {social_links}")
+    return social_links
+
+
+
 # --- Update inside extract_locations_from_main_pages() ---
 
 def extract_locations_from_main_pages(base_url):
@@ -149,6 +180,7 @@ def extract_locations_from_main_pages(base_url):
     log_event(f"[EXTRACTED LOCATIONS] {deduped}")
     return deduped
 
+
 def run_ethical_scraper(domain, max_articles=5):
     log_event(f"📡 Starting research for: {domain}")
     
@@ -172,13 +204,16 @@ def run_ethical_scraper(domain, max_articles=5):
             "products_services": {"product_types": [], "product_count_estimate": "Not available"}
         }
 
+    # Extract social media links from common pages
+    social = extract_social_media_links(domain)
+
     return {
-        "articles": blog_links,  # Could later extract actual article content
+        "articles": blog_links,
         "locations": "; ".join(locations),
         "company_facts": company_facts.get("company_facts", {}),
-        "products_services": company_facts.get("products_services", {})
+        "products_services": company_facts.get("products_services", {}),
+        "social_media": social
     }
-
 
 
 
