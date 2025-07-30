@@ -181,7 +181,9 @@ def push_to_salesdrip():
         return f"❌ Error: {str(e)}", 500
 
 
-# Keep at bottom of app.py
+### Update in app.py (inside run_autoresearch route) ###
+### Update in app.py (inside run_autoresearch route) ###
+
 @app.route("/run-autoresearch", methods=["POST"])
 def run_autoresearch():
     try:
@@ -193,18 +195,76 @@ def run_autoresearch():
 
         results = run_ethical_scraper(domain)
 
+        # --- Format fallback responses ---
+        blog_posts = results.get("articles")
+        if not blog_posts:
+            blog_posts = "No recent posts found."
+
+        social_media = results.get("social_media", "").strip()
+        if not social_media:
+            social_media = "No social media found."
+
+        # --- Move fields from company_facts ---
+        facts_raw = results.get("company_facts", {})
+        products_raw = results.get("products_services", {})
+
+        facts_cleaned = facts_raw.copy()
+        product_list = []
+        locations_list = []
+
+        if isinstance(facts_cleaned.get("products_services"), list):
+            product_list = facts_cleaned.pop("products_services")
+
+        if isinstance(facts_cleaned.get("locations"), list):
+            locations_list = facts_cleaned.pop("locations")
+
+        # Remove unwanted keys
+        facts_cleaned.pop("contact_info", None)
+
+        # Combine and clean locations
+        sitemap_locs = results.get("locations", "").split("; ") if results.get("locations") else []
+        all_locations = locations_list + sitemap_locs
+
+        def normalize_location_name(name):
+            subs = {
+                "us": "united states",
+                "usa": "united states",
+                "u.s.": "united states",
+                "u.s.a.": "united states",
+                "the united states": "united states"
+            }
+            return subs.get(name.lower().strip(), name.strip().lower())
+
+        def dedup_locations(locations):
+            seen = set()
+            final = []
+            blacklist = {"organic", "international", "headquarters", "hq", "global", "warehouse", "warehouses"}
+            for loc in sorted(locations, key=lambda x: (-len(x), x)):
+                norm = normalize_location_name(loc)
+                if norm in blacklist:
+                    continue
+                if not any(norm in s for s in seen):
+                    seen.add(norm)
+                    final.append(loc)
+            return final
+
+        cleaned_locations = "; ".join(dedup_locations(all_locations))
+
+        # Optionally strip likely misclassifications from product list
+        bad_keywords = ["API"]
+        filtered_products = [p for p in product_list if all(b.lower() not in p.lower() for b in bad_keywords)]
+
         return jsonify({
-            "facts": results.get("company_facts", {}),
-            "products_services": results.get("products_services", {}),
-            "locations": results.get("locations", ""),
-            "recent_blog_posts": results.get("articles", []),
-            "social_media": ""  # Add support later if needed
+            "facts": facts_cleaned,
+            "products_services": {"product_types": filtered_products},
+            "locations": cleaned_locations,
+            "recent_blog_posts": blog_posts,
+            "social_media": social_media
         })
 
     except Exception as e:
         log_event(f"❌ /run-autoresearch failed: {e}")
         return jsonify({"error": "Something went wrong."}), 500
-
 
 
 if __name__ == "__main__":

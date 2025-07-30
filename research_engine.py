@@ -108,8 +108,21 @@ def find_links_from_sitemap(domain):
         log_event(f"❌ No blog links found in the sitemap.")
     return blog_links
 
+
+def deduplicate_locations(locations):
+    seen = set()
+    final = []
+    for loc in sorted(locations, key=lambda x: (-len(x), x)):
+        norm = loc.lower().strip()
+        if not any(norm in s.lower() or s.lower() in norm for s in seen):
+            seen.add(loc)
+            final.append(loc)
+    return final
+
+
+# --- Update inside extract_locations_from_main_pages() ---
+
 def extract_locations_from_main_pages(base_url):
-    # Function to extract location information from the homepage or related pages
     import spacy
     nlp = spacy.load("en_core_web_sm")
 
@@ -132,10 +145,9 @@ def extract_locations_from_main_pages(base_url):
 
     doc = nlp(combined_text)
     all_locs = [ent.text.strip() for ent in doc.ents if ent.label_ == "GPE" and len(ent.text) <= 40]
-    log_event(f"[EXTRACTED LOCATIONS] {all_locs}")
-    return sorted(set(all_locs))
-
-
+    deduped = deduplicate_locations(all_locs)
+    log_event(f"[EXTRACTED LOCATIONS] {deduped}")
+    return deduped
 
 def run_ethical_scraper(domain, max_articles=5):
     log_event(f"📡 Starting research for: {domain}")
