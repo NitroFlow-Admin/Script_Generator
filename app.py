@@ -242,7 +242,7 @@ def run_autoresearch():
         def dedup_locations(locations):
             seen = set()
             final = []
-            blacklist = {"organic", "international", "headquarters", "hq", "global", "warehouse", "warehouses"}
+            blacklist = {"organic", "international", "headquarters", "hq", "global", "warehouse", "warehouses", "ai", "us"}
             for loc in sorted(locations, key=lambda x: (-len(x), x)):
                 norm = normalize_location_name(loc)
                 if norm in blacklist:

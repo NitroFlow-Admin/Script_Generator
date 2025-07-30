@@ -120,6 +120,8 @@ def deduplicate_locations(locations):
     return final
 
 
+from urllib.parse import urljoin, urlparse
+
 def extract_social_media_links(base_url: str) -> dict:
     social_links = {}
     patterns = {
@@ -129,6 +131,17 @@ def extract_social_media_links(base_url: str) -> dict:
         "Instagram": r"(https?://(www\.)?instagram\.com/[^\s\"']+)",
         "YouTube": r"(https?://(www\.)?youtube\.com/[^\s\"']+)"
     }
+
+    def domain_matches_social(profile_url, target_url):
+        try:
+            profile_slug = urlparse(profile_url).path.lower().strip("/").split("/")[-1]
+            target_domain = urlparse(target_url).netloc.lower().replace("www.", "")
+            domain_base = target_domain.split(".")[0]  # 'salesdrip.com' → 'salesdrip'
+
+            return domain_base in profile_slug or domain_base in profile_url.lower()
+        except Exception as e:
+            log_event(f"[DOMAIN MATCH FAIL] {e}")
+            return True  # fallback to permissive match
 
     urls_to_check = [base_url]
     for suffix in ["about", "contact", "home"]:
@@ -142,7 +155,9 @@ def extract_social_media_links(base_url: str) -> dict:
             for platform, regex in patterns.items():
                 match = re.search(regex, html, re.I)
                 if match and platform not in social_links:
-                    social_links[platform] = match.group(1)
+                    profile = match.group(1)
+                    if domain_matches_social(profile, base_url):
+                        social_links[platform] = profile
         else:
             log_event(f"[SOCIAL] Could not fetch {page_url}")
 
