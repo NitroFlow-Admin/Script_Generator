@@ -163,73 +163,75 @@ If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next
   }
 
   function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent default form submission
+  event.preventDefault(); // Prevent default form submission
 
-    const overlay = document.getElementById("loadingOverlay");
-    const loadingText = document.getElementById("loadingText");
-    const steps = [
-      "Compiling research...",
-      "Building Script Version 1...",
-      "Building Script Version 2...",
-      "Building Script Version 3...",
-      "Building Script Version 4...",
-      "Finishing up..."
-    ];
-    let step = 0;
+  const overlay = document.getElementById("loadingOverlay");
+  const loadingText = document.getElementById("loadingText");
+  const steps = [
+    "Compiling research...",
+    "Building Script Version 1...",
+    "Building Script Version 2...",
+    "Building Script Version 3...",
+    "Building Script Version 4...",
+    "Finishing up..."
+  ];
+  let step = 0;
 
-    overlay.style.display = "flex";
-    loadingText.textContent = steps[0];
+  overlay.style.display = "flex";
+  loadingText.textContent = steps[0];
 
-    const interval = setInterval(() => {
-      step++;
-      if (step < steps.length) {
-        loadingText.textContent = steps[step];
-      } else {
-        clearInterval(interval);
-      }
-    }, 800);
-
-    // Fill empty fields with their placeholders
-    document.querySelectorAll("input, textarea").forEach(field => {
-      if (!field.value.trim() && field.placeholder) {
-        field.value = field.placeholder;
-      }
-    });
-
-    // Validate required fields
-    const required = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
-    for (let name of required) {
-      const el = document.querySelector(`[name="${name}"]`);
-      if (!el || !el.value.trim()) {
-        alert("Please complete all required fields.");
-        overlay.style.display = "none";
-
-        if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
-          document.getElementById("rep-section").classList.add("active");
-          document.getElementById("target-section").classList.remove("active");
-        } else {
-          document.getElementById("rep-section").classList.remove("active");
-          document.getElementById("target-section").classList.add("active");
-        }
-
-        el?.focus();
-        return false;
-      }
+  const interval = setInterval(() => {
+    step++;
+    if (step < steps.length) {
+      loadingText.textContent = steps[step];
+    } else {
+      clearInterval(interval);
     }
+  }, 800);
 
-    grecaptcha.ready(function () {
-      grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "g-recaptcha-response";
-        input.value = token;
-        document.getElementById("mainForm").appendChild(input);
-        document.getElementById("mainForm").submit();
-      });
-    });
+  // ✅ FILL ALL EMPTY FIELDS WITH PLACEHOLDERS
+  document.querySelectorAll("input, textarea").forEach(field => {
+    if (!field.value.trim() && field.placeholder) {
+      field.value = field.placeholder;
+    }
+  });
 
-    return false;
+  // ✅ VALIDATE REQUIRED FIELDS AFTER FILLING
+  const required = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
+  for (let name of required) {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (!el || !el.value.trim()) {
+      alert("Please complete all required fields.");
+      overlay.style.display = "none";
+
+      if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
+        document.getElementById("rep-section").classList.add("active");
+        document.getElementById("target-section").classList.remove("active");
+      } else {
+        document.getElementById("rep-section").classList.remove("active");
+        document.getElementById("target-section").classList.add("active");
+      }
+
+      el?.focus();
+      return false;
+    }
   }
+
+  // ✅ THEN RUN reCAPTCHA
+  grecaptcha.ready(function () {
+    grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "g-recaptcha-response";
+      input.value = token;
+      document.getElementById("mainForm").appendChild(input);
+      document.getElementById("mainForm").submit();
+    });
+  });
+
+  return false;
+}
+
 
   async function runAutoResearch() {
     const urlField = document.querySelector('[name="target_url"]');
