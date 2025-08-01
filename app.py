@@ -78,6 +78,96 @@ def handle_form():
         if not all(rep_data.values()) or not all(target_data.values()):
             return render_template("form.html", error="Please complete all required fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
 
+        # Define prompt descriptions
+        prompt_descriptions = [
+            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",  # Opening Script
+            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",  # Customer Assessment
+            "A closed-ended question about the customer’s freight service needs relating to, from or between the locations in the USA and Canada.",  # Needs Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Risk Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Solution Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Needs Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Service Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Source Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Price Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Time Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada."   # Closing Question
+        ]
+
+        # Construct OpenAI prompt
+        prompt = f"""
+You are a professional cold call script assistant.
+Sales Rep: {rep_data['rep_name']} from {rep_data['rep_company']}.
+They are selling: {rep_data['product']}.
+Target company: {target_data['target_name']}.
+
+Please generate each of the following as a single short, professional, closed-ended sentence:
+""" + "\n".join([f"{i+1}. {desc}" for i, desc in enumerate(prompt_descriptions)])
+
+        # Make OpenAI call
+        import time
+        start_time = time.time()
+
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5,
+            max_tokens=2500
+        )
+
+        logging.info(f"✅ OpenAI script generated in {time.time() - start_time:.2f}s")
+
+        content = response.choices[0].message.content.strip()
+        lines = [line.strip() for line in content.splitlines() if any(line.startswith(f"{i+1}.") for i in range(11))]
+
+        if len(lines) < 11:
+            raise ValueError("AI returned incomplete result.")
+
+        # Build script_items
+        script_items = []
+        for i, line in enumerate(lines):
+            script_items.append({
+                "label": prompt_descriptions[i],
+                "options": [line]
+            })
+
+        return render_template(
+            "index.html",
+            script_items=script_items,
+            rep_data=rep_data,
+            target_data=target_data,
+            prompt_descriptions=prompt_descriptions,
+            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
+        )
+
+    except Exception as e:
+        logging.exception("Error during script generation")
+        return render_template("form.html", error=f"An internal error occurred: {str(e)}", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+    if request.method == "GET":
+        return render_template("form.html", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+    try:
+        # reCAPTCHA v3 verification
+        recaptcha_response = request.form.get("g-recaptcha-response", "")
+        if not recaptcha_response:
+            return render_template("form.html", error="Missing reCAPTCHA response.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+        verify_resp = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data={"secret": RECAPTCHA_SECRET_KEY, "response": recaptcha_response}
+        )
+        result = verify_resp.json()
+        if not result.get("success") or result.get("score", 0) < 0.5:
+            return render_template("form.html", error="reCAPTCHA verification failed. Please try again.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+        # Sales rep + target form data
+        rep_data = {key: request.form.get(key, "") for key in ["rep_email", "rep_name", "rep_company", "product", "objection_needs", "objection_service", "objection_source", "objection_price", "objection_time"]}
+        target_data = {key: request.form.get(key, "") for key in ["target_name", "target_url", "recent_news", "locations", "facts", "products_services", "social_media"]}
+
+        # Check for missing required fields
+        if not all(rep_data.values()) or not all(target_data.values()):
+            return render_template("form.html", error="Please complete all required fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
         # Generate cold call script
         company_info = f"""
 Website: {target_data['target_url']}
@@ -88,10 +178,19 @@ Products & Services: {target_data['products_services']}
 Social Media: {target_data['social_media']}
 """
         prompt_descriptions = [
-            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",
-            "A closed-ended question about the customer’s freight service needs relating to, from or between the locations in the USA and Canada.",
-            # Add remaining descriptions...
+            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",  # Opening Script
+           "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",  # Customer Assessment
+            "A closed-ended question about the customer’s freight service needs relating to, from or between the locations in the USA and Canada.",  # Needs Assessment
+           "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Risk Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Solution Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Needs Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Service Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Source Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Price Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Time Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada."   # Closing Question
         ]
+
 
         # Attempt to generate script items using OpenAI
         script_items = [{"label": label, "options": []} for label in prompt_descriptions]

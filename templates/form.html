@@ -107,7 +107,7 @@
   <button type="button" onclick="runAutoResearch()" style="margin-bottom: 20px;">🔍 Auto-Research</button>
 
   <label>Recent Blog/News Posts:</label>
-  <textarea name="recent_blog_posts" placeholder="None"></textarea>  
+  <textarea name="recent_news" placeholder="None"></textarea>
 
   <label>Company Locations:</label>
   <textarea name="locations" placeholder="Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia
@@ -249,7 +249,7 @@ const name = nameField.value.trim() || nameField.placeholder;
     loadingText.textContent = "Scanning Website & News...";
 
     // Clear fields
-    ["recent_blog_posts", "locations", "facts", "products_services", "social_media"].forEach(name => {
+    ["recent_news", "locations", "facts", "products_services", "social_media"].forEach(name => {
       const el = document.querySelector(`[name="${name}"]`);
       if (el) el.value = '';
     });
@@ -269,7 +269,7 @@ const name = nameField.value.trim() || nameField.placeholder;
         return;
       }
 
-      const blogBox = document.querySelector('[name="recent_blog_posts"]');
+      const blogBox = document.querySelector('[name="recent_news"]');
       if (Array.isArray(data.recent_blog_posts)) {
   blogBox.value = data.recent_blog_posts.map(post =>
     `• ${post.title}\n${post.url}\n${post.excerpt}`

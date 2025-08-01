@@ -157,3 +157,249 @@
 2025-08-01 14:46:33,619 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact
 2025-08-01 14:46:34,755 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/home
 2025-08-01 14:46:35,879 - INFO - [SOCIAL MEDIA FOUND] {'Facebook': 'https://www.facebook.com/kdcapitalequipment/', 'Instagram': 'https://www.instagram.com/kdcapitalequipment/'}
+2025-08-01 15:55:56,996 - INFO - 📡 Starting research for: https://icofgroup.com/
+2025-08-01 15:55:58,043 - INFO - [robots.txt] Can fetch https://icofgroup.com/? True
+2025-08-01 15:55:58,043 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/
+2025-08-01 15:56:01,572 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/sitemap.xml
+2025-08-01 15:56:03,752 - INFO - Found 4 URLs in the sitemap
+2025-08-01 15:56:03,752 - INFO - Identified 0 potential blog links.
+2025-08-01 15:56:03,752 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 15:56:03,752 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 15:56:03,752 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com
+2025-08-01 15:56:06,870 - INFO - [PAGE TEXT] https://icofgroup.com --> Home - ICOF Home Products & Applications Sustainability Career Newsroom Contact Menu Home Products & Applications Sustainability Career Newsroom Contact visit us at Linkedin INTER CONTINENTAL OILS AND FATS (ICOF) Turning Sustainable Palm Oil Into Value-Added Ingredients For The Modern Life. Part of The Musim Mas Group. Call Us Today Musim Mas Group is a vertically integrated palm oil business offering an extensive portfolio of downstream products. Utilizing the strength of our supply chain, we u...
+2025-08-01 15:56:06,870 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/about
+2025-08-01 15:56:08,506 - INFO - [SKIP RETRY] Status 404 for https://icofgroup.com/about
+2025-08-01 15:56:08,507 - INFO - [SKIP] https://icofgroup.com/about not fetched.
+2025-08-01 15:56:08,507 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/about-us
+2025-08-01 15:56:10,436 - INFO - [SKIP RETRY] Status 404 for https://icofgroup.com/about-us
+2025-08-01 15:56:10,437 - INFO - [SKIP] https://icofgroup.com/about-us not fetched.
+2025-08-01 15:56:10,437 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/contact
+2025-08-01 15:56:13,174 - INFO - [PAGE TEXT] https://icofgroup.com/contact --> Contact - ICOF Home Products & Applications Sustainability Career Newsroom Contact Menu Home Products & Applications Sustainability Career Newsroom Contact visit us at Linkedin Contact ICOF in the world ICOF has offices all across the world, click on the map below to explore them Contact Us for a Presentation Home » Contact Get in touch You can reach by the following details below or using our contact form. CORPORATE OFFICES Musim Mas Holdings Pte Ltd 150 Beach Road,#24-01/08, Gateway West, Sing...
+2025-08-01 15:56:13,175 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/contact-us
+2025-08-01 15:56:15,114 - INFO - [SKIP RETRY] Status 404 for https://icofgroup.com/contact-us
+2025-08-01 15:56:15,114 - INFO - [SKIP] https://icofgroup.com/contact-us not fetched.
+2025-08-01 15:56:15,115 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/locations
+2025-08-01 15:56:16,734 - INFO - [SKIP RETRY] Status 404 for https://icofgroup.com/locations
+2025-08-01 15:56:16,734 - INFO - [SKIP] https://icofgroup.com/locations not fetched.
+2025-08-01 15:56:16,828 - INFO - [EXTRACTED LOCATIONS] ['United Kingdom', 'Indonesia', 'Singapore', 'Malaysia', 'Germany', 'Vietnam', 'Brazil', 'China', 'India', 'Spain', 'USA']
+2025-08-01 15:56:21,353 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/about-us
+2025-08-01 15:56:21,368 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/overview
+2025-08-01 15:56:21,404 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/about
+2025-08-01 15:56:21,610 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/company
+2025-08-01 15:56:22,118 - INFO - [FACT SCRAPE] ✅ https://icofgroup.com/ (3791 chars)
+2025-08-01 15:56:25,565 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/mission
+2025-08-01 15:56:25,568 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/our-story
+2025-08-01 15:56:25,599 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/who-we-are
+2025-08-01 15:56:25,799 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/vision
+2025-08-01 15:56:25,926 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://icofgroup.com/contact-us
+2025-08-01 15:56:31,016 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 15:56:31,020 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "Inter-Continental Oils and Fats (ICOF) is part of the Musim Mas Group, a vertically integrated palm oil business focused on turning sustainable palm oil into value-added ingredients.",
+    "products_services": [
+      "Animal Nutrition",
+      "Biofuels",
+    ...
+2025-08-01 15:56:31,020 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/
+2025-08-01 15:56:33,604 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/about
+2025-08-01 15:56:35,241 - INFO - [SKIP RETRY] Status 404 for https://icofgroup.com/about
+2025-08-01 15:56:35,242 - INFO - [SOCIAL] Could not fetch https://icofgroup.com/about
+2025-08-01 15:56:35,242 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/contact
+2025-08-01 15:56:37,791 - INFO - [GET] Attempt 1 - Fetching https://icofgroup.com/home
+2025-08-01 15:56:40,675 - INFO - [SOCIAL MEDIA FOUND] {}
+2025-08-01 16:00:52,486 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 16:00:52,659 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 16:00:52,659 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 16:00:52,719 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 16:00:52,742 - INFO - Found 3 URLs in the sitemap
+2025-08-01 16:00:52,743 - INFO - Identified 0 potential blog links.
+2025-08-01 16:00:52,743 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 16:00:52,743 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 16:00:53,628 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 16:00:53,704 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 16:00:53,704 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 16:00:53,834 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 16:00:53,834 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 16:00:53,834 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 16:00:53,939 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 16:00:53,939 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 16:00:53,939 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 16:00:54,044 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 16:00:54,044 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 16:00:54,045 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 16:00:54,110 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 16:00:54,110 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 16:00:54,229 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 16:00:54,230 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 16:00:54,293 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 16:00:54,316 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 16:00:54,318 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 16:00:54,373 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 16:00:54,386 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 16:00:54,400 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 16:00:54,415 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 16:00:54,418 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 16:00:54,454 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 16:00:54,465 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 16:00:54,477 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 16:01:01,761 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:01,819 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is a herbal extract supplier and ingredient manufacturer headquartered in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Food Additives",
+      "API",
+  ...
+2025-08-01 16:01:01,820 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 16:01:01,959 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 16:01:02,004 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 16:01:02,005 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 16:01:02,005 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 16:01:02,048 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 16:01:02,048 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 16:01:02,048 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 16:01:02,170 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 16:01:07,611 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:07,626 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:09,577 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:09,585 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:12,480 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:12,483 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:15,154 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:15,257 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:16,933 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:16,941 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:19,012 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:19,018 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:21,002 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:21,006 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:22,963 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:22,969 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:25,093 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:25,094 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:27,025 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:01:27,067 - WARNING - ❌ AI returned only 2 lines. Retrying...
+2025-08-01 16:01:27,067 - ERROR - Error during script generation
+Traceback (most recent call last):
+  File "/root/salescriptor/app.py", line 140, in handle_form
+    raise ValueError("Incomplete results from AI.")
+ValueError: Incomplete results from AI.
+2025-08-01 16:06:24,776 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 16:06:24,912 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 16:06:24,913 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 16:06:24,949 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 16:06:24,971 - INFO - Found 3 URLs in the sitemap
+2025-08-01 16:06:24,972 - INFO - Identified 0 potential blog links.
+2025-08-01 16:06:24,972 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 16:06:24,972 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 16:06:25,627 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 16:06:25,728 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 16:06:25,728 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 16:06:25,752 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 16:06:25,752 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 16:06:25,753 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 16:06:25,777 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 16:06:25,777 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 16:06:25,777 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 16:06:25,818 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 16:06:25,819 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 16:06:25,819 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 16:06:25,875 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 16:06:25,876 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 16:06:25,921 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 16:06:25,922 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 16:06:25,980 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 16:06:26,005 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 16:06:26,007 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 16:06:26,009 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 16:06:26,011 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 16:06:26,070 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 16:06:26,071 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 16:06:26,071 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 16:06:26,071 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 16:06:26,071 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 16:06:26,104 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 16:06:36,295 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:06:36,327 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, headquartered in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Frui...
+2025-08-01 16:06:36,328 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 16:06:36,490 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 16:06:36,512 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 16:06:36,512 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 16:06:36,512 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 16:06:36,537 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 16:06:36,538 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 16:06:36,538 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 16:06:36,662 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 16:06:51,598 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:07:01,382 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:07:08,291 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:07:18,857 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:07:35,107 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:16:13,984 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:16:14,000 - INFO - ✅ OpenAI script generated in 5.74s
+2025-08-01 16:16:20,874 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 16:16:20,897 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 16:16:20,898 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 16:16:20,937 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 16:16:20,964 - INFO - Found 3 URLs in the sitemap
+2025-08-01 16:16:20,964 - INFO - Identified 0 potential blog links.
+2025-08-01 16:16:20,965 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 16:16:20,965 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 16:16:21,600 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 16:16:21,679 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 16:16:21,679 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 16:16:21,721 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 16:16:21,721 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 16:16:21,721 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 16:16:21,743 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 16:16:21,743 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 16:16:21,743 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 16:16:21,787 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 16:16:21,787 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 16:16:21,787 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 16:16:21,840 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 16:16:21,840 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 16:16:21,863 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 16:16:21,863 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 16:16:21,921 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 16:16:21,947 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 16:16:21,948 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 16:16:21,951 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 16:16:21,953 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 16:16:22,011 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 16:16:22,011 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 16:16:22,012 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 16:16:22,012 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 16:16:22,012 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 16:16:22,048 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 16:16:27,861 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:16:27,918 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is an herbal extract supplier and ingredient manufacturer located in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Fruit & Vegetable Powders",
+      "Fo...
+2025-08-01 16:16:27,919 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 16:16:28,046 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 16:16:28,073 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 16:16:28,073 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 16:16:28,073 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 16:16:28,094 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 16:16:28,094 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 16:16:28,094 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 16:16:28,217 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 16:16:34,730 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 16:16:34,738 - INFO - ✅ OpenAI script generated in 4.73s
