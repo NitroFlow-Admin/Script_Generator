@@ -8,6 +8,11 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 import urllib.robotparser
+import requests
+import time
+import random
+
+from playwright.sync_api import sync_playwright
 
 # --- Logging Setup ---
 LOG_DIR = Path("logs")
@@ -32,14 +37,76 @@ def log_blacklisted(domain, reason):
     with open(BLACKLIST_LOG_FILE, "a") as f:
         f.write(f"{domain} blocked: {reason}\n")
 
-def safe_get(url, timeout=10, retries=2):
-    headers = {"User-Agent": "Mozilla/5.0"}
+def browser_fetch_text(url):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        try:
+            page.goto(url, timeout=10000)
+            return page.content()
+        except Exception as e:
+            log_event(f"[PLAYWRIGHT] Failed to load {url}: {e}")
+            return ""
+        finally:
+            browser.close()
+
+
+def safe_get(url, timeout=10, retries=2, use_browser_fallback=True):
+    import random
+    import time
+    from types import SimpleNamespace
+
+    user_agents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
+        "(KHTML, like Gecko) Version/15.1 Safari/605.1.15",
+        "Mozilla/5.0 (Windows NT 10.0; rv:92.0) Gecko/20100101 Firefox/92.0"
+    ]
+
+    headers = {
+        "User-Agent": random.choice(user_agents),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Referer": "https://www.google.com/",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+    }
+
     for attempt in range(retries):
         try:
-            return requests.get(url, headers=headers, timeout=timeout)
+            log_event(f"[GET] Attempt {attempt+1} - Fetching {url}")
+            response = requests.get(url, headers=headers, timeout=timeout)
+            if response.status_code == 200:
+                return response
+            elif response.status_code in [403, 404]:
+                log_event(f"[SKIP RETRY] Status {response.status_code} for {url}")
+                return response
+            else:
+                log_event(f"[RETRY] Status {response.status_code} for {url}")
+        except requests.exceptions.ConnectionError as ce:
+            if "Connection reset by peer" in str(ce):
+                log_event(f"[BLOCKED] {url} reset the connection. Aborting early.")
+                return None  # Fail fast
+            log_event(f"[ERROR] Attempt {attempt+1} failed for {url}: {ce}")
         except Exception as e:
-            log_event(f"[Attempt {attempt+1}] Failed to fetch {url}: {e}")
+            log_event(f"[ERROR] Attempt {attempt+1} failed for {url}: {e}")
+
+        time.sleep(min(10, 1.5 ** attempt + random.uniform(0.5, 1.5)))
+
+    if use_browser_fallback:
+        log_event(f"[FALLBACK] Trying Playwright for {url}")
+        try:
+            html = browser_fetch_text(url)
+            if html:
+                return SimpleNamespace(status_code=200, text=html, content=html.encode("utf-8"))
+        except Exception as e:
+            log_event(f"[FALLBACK ERROR] Playwright failed for {url}: {e}")
+
+    log_event(f"[FAILURE] All attempts failed for {url}")
     return None
+
+
 
 def is_scraping_allowed(url):
     parsed = urlparse(url)
@@ -172,9 +239,13 @@ def extract_social_media_links(base_url: str) -> dict:
 
 # --- Update inside extract_locations_from_main_pages() ---
 
+_nlp = None
+
 def extract_locations_from_main_pages(base_url):
-    import spacy
-    nlp = spacy.load("en_core_web_sm")
+    global _nlp
+    if _nlp is None:
+        import spacy
+        _nlp = spacy.load("en_core_web_sm")
 
     pages = [base_url.rstrip("/")]
     for suffix in ["about", "about-us", "contact", "contact-us", "locations"]:
@@ -193,7 +264,7 @@ def extract_locations_from_main_pages(base_url):
         else:
             log_event(f"[SKIP] {page_url} not fetched.")
 
-    doc = nlp(combined_text)
+    doc = _nlp(combined_text)
     all_locs = [ent.text.strip() for ent in doc.ents if ent.label_ == "GPE" and len(ent.text) <= 40]
     deduped = deduplicate_locations(all_locs)
     log_event(f"[EXTRACTED LOCATIONS] {deduped}")
@@ -248,18 +319,24 @@ def extract_article_summaries(urls, max_articles=5):
             log_event(f"[BLOG] Failed to fetch: {url}")
     return summaries
 
-
 def run_ethical_scraper(domain, max_articles=5):
     log_event(f"📡 Starting research for: {domain}")
-    
+
     if not is_scraping_allowed(domain):
         return {"error": "Scraping disallowed by robots.txt."}
-    
-    # Try to get blog/article links from sitemap
+
+    # Check homepage availability first
+    homepage_res = safe_get(domain, retries=2, use_browser_fallback=False)
+    if not homepage_res or homepage_res.status_code != 200:
+        log_event(f"❌ Aborting: Homepage {domain} is unreachable or blocked.")
+        log_blacklisted(urlparse(domain).netloc, "Homepage unreachable or connection reset")
+        return {"error": "Domain blocked or unreachable. Aborted early."}
+
+    # Proceed to sitemap scan
     blog_links = find_links_from_sitemap(domain)
     if not blog_links:
         log_event(f"⚠️ No blog links found. Moving on to scrape homepage for location information.")
-    
+
     # Extract location mentions from main pages
     locations = extract_locations_from_main_pages(domain)
 
@@ -285,7 +362,6 @@ def run_ethical_scraper(domain, max_articles=5):
 
 
 
-
 # --- Entry Point ---
 if __name__ == "__main__":
     domain = "https://www.salesdrip.com/"  # Example domain
@@ -305,7 +381,23 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 def extract_company_facts_from_text(raw_text: str) -> dict:
     import ast
+    import json
     import re
+
+    def sanitize_json_response(content: str) -> str:
+        content = re.sub(r"^```(?:json)?", "", content.strip(), flags=re.IGNORECASE)
+        content = re.sub(r"```$", "", content.strip())
+        content = content.strip()
+        return content
+
+    def try_parsing(content: str):
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError:
+            try:
+                return ast.literal_eval(content)
+            except Exception:
+                return None
 
     prompt_template = '''
 You are a professional researcher tasked with analyzing the following text scraped from a company's website.
@@ -317,7 +409,7 @@ Please extract and summarize **any important facts** that help someone understan
 - Certifications or partnerships
 - Anything else interesting or relevant
 
-Respond **only** with a single well-formatted JSON object. Do not include explanation, markdown, or surrounding text.
+Respond only with a valid JSON object. Do not include any markdown, backticks, or explanation.
 
 Example:
 {{
@@ -335,7 +427,7 @@ Example:
   }}
 }}
 
-Now here is the company text:
+Here is the company text:
 \"\"\" {raw_text} \"\"\"
 '''
 
@@ -345,29 +437,37 @@ Now here is the company text:
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.7,
+            temperature=0.4,
             max_tokens=1500
         )
 
         content = response.choices[0].message.content.strip()
+        log_event(f"[AI RAW RESPONSE] {content[:300]}...")
 
-        # Remove code block wrappers if present
-        content = re.sub(r"^```(?:json)?", "", content.strip(), flags=re.IGNORECASE)
-        content = re.sub(r"```$", "", content.strip())
-        content = content.strip()
+        sanitized = sanitize_json_response(content)
 
-        # Optional debug logging
-        # print("[RAW AI OUTPUT]", content[:500])
-        # log_event(f"[DEBUG AI RESPONSE] {content[:250]}")
+        parsed = try_parsing(sanitized)
+        if parsed:
+            return parsed
 
-        try:
-            return json.loads(content)
-        except json.JSONDecodeError:
-            return ast.literal_eval(content)
+        # 🔁 If failed, try truncating to last full closing brace
+        last_brace = sanitized.rfind("}")
+        if last_brace != -1:
+            truncated = sanitized[:last_brace + 1]
+            parsed = try_parsing(truncated)
+            if parsed:
+                log_event("[AI RECOVERY] Parsed with truncated closing brace.")
+                return parsed
+
+        log_event("[AI PARSE FAIL] Still invalid after cleanup/truncation.")
+        return {}
+
     except Exception as e:
         log_event(f"❌ OpenAI fact compilation failed: {e}")
         return {}
 
+
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def extract_company_facts_from_domain(url: str) -> dict:
     def get_html_from_url(u: str) -> str:
@@ -388,26 +488,32 @@ def extract_company_facts_from_domain(url: str) -> dict:
 
     relevant_paths = [
         "",  # homepage
-        "about", "about-us", "company", "overview", "who-we-are", "our-story", "mission", "vision", "contact-us"
+        "about", "about-us", "company", "overview", "who-we-are", 
+        "our-story", "mission", "vision", "contact-us"
     ]
 
     domain = url.rstrip("/")
+    full_urls = [urljoin(domain + "/", path) for path in relevant_paths]
+
     combined_text = ""
     successful_pages = 0
 
-    for path in relevant_paths:
-        full_url = urljoin(domain + "/", path)
-        html = get_html_from_url(full_url)
-        if html:
-            visible = extract_visible_text(html)
-            if visible.strip():
-                log_event(f"[FACT SCRAPE] ✅ {full_url} ({len(visible)} chars)")
-                combined_text += visible + "\n\n"
-                successful_pages += 1
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        future_to_url = {executor.submit(get_html_from_url, u): u for u in full_urls}
+
+        for future in as_completed(future_to_url):
+            page_url = future_to_url[future]
+            html = future.result()
+            if html:
+                visible = extract_visible_text(html)
+                if visible.strip():
+                    log_event(f"[FACT SCRAPE] ✅ {page_url} ({len(visible)} chars)")
+                    combined_text += visible + "\n\n"
+                    successful_pages += 1
+                else:
+                    log_event(f"[FACT SCRAPE] ⚠️ {page_url} had no visible text.")
             else:
-                log_event(f"[FACT SCRAPE] ⚠️ {full_url} had no visible text.")
-        else:
-            log_event(f"[FACT SCRAPE] ❌ Failed to fetch {full_url}")
+                log_event(f"[FACT SCRAPE] ❌ Failed to fetch {page_url}")
 
     if not combined_text.strip():
         log_event(f"❌ No usable content extracted from any company-related pages.")

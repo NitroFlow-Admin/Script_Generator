@@ -1,27 +1,159 @@
-2025-07-30 14:42:05,799 - INFO - 📡 Starting research for: https://www.salesdrip.com/
-2025-07-30 14:42:05,995 - INFO - [robots.txt] Can fetch https://www.salesdrip.com/? True
-2025-07-30 14:42:06,467 - INFO - Found 101 URLs in the sitemap
-2025-07-30 14:42:06,468 - INFO - Identified 13 potential blog links.
-2025-07-30 14:42:07,883 - INFO - [PAGE TEXT] https://www.salesdrip.com --> SalesDrip - Follow Up Forever Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Freight Broker CRM & Automation Software Built by Industry Veterans SalesDrip is the all-in-one freight broker CRM and freight 
-            automation software built by a freight industry veteran who started, scaled, and sold ...
-2025-07-30 14:42:08,342 - INFO - [PAGE TEXT] https://www.salesdrip.com/about --> About Us Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Freight Broker CRM & Automation Software Built by Industry Veterans SalesDrip is the all-in-one freight broker CRM and freight automation software built by professional brokers who started, scaled, and sold multiple freight brokerages. We’re more ...
-2025-07-30 14:42:08,505 - INFO - [SKIP] https://www.salesdrip.com/about-us not fetched.
-2025-07-30 14:42:08,979 - INFO - [PAGE TEXT] https://www.salesdrip.com/contact --> Contact SalesDrip Email us at: sales@salesdrip.com Contact Our Support Team Connect with us: Home Features Sales Features Marketing Features Operations Features Compare Pricing Resources Company About Us FAQs Contact Customer Support Video Library Account Login Contact the SalesDrip Team We are always on standby to help in any way we can. Contact Sales Contact Support Headquarters: 1602 W. Chandler Drive, St. George, Utah 84770 United States (844) 966-4876 Sales sales@salesdrip.com Support suppo...
-2025-07-30 14:42:09,144 - INFO - [SKIP] https://www.salesdrip.com/contact-us not fetched.
-2025-07-30 14:42:09,367 - INFO - [SKIP] https://www.salesdrip.com/locations not fetched.
-2025-07-30 14:42:09,702 - INFO - [EXTRACTED LOCATIONS] ['United States', 'St. George', 'Utah', 'AI', 'Us']
-2025-07-30 14:42:10,101 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/ (8823 chars)
-2025-07-30 14:42:10,525 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/about (7222 chars)
-2025-07-30 14:42:10,688 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/about-us
-2025-07-30 14:42:11,092 - INFO - [FACT SCRAPE] ✅ https://www.salesdrip.com/company (5987 chars)
-2025-07-30 14:42:11,267 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/overview
-2025-07-30 14:42:11,432 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/who-we-are
-2025-07-30 14:42:11,595 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/our-story
-2025-07-30 14:42:11,753 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/mission
-2025-07-30 14:42:11,911 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/vision
-2025-07-30 14:42:12,070 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.salesdrip.com/contact-us
-2025-07-30 14:42:17,714 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-07-30 14:42:24,979 - INFO - [SOCIAL] Could not fetch https://www.salesdrip.com/home
-2025-07-30 14:42:24,979 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/salesdrip'}
-2025-07-30 14:42:25,254 - INFO - [BLOG] Skipped non-article: https://www.salesdrip.com/sitemap
-2025-07-30 14:42:32,674 - INFO - [BLOG] Skipping article with blank/untitled heading: https://www.salesdrip.com/resources/Blog16/Free_Freight_Sales_Follow_Up_Blueprint
+2025-08-01 14:42:56,439 - INFO - 📡 Starting research for: https://hwlmanufacturing.com/
+2025-08-01 14:42:56,536 - INFO - [robots.txt] Can fetch https://hwlmanufacturing.com/? True
+2025-08-01 14:42:56,536 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/
+2025-08-01 14:42:56,676 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/sitemap.xml
+2025-08-01 14:42:56,810 - INFO - Found 1 URLs in the sitemap
+2025-08-01 14:42:56,810 - INFO - Identified 1 potential blog links.
+2025-08-01 14:42:57,451 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com
+2025-08-01 14:42:57,644 - INFO - [PAGE TEXT] https://hwlmanufacturing.com --> Formulator and Contract Manufacturer of Personal Care Products
+ – HWL Manufacturing Skip to content CALL OR SMS US AT (949) 877-2949 Products Products Beauty Skin Care Tattoo Care Body Care Hypochlorous Acid (HOCl) Hydrogel Transdermal Patches Packaging Product Design Contact Us Country/region USD
+      $ | United States USD
+              $ | Afghanistan USD
+              $ | Åland Islands USD
+              $ | Albania USD
+              $ | Algeria USD
+              $ | Andorra USD
+             ...
+2025-08-01 14:42:57,645 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/about
+2025-08-01 14:42:57,751 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/about
+2025-08-01 14:42:57,751 - INFO - [SKIP] https://hwlmanufacturing.com/about not fetched.
+2025-08-01 14:42:57,751 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/about-us
+2025-08-01 14:42:57,896 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/about-us
+2025-08-01 14:42:57,896 - INFO - [SKIP] https://hwlmanufacturing.com/about-us not fetched.
+2025-08-01 14:42:57,896 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/contact
+2025-08-01 14:42:58,459 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/contact
+2025-08-01 14:42:58,460 - INFO - [SKIP] https://hwlmanufacturing.com/contact not fetched.
+2025-08-01 14:42:58,460 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/contact-us
+2025-08-01 14:42:58,865 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/contact-us
+2025-08-01 14:42:58,865 - INFO - [SKIP] https://hwlmanufacturing.com/contact-us not fetched.
+2025-08-01 14:42:58,865 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/locations
+2025-08-01 14:42:58,982 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/locations
+2025-08-01 14:42:58,983 - INFO - [SKIP] https://hwlmanufacturing.com/locations not fetched.
+2025-08-01 14:42:59,167 - INFO - [EXTRACTED LOCATIONS] ['Equatorial Guinea USD', 'Bosnia & Herzegovina', 'United Arab Emirates', 'Dominican Republic', 'United Kingdom', 'Hong Kong SAR', 'Saudi Arabia', 'South Africa', 'Afghanistan', 'El Salvador', 'Netherlands', 'New Zealand', 'Philippines', 'South Korea', 'Switzerland', 'California', 'Costa Rica', 'Kyrgyzstan', 'Australia', 'Indonesia', 'Singapore', 'Bulgaria', 'Djibouti', 'Ethiopia', 'Malaysia', 'Pakistan', 'Tanzania', 'Zimbabwe', 'Albania', 'Belgium', 'Ecuador', 'Finland', 'Germany', 'Hungary', 'Ireland', 'Jamaica', 'Lebanon', 'Myanmar', 'Phoenix', 'Somalia', 'Ukraine', 'Brazil', 'Canada', 'France', 'Israel', 'Norway', 'Poland', 'Russia', 'Rwanda', 'Sweden', 'Taiwan', 'Aruba', 'China', 'Congo', 'Egypt', 'Haiti', 'Japan', 'Kenya', 'Libya', 'Qatar', 'Spain', 'Yemen', 'Iraq', 'U.S.']
+2025-08-01 14:42:59,265 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/about
+2025-08-01 14:42:59,349 - INFO - [FACT SCRAPE] ✅ https://hwlmanufacturing.com/ (10554 chars)
+2025-08-01 14:42:59,349 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/company
+2025-08-01 14:42:59,349 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/overview
+2025-08-01 14:42:59,349 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/about-us
+2025-08-01 14:42:59,384 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/who-we-are
+2025-08-01 14:42:59,392 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/mission
+2025-08-01 14:42:59,406 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/vision
+2025-08-01 14:42:59,649 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/our-story
+2025-08-01 14:42:59,695 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://hwlmanufacturing.com/contact-us
+2025-08-01 14:43:06,647 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 14:43:06,659 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "HWL Manufacturing is a formulator and contract manufacturer specializing in personal care products.",
+    "products_services": [
+      "Beauty",
+      "Skin Care",
+      "Tattoo Care",
+      "Body Care",
+      "Hypochlorous Acid",
+      "Hydrogel Transdermal P...
+2025-08-01 14:43:06,660 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/
+2025-08-01 14:43:06,906 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/about
+2025-08-01 14:43:07,014 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/about
+2025-08-01 14:43:07,015 - INFO - [SOCIAL] Could not fetch https://hwlmanufacturing.com/about
+2025-08-01 14:43:07,015 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/contact
+2025-08-01 14:43:07,480 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/contact
+2025-08-01 14:43:07,480 - INFO - [SOCIAL] Could not fetch https://hwlmanufacturing.com/contact
+2025-08-01 14:43:07,480 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/home
+2025-08-01 14:43:07,590 - INFO - [SKIP RETRY] Status 404 for https://hwlmanufacturing.com/home
+2025-08-01 14:43:07,590 - INFO - [SOCIAL] Could not fetch https://hwlmanufacturing.com/home
+2025-08-01 14:43:07,591 - INFO - [SOCIAL MEDIA FOUND] {}
+2025-08-01 14:43:07,591 - INFO - [GET] Attempt 1 - Fetching https://hwlmanufacturing.com/sitemap_pages_1.xml?from=42497343541&to=108319637676
+2025-08-01 14:43:07,685 - INFO - [BLOG] Skipped non-article: https://hwlmanufacturing.com/sitemap_pages_1.xml?from=42497343541&to=108319637676
+2025-08-01 14:44:28,097 - INFO - 📡 Starting research for: https://plasticdesigncompany.com/
+2025-08-01 14:44:28,288 - INFO - [robots.txt] Can fetch https://plasticdesigncompany.com/? True
+2025-08-01 14:44:28,288 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/
+2025-08-01 14:44:28,305 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/sitemap.xml
+2025-08-01 14:44:30,166 - INFO - Found 3 URLs in the sitemap
+2025-08-01 14:44:30,167 - INFO - Identified 0 potential blog links.
+2025-08-01 14:44:30,167 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 14:44:30,167 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 14:44:30,850 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com
+2025-08-01 14:44:30,927 - INFO - [PAGE TEXT] https://plasticdesigncompany.com --> High-Performance Micro Injection Molding | PDC Skip to content DISCUSS YOUR PROJECT About Quality Systems News Events Careers Capabilities Design & Development Tooling Design & Build Precision Injection Molding Value Added Processes Measurement & Inspection Project & Program Management Markets Diagnostics Drug Delivery Orthopedic Sports Medicine Proteomics & Genomics Robotic Assisted Surgery Vascular Surgery Resources Contact Us Type something here to search × About Quality Systems News Events C...
+2025-08-01 14:44:30,928 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/about
+2025-08-01 14:44:31,313 - INFO - [PAGE TEXT] https://plasticdesigncompany.com/about --> About Our Company | PDC Skip to content DISCUSS YOUR PROJECT About Quality Systems News Events Careers Capabilities Design & Development Tooling Design & Build Precision Injection Molding Value Added Processes Measurement & Inspection Project & Program Management Markets Diagnostics Drug Delivery Orthopedic Sports Medicine Proteomics & Genomics Robotic Assisted Surgery Vascular Surgery Resources Contact Us Type something here to search × About Quality Systems News Events Careers Capabilities Des...
+2025-08-01 14:44:31,313 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/about-us
+2025-08-01 14:44:31,346 - INFO - [PAGE TEXT] https://plasticdesigncompany.com/about-us --> Client Challenge A required part of this site couldn’t load. This may be due to a browser
+      extension, network issues, or browser settings. Please check your
+      connection, disable any ad blockers, or try using a different browser....
+2025-08-01 14:44:31,346 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/contact
+2025-08-01 14:44:31,700 - INFO - [PAGE TEXT] https://plasticdesigncompany.com/contact --> Contact Us | PDC Skip to content DISCUSS YOUR PROJECT About Quality Systems News Events Careers Capabilities Design & Development Tooling Design & Build Precision Injection Molding Value Added Processes Measurement & Inspection Project & Program Management Markets Diagnostics Drug Delivery Orthopedic Sports Medicine Proteomics & Genomics Robotic Assisted Surgery Vascular Surgery Resources Contact Us Type something here to search × About Quality Systems News Events Careers Capabilities Design & D...
+2025-08-01 14:44:31,700 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/contact-us
+2025-08-01 14:44:32,030 - INFO - [PAGE TEXT] https://plasticdesigncompany.com/contact-us --> Contact Us | PDC Skip to content DISCUSS YOUR PROJECT About Quality Systems News Events Careers Capabilities Design & Development Tooling Design & Build Precision Injection Molding Value Added Processes Measurement & Inspection Project & Program Management Markets Diagnostics Drug Delivery Orthopedic Sports Medicine Proteomics & Genomics Robotic Assisted Surgery Vascular Surgery Resources Contact Us Type something here to search × About Quality Systems News Events Careers Capabilities Design & D...
+2025-08-01 14:44:32,031 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/locations
+2025-08-01 14:44:32,094 - INFO - [PAGE TEXT] https://plasticdesigncompany.com/locations --> Client Challenge A required part of this site couldn’t load. This may be due to a browser
+      extension, network issues, or browser settings. Please check your
+      connection, disable any ad blockers, or try using a different browser....
+2025-08-01 14:44:32,724 - INFO - [EXTRACTED LOCATIONS] ['Scottsdale', 'USA']
+2025-08-01 14:44:32,817 - INFO - [FACT SCRAPE] ✅ https://plasticdesigncompany.com/ (13207 chars)
+2025-08-01 14:44:32,855 - INFO - [FACT SCRAPE] ✅ https://plasticdesigncompany.com/about (5740 chars)
+2025-08-01 14:44:35,187 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/company
+2025-08-01 14:44:35,187 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/about-us
+2025-08-01 14:44:35,206 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/overview
+2025-08-01 14:44:35,279 - INFO - [FACT SCRAPE] ✅ https://plasticdesigncompany.com/contact-us (7544 chars)
+2025-08-01 14:44:36,835 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/who-we-are
+2025-08-01 14:44:36,870 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/our-story
+2025-08-01 14:44:37,037 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/mission
+2025-08-01 14:44:37,443 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://plasticdesigncompany.com/vision
+2025-08-01 14:44:46,088 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 14:44:46,100 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "PDC is a USA-based market leader in precision injection molding and value-added assembly, specializing in micro-molded solutions for medical devices, diagnostics, and biotechnology applications.",
+    "products_services": [
+      "Precision Injection Molding",...
+2025-08-01 14:44:46,101 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/
+2025-08-01 14:44:46,192 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/about
+2025-08-01 14:44:46,257 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/contact
+2025-08-01 14:44:46,331 - INFO - [GET] Attempt 1 - Fetching https://plasticdesigncompany.com/home
+2025-08-01 14:44:46,782 - INFO - [SOCIAL MEDIA FOUND] {}
+2025-08-01 14:45:45,209 - INFO - 📡 Starting research for: https://zennatires.com/
+2025-08-01 14:45:45,479 - INFO - [robots.txt] Can fetch https://zennatires.com/? False
+2025-08-01 14:46:10,555 - INFO - 📡 Starting research for: https://www.kdcapital.com/
+2025-08-01 14:46:11,480 - INFO - [robots.txt] Can fetch https://www.kdcapital.com/? True
+2025-08-01 14:46:11,480 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/
+2025-08-01 14:46:12,310 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/sitemap.xml
+2025-08-01 14:46:13,005 - INFO - Found 5 URLs in the sitemap
+2025-08-01 14:46:13,005 - INFO - Identified 0 potential blog links.
+2025-08-01 14:46:13,005 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 14:46:13,006 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 14:46:13,696 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com
+2025-08-01 14:46:14,584 - INFO - [PAGE TEXT] https://www.kdcapital.com --> Used CNC Machines for Sale - KD Capital Equipment Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC Horizontal Machining ...
+2025-08-01 14:46:14,584 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/about
+2025-08-01 14:46:15,725 - INFO - [PAGE TEXT] https://www.kdcapital.com/about --> KD Capital: Used Plastic, CNC, Fabrication Machine Dealer | About Us Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC Ho...
+2025-08-01 14:46:15,726 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/about-us
+2025-08-01 14:46:16,898 - INFO - [PAGE TEXT] https://www.kdcapital.com/about-us --> KD Capital: Used Plastic, CNC, Fabrication Machine Dealer | About Us Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC Ho...
+2025-08-01 14:46:16,899 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact
+2025-08-01 14:46:18,019 - INFO - [PAGE TEXT] https://www.kdcapital.com/contact --> Contact Us - KD Capital Equipment - The Industry's Most Trusted Source Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC ...
+2025-08-01 14:46:18,019 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact-us
+2025-08-01 14:46:18,768 - INFO - [SKIP RETRY] Status 404 for https://www.kdcapital.com/contact-us
+2025-08-01 14:46:18,769 - INFO - [SKIP] https://www.kdcapital.com/contact-us not fetched.
+2025-08-01 14:46:18,769 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/locations
+2025-08-01 14:46:19,566 - INFO - [SKIP RETRY] Status 404 for https://www.kdcapital.com/locations
+2025-08-01 14:46:19,567 - INFO - [SKIP] https://www.kdcapital.com/locations not fetched.
+2025-08-01 14:46:20,170 - INFO - [EXTRACTED LOCATIONS] ['South Carolina', 'Boring Mills', 'Pennsylvania', 'California', 'Washington', 'Missouri', 'Arizona', 'Florida', 'Texas', 'Ohio', 'Us']
+2025-08-01 14:46:21,032 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/ (5833 chars)
+2025-08-01 14:46:21,032 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/company
+2025-08-01 14:46:21,240 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/overview (5833 chars)
+2025-08-01 14:46:21,381 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/about (7180 chars)
+2025-08-01 14:46:21,411 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/about-us (7180 chars)
+2025-08-01 14:46:21,804 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/who-we-are
+2025-08-01 14:46:21,804 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/our-story
+2025-08-01 14:46:21,996 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/mission
+2025-08-01 14:46:22,135 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/vision
+2025-08-01 14:46:22,147 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/contact-us
+2025-08-01 14:46:31,642 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 14:46:31,649 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "KD Capital Equipment is a family-owned and operated business and one of the largest used machinery dealers in North America, specializing in buying and selling industrial equipment.",
+    "products_services": [
+      "Used CNC Machinery",
+      "Used Plastic M...
+2025-08-01 14:46:31,650 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/
+2025-08-01 14:46:32,471 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/about
+2025-08-01 14:46:33,619 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact
+2025-08-01 14:46:34,755 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/home
+2025-08-01 14:46:35,879 - INFO - [SOCIAL MEDIA FOUND] {'Facebook': 'https://www.facebook.com/kdcapitalequipment/', 'Instagram': 'https://www.instagram.com/kdcapitalequipment/'}
