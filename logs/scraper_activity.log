@@ -45,3 +45,299 @@
 2025-08-01 18:48:46,529 - INFO - [DEBUG] Login response status: 200
 2025-08-01 18:48:46,536 - INFO - GreenRope token acquired
 2025-08-01 18:48:46,974 - INFO - ✅ Contact script.only@ai.local updated successfully in SalesDrip CRM.
+2025-08-01 18:54:05,350 - INFO - 📥 Form POST received:
+2025-08-01 18:54:05,351 - INFO - {
+  "rep_name": "Chase Cordova",
+  "rep_email": "tom@salesdrip.com",
+  "rep_company": "Freight Pro Logistics",
+  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
+  "objection_needs": "We are happy with our current carrier.",
+  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
+  "objection_source": "We\u2019ve been burned by brokers.",
+  "objection_price": "You are 10% higher than my other quote.",
+  "objection_time": "This is our slow season.",
+  "target_name": "JDH Corp",
+  "target_url": "https://www.jhdcorp.com/",
+  "recent_news": "None",
+  "locations": "Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia\r\n\r\nUSA/Canada/China/German/Netherlands worldwide warehouses",
+  "facts": "20+ years herbal extract manufacturer in China\r\n\r\nWe have our own dedicated plantation with a wide range of planting areas and  a wide variety of planting types.\r\n\r\nWe have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.\r\n\r\nWe boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.\r\n\r\nCertificate\r\nBRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated",
+  "products_services": "Products\r\n700+ herbal extract, fruit & vegetable powders, herbal extracts",
+  "social_media": "Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! \ud83c\udf89 The energy on the floor was electric\u2014so many inspiring conversations, brilliant innovations shared, and new connections made.\u200b\r\nA huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! \ud83d\udd2c\ud83d\udca1\u200b\r\nIf you haven\u2019t made it yet, don\u2019t worry\u2014we\u2019re here TOMORROW and the next day, ready to chat more about our latest p\u2026 See more",
+  "g-recaptcha-response": "03AFcWeA7QqYG_SGKeTXdjHUzLxWDPeg7sXl8UO8W8JuSfO5On9HkzdIGN5bcjNGw7MLMS79bzWLWA31sHJg5658BYOqNj1R4gIS_VgfFgmXSrJWMPw9th2754C1q7Jgfd-F4XBM_M51qCeHYlQbPKlZp6DqQdTcUPH3MFKIgoKosjEpp8jalIAUyD_cgTicG-58CNjIqVzydkBDTuwgslmdZuz-2iD497Ti5Xeor3qgDhPpGd0OtQfbXL5ys68Y932GbbIRKkEOeYHgOmbt76mQ-vUyP4rggZ6A881-FzKAPt4fALrJUTK_yAuJ6PV-NgOAv5TAQlELFsq3Eupw4Uz3uyVJTEUGZTk1yTvYvsA5LJRbVonjKGi9MuOf5qx_FdpFYn7t1LVn1-GUyEOUAWTSgTREYWX1QOzbCdRI1qfQf_319E-ZNhnZ1veAi0ebgbF5QKJt4YzZ2M7Jld9DWr3WXDI7ThOOAakdm92I9-hRoCsmVmE865RBq6jPfxpxifezKvrGsB8XRZRVEXfKnNltVwakFT9-0Y7my7kvoD-Mnb73pPRjIvMywDgyFZgOERWynpTfuYPFNT17_MAphDV6dGc70PrXJANaG47ckqlBbrGuYDJqMRF-stC6a4JzcFN_eIH40bukTpjWj41PyAxGcxuxNbMfUtjLbczdGg-WKKONvMTs4QiFmP4wEWFhvxGIMAK_QohnbTEiIgMB-0dRhUBV59ufd_6fN2bH_NuyztHaUF5nVJL-7mDSZ3T4AW1YhC7kpfLzKvKXqMaiOipZUSEP_pHjXBgR-OKxHUqkDSkUlBl-kNFwvuoU-3dxv_Q82EdQSFQAwba7IBbFVZkpW_h5tIf2GWHvXZRJifo-tzzeiNtJjTyVz-3Thjfx_XyZQx4qjg1zbXuNXyxltMPI-QIBPgWfq9p_PiJqABEgDNJCmB3wGl7KIjUsXh5uhPAqe38Y7hbWvej_hSSdW6XGPlwj8hcfbJ_t44t-up1PA_nsipeAM22iW1uiDTiWYNWR16TopzGJOCYq0LojciGG3-dz4abEgCgA9diBXy27QFu0adyI5ArcaCSZYDdhwld6TNwrbsCPWrXMxBCErapy5OreO6X8VqGdr1gTv1hEEbiXABpdZo_W9pNheZ15hwmrJTP1OrrCBT7HBu2B2FHrwUxCvVCTFU7FuVXOdwX902rU_27Yx5nP66wo6Kjl87PQOSKjG57LVuKdEptuPEhfUoGJBmT4HFoNZG9JTZQFbqESYehMr8QfKm6Y2517jN9YiksOAjwg6aN3kxzjEpHe7j2qs84rU1WL7wk7muz9TmdwpSq7HErITXBz62bZm5OQTY_cIQUXY085zhExiN51s_7vcoSjzGXnFFCAGSD06_I2fibvEnLaF1OowTci8R1YUUdV_MbkNRrt9gX9Qw1M5MXdR9hi0FV1_9hyJw0bZVXuPiDVRJUOEx1G9HG1OkvL-BrpBwoTnSdnHMJNj7bWYEUyX2x0ntxqLcimzs_W4mlQ7vhzsjQ0gnXQOK3TdzZMklIczOVa1MnLS_5bQDGa5oRouTR6Fk1NUIJa0rgqQTJdSBnfUD6cOB-xOYfvSSqRNlIIEPpDtDHzZ_k7SyNkzccqj-9x_qps11ArLDq8J7YiLZ9keHIf_rv7i5xqkf09zdPphbehMuefIv2UHIeM5fYcn5L6VTTcPLRJYeyCN3lDmCWsrs-r8zQO7gvnKObkdX94UC9Tqyw7QGkngvt0toWHrZIqkI0AN2QBQzpFtkOCJyiY57r32fih06aKtTCwm-1H1MFcOPSH7mLA-CQKuskxU_maaJQjYRZVYKYm2W-9IbwU2FHKnKWG1PouZ28N2PeMBjEb3lEBq0fopjJIunnv_2FwZvRRKBVbb5cLgfPL9LwK3voNIpGsnmBvr9rlhxRRbaYFxz6sAP_UAuOi1yTD2wa1ar1aSLsRJgxaAbLkHl6AJvunrGY5lvl1frXhnptnqt98cPRKvyeytwNfqivcsHMjhy-C1qB6SH8WBvLTRu2Nk3GkqTr0Ebm-Ootgjt2LobTPyHghsMsoydNJYC16EmA0xB8vW4THakOx7-Fw6b-9_3NG33mx2Lt7f_oNV823BRlxsBdtl2VFtoOPe3cwKTlajVKbWvgCCH7p5A3s0VTHvn6oV1F1S9kzz_i_uOTni_zLkm"
+}
+2025-08-01 18:54:05,418 - INFO - 🔐 reCAPTCHA response: {'success': False, 'error-codes': ['timeout-or-duplicate']}
+2025-08-01 18:54:08,665 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 18:54:08,862 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 18:54:08,862 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 18:54:08,920 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 18:54:08,966 - INFO - Found 3 URLs in the sitemap
+2025-08-01 18:54:08,967 - INFO - Identified 0 potential blog links.
+2025-08-01 18:54:08,967 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 18:54:08,968 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 18:54:09,783 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 18:54:09,862 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 18:54:09,862 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 18:54:09,987 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 18:54:09,988 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 18:54:09,988 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 18:54:10,088 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 18:54:10,088 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 18:54:10,088 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 18:54:10,305 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 18:54:10,305 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 18:54:10,305 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 18:54:10,361 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 18:54:10,361 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 18:54:10,478 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 18:54:10,478 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 18:54:10,545 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 18:54:10,572 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 18:54:10,576 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 18:54:10,633 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 18:54:10,649 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 18:54:10,653 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 18:54:10,671 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 18:54:10,671 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 18:54:10,714 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 18:54:10,715 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 18:54:10,742 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 18:54:15,640 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 18:54:15,698 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Fruit & Ve...
+2025-08-01 18:54:15,699 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 18:54:15,811 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 18:54:15,840 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 18:54:15,840 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 18:54:15,841 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 18:54:15,884 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 18:54:15,884 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 18:54:15,884 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 18:54:15,989 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 18:54:29,192 - INFO - 📥 Form POST received:
+2025-08-01 18:54:29,192 - INFO - {
+  "rep_name": "Chase Cordova",
+  "rep_email": "tom@salesdrip.com",
+  "rep_company": "Freight Pro Logistics",
+  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
+  "objection_needs": "We are happy with our current carrier.",
+  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
+  "objection_source": "We\u2019ve been burned by brokers.",
+  "objection_price": "You are 10% higher than my other quote.",
+  "objection_time": "This is our slow season.",
+  "target_name": "JDH Corp",
+  "target_url": "https://www.jhdcorp.com/",
+  "recent_news": "No recent posts found.",
+  "locations": "Ontario, California; the United States; Southeast Asia; Netherlands; Germany; Canada; China; India",
+  "facts": "certifications: BRC,Kosher,Halal,ISO,USA & EU Organic,FDA,HACCP\r\nother details: Over 20 years experience as a herbal extract manufacturer in China,700+ herbal extracts available,Own dedicated plantation and processing plant,Partners with cooperative factories in multiple countries,Focus on providing high-quality raw material solutions at competitive prices\r\noverview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+  "products_services": "product types: Herbal Extracts,Vitamins,Amino Acids,Fruit & Vegetable Powders,Proteins,Food Additives",
+  "social_media": "LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/",
+  "g-recaptcha-response": "03AFcWeA4MDe58vofSYvQ94IDFGHdGr1uqthlGNSnPbDot-QARrS9Ypck4WCN2Ahh0tIOfNOw-HZuMyzMHLkUqCqzQtATIFXe_GtPZGhITKqy8tPLyIS1RRkbmnNZt7AIOIfJhSrCzc1cMOAVoVjxJ85jGokn5nIRnIdA6CnkKdetxlk8XqHs-2deYxSStWItd3cf0by36BWu9FdPFfiBO0tS5y6nm8r71NyWKKItA-mqOzDoxjrKvkSsdPUqkXnuSB0GiTE9sxEMkoSF1pguhdCbLONq7sV7Td41XMyFdeTcUsEVpSGMGZRDXFLmKZ9YWshZyrG1CDT1dCxdQ2IANdraWMTdPqyx3H3CN3jTIj2Z1NPBtwXs0SmAfz3DetP230MdTVmCJi5f0gpaZq_vT22XncDdgqS_b28jZQhRdJtTzXB6Rdj5VIVTx-C4uuW54PJdM18c32CPe3MuHGsrfKAlRX2Tnu9kew-0jSz62QEIC1ZQ-Nu-odSMvwUZnaLxRdBeubD-X4Ts5HkbG1dH3YGE6UxRUUnA5qo10vNaOjFP7JyOIXJEDNOgl-1zqPy_sICfg3JX5tLGXGrk-L_maFU2GLZplAdIcvnfdz0CrLVrUUuTqkWL3VSC1ei9wdYFzp_izsx7trDY99BVy9lmMF03XUrGXK4OzCXXD23cqiyb1BIjlJQ1e9VQd1uHSAx30o8fmktFjqXCgW5dOYphYZRv3AmnZheA3amfm5GEHLo1PA4UDiDW2G3AzfY_zS-Dk4Tmq5B4Yj6kt_LIK7iVKJ4KemnNf67Tkr4lwunMNGGc_EF8NXSeRkM9o-UlE_C40VsIBj13sJBFmL3ZV7_Ylkj_awYv52pg-DIAI29R2ecLpy6lemVL4bEdqLGmLy8Bxz4yEGWE68k-g6g8OCewVE4LD2rBBNSIDUr2nGAlYvANRz2ELaa3E82giLACNI_LxjTvM-PfJlneuAY7Y6mNsPqszom5U6b9eOWuaUNYV1-wJlkEuVXxz_fMwu9nngefBi7qZ8nSEF2Gd6h4iswlD9M2K1g2dX5VDsYGJF2H-KaRZbCxOIcQm0GzXOKJkvwcUOLKGDgwsCSdK8LxDKDZ4SxE42lB6trTijKU3N2nf0vrIgTDUxREkZKwzqxfgYjsfyFnEfRRttWsSULOEUNxOkkJf8Ukmky3Ucucf-qC5wHPNamXu52zRxWxWK_Y3F5RYRMjtgudZp8uvrWHMaWz3JxhCEKF3emOvWuq4QJTLjlLPDO3MNHYmwhurqiBMXJ-pf904bCQ_RxmwQjgEqI0bms0R_ewpYiRD4L1CLHeKajavBz8hfXn3rTwHq3k7mYCBL9GHF83hlVrel7uwASUUIYDkikJgy27gSlKuOmHEX5v-O9bzvcnu1I4MCmeGTe6PIEZeM0E8jniVKrdTvRNDEgj9SiROFnmvXCE3BNcPOijFQ5L7LpclADcrDV2TiCvc5PvCZiEBbY40CFlUod8qpnDSAntMc0ZF7uJxeqr7D3FW7SXyoSzD-I0f5XLcS36rX8cdDyF002IOxsLcCvl_HG8u5t6h9KvC9jtO6KxmyqfXnIVErNpO6Qbq-NiU3YY_J4ADPAZhc-mfLljJ0HqXdjPTOtR3fUsrkjLmOEnKeEViIUfOMJaL2dnhgzX6dxrBBqpd6mbHBuZk6V5izp_qHA6_hTJy2CtfdvPvCvwUZCmxVoMeyH-NbAv7N_mDUK2YhOg5EeN3M6ASlIJdjxhpPNY7zF5KFPNAGRwvwmaOflEnfBRVGmf8S1GBMTURjj3gNAuGjmGfGp3BTLAvpd6B19lKYWBgsM7Xk8hCYhWTM0TsOdt8XB9dPLFAbrI-4hzVNKh-o7k6F1wLMMkmXoMueTKcP9ZSy3ur7UVQ9lFGfX7XHwKQIuWlu6ndg-MGCWXVVQ3yaMdYkfbdO5D_qkirzWEyqyVMTe_ZYd49PoIxhCvbU2VN_NJUKuipDxtb3tapgSm05B_hi3l2k_5F5RZhwi2Dq75Ux-pA5cyvu97x7ahe5oFA2v7ypZObz-MqpRANF6uDARdAjsDGamgezwflRcTXiC6arZDD396QSPlgz7dVJ66erOgeji6OCC-EuYyeZLdgtahmEXpd0opMDIFQj5uI3ssJXLKm0i9-F7YFIelFiPyHKPqS3BYkO7-nXrgOZ9JKD2Cl73jZ"
+}
+2025-08-01 18:54:29,250 - INFO - 🔐 reCAPTCHA response: {'success': True, 'challenge_ts': '2025-08-01T18:54:05Z', 'hostname': 'salescriptor.com', 'score': 1.0, 'action': 'submit'}
+2025-08-01 18:54:47,989 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 18:54:48,001 - INFO - ✅ OpenAI returned in 18.75s
+2025-08-01 18:58:27,119 - INFO - 📥 Form POST received:
+2025-08-01 18:58:27,120 - INFO - {
+  "rep_name": "Chase Cordova",
+  "rep_email": "tom@salesdrip.com",
+  "rep_company": "Freight Pro Logistics",
+  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
+  "objection_needs": "We are happy with our current carrier.",
+  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
+  "objection_source": "We\u2019ve been burned by brokers.",
+  "objection_price": "You are 10% higher than my other quote.",
+  "objection_time": "This is our slow season.",
+  "target_name": "JDH Corp",
+  "target_url": "https://www.jhdcorp.com/",
+  "recent_news": "No recent posts found.",
+  "locations": "Ontario, California; the United States; Southeast Asia; Netherlands; Germany; Canada; China; India",
+  "facts": "certifications: BRC,Kosher,Halal,ISO,USA & EU Organic,FDA,HACCP\r\nother details: Over 20 years experience as a herbal extract manufacturer in China,700+ herbal extracts available,Own dedicated plantation and processing plant,Partners with cooperative factories in multiple countries,Focus on providing high-quality raw material solutions at competitive prices\r\noverview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+  "products_services": "product types: Herbal Extracts,Vitamins,Amino Acids,Fruit & Vegetable Powders,Proteins,Food Additives",
+  "social_media": "LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/",
+  "g-recaptcha-response": "03AFcWeA4MDe58vofSYvQ94IDFGHdGr1uqthlGNSnPbDot-QARrS9Ypck4WCN2Ahh0tIOfNOw-HZuMyzMHLkUqCqzQtATIFXe_GtPZGhITKqy8tPLyIS1RRkbmnNZt7AIOIfJhSrCzc1cMOAVoVjxJ85jGokn5nIRnIdA6CnkKdetxlk8XqHs-2deYxSStWItd3cf0by36BWu9FdPFfiBO0tS5y6nm8r71NyWKKItA-mqOzDoxjrKvkSsdPUqkXnuSB0GiTE9sxEMkoSF1pguhdCbLONq7sV7Td41XMyFdeTcUsEVpSGMGZRDXFLmKZ9YWshZyrG1CDT1dCxdQ2IANdraWMTdPqyx3H3CN3jTIj2Z1NPBtwXs0SmAfz3DetP230MdTVmCJi5f0gpaZq_vT22XncDdgqS_b28jZQhRdJtTzXB6Rdj5VIVTx-C4uuW54PJdM18c32CPe3MuHGsrfKAlRX2Tnu9kew-0jSz62QEIC1ZQ-Nu-odSMvwUZnaLxRdBeubD-X4Ts5HkbG1dH3YGE6UxRUUnA5qo10vNaOjFP7JyOIXJEDNOgl-1zqPy_sICfg3JX5tLGXGrk-L_maFU2GLZplAdIcvnfdz0CrLVrUUuTqkWL3VSC1ei9wdYFzp_izsx7trDY99BVy9lmMF03XUrGXK4OzCXXD23cqiyb1BIjlJQ1e9VQd1uHSAx30o8fmktFjqXCgW5dOYphYZRv3AmnZheA3amfm5GEHLo1PA4UDiDW2G3AzfY_zS-Dk4Tmq5B4Yj6kt_LIK7iVKJ4KemnNf67Tkr4lwunMNGGc_EF8NXSeRkM9o-UlE_C40VsIBj13sJBFmL3ZV7_Ylkj_awYv52pg-DIAI29R2ecLpy6lemVL4bEdqLGmLy8Bxz4yEGWE68k-g6g8OCewVE4LD2rBBNSIDUr2nGAlYvANRz2ELaa3E82giLACNI_LxjTvM-PfJlneuAY7Y6mNsPqszom5U6b9eOWuaUNYV1-wJlkEuVXxz_fMwu9nngefBi7qZ8nSEF2Gd6h4iswlD9M2K1g2dX5VDsYGJF2H-KaRZbCxOIcQm0GzXOKJkvwcUOLKGDgwsCSdK8LxDKDZ4SxE42lB6trTijKU3N2nf0vrIgTDUxREkZKwzqxfgYjsfyFnEfRRttWsSULOEUNxOkkJf8Ukmky3Ucucf-qC5wHPNamXu52zRxWxWK_Y3F5RYRMjtgudZp8uvrWHMaWz3JxhCEKF3emOvWuq4QJTLjlLPDO3MNHYmwhurqiBMXJ-pf904bCQ_RxmwQjgEqI0bms0R_ewpYiRD4L1CLHeKajavBz8hfXn3rTwHq3k7mYCBL9GHF83hlVrel7uwASUUIYDkikJgy27gSlKuOmHEX5v-O9bzvcnu1I4MCmeGTe6PIEZeM0E8jniVKrdTvRNDEgj9SiROFnmvXCE3BNcPOijFQ5L7LpclADcrDV2TiCvc5PvCZiEBbY40CFlUod8qpnDSAntMc0ZF7uJxeqr7D3FW7SXyoSzD-I0f5XLcS36rX8cdDyF002IOxsLcCvl_HG8u5t6h9KvC9jtO6KxmyqfXnIVErNpO6Qbq-NiU3YY_J4ADPAZhc-mfLljJ0HqXdjPTOtR3fUsrkjLmOEnKeEViIUfOMJaL2dnhgzX6dxrBBqpd6mbHBuZk6V5izp_qHA6_hTJy2CtfdvPvCvwUZCmxVoMeyH-NbAv7N_mDUK2YhOg5EeN3M6ASlIJdjxhpPNY7zF5KFPNAGRwvwmaOflEnfBRVGmf8S1GBMTURjj3gNAuGjmGfGp3BTLAvpd6B19lKYWBgsM7Xk8hCYhWTM0TsOdt8XB9dPLFAbrI-4hzVNKh-o7k6F1wLMMkmXoMueTKcP9ZSy3ur7UVQ9lFGfX7XHwKQIuWlu6ndg-MGCWXVVQ3yaMdYkfbdO5D_qkirzWEyqyVMTe_ZYd49PoIxhCvbU2VN_NJUKuipDxtb3tapgSm05B_hi3l2k_5F5RZhwi2Dq75Ux-pA5cyvu97x7ahe5oFA2v7ypZObz-MqpRANF6uDARdAjsDGamgezwflRcTXiC6arZDD396QSPlgz7dVJ66erOgeji6OCC-EuYyeZLdgtahmEXpd0opMDIFQj5uI3ssJXLKm0i9-F7YFIelFiPyHKPqS3BYkO7-nXrgOZ9JKD2Cl73jZ"
+}
+2025-08-01 18:58:27,190 - INFO - 🔐 reCAPTCHA response: {'success': False, 'error-codes': ['timeout-or-duplicate']}
+2025-08-01 18:58:29,972 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 18:58:30,152 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 18:58:30,152 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 18:58:30,212 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 18:58:30,260 - INFO - Found 3 URLs in the sitemap
+2025-08-01 18:58:30,260 - INFO - Identified 0 potential blog links.
+2025-08-01 18:58:30,260 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 18:58:30,261 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 18:58:30,890 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 18:58:30,972 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 18:58:30,972 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 18:58:30,994 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 18:58:30,994 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 18:58:30,994 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 18:58:31,021 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 18:58:31,021 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 18:58:31,021 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 18:58:31,069 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 18:58:31,069 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 18:58:31,069 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 18:58:31,125 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 18:58:31,125 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 18:58:31,171 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 18:58:31,171 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 18:58:31,230 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 18:58:31,257 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 18:58:31,258 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 18:58:31,261 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 18:58:31,264 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 18:58:31,319 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 18:58:31,319 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 18:58:31,320 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 18:58:31,320 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 18:58:31,320 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 18:58:31,353 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 18:58:48,792 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 18:58:48,801 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Food Addit...
+2025-08-01 18:58:48,801 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 18:58:48,972 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 18:58:49,018 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 18:58:49,019 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 18:58:49,019 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 18:58:49,065 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 18:58:49,066 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 18:58:49,066 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 18:58:49,169 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 18:58:51,491 - INFO - 📥 Form POST received:
+2025-08-01 18:58:51,492 - INFO - {
+  "rep_name": "Chase Cordova",
+  "rep_email": "tom@salesdrip.com",
+  "rep_company": "Freight Pro Logistics",
+  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
+  "objection_needs": "We are happy with our current carrier.",
+  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
+  "objection_source": "We\u2019ve been burned by brokers.",
+  "objection_price": "You are 10% higher than my other quote.",
+  "objection_time": "This is our slow season.",
+  "target_name": "JDH Corp",
+  "target_url": "https://www.jhdcorp.com/",
+  "recent_news": "No recent posts found.",
+  "locations": "Ontario, California; the United States; Southeast Asia; Netherlands; Germany; Canada; China; India",
+  "facts": "certifications: BRC,Kosher,Halal,ISO,USA & EU Organic,FDA,HACCP\r\nother details: 20+ years as a herbal extract manufacturer in China,Partners with cooperative factories in multiple countries,Owns dedicated plantation and processing plant,Offers over 700 herbal extract products\r\noverview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+  "products_services": "product types: Herbal Extracts,Vitamins,Amino Acids,Food Additives,Fruit & Vegetable Powders,Capsules",
+  "social_media": "LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/",
+  "g-recaptcha-response": "0cAFcWeA7CymL88EvccUyr44sHongBmuHMbyfEtvmV5U1ZHenm7QhIxmL_sW6MZAEdsEnLCfiDv-kyk5HEZxifLVBYv9rE2kNOaoGOnzJ4ULcUVLVtww9lviDlbopc6BZT78zp0glb0aeS9hV0cOr9SQb3DBwZuz78qa8E6tAVftHchlgFzbB_yK560jTz6qbjaxN35TtmbbQ2O2ELgQpNIvMZ6zwyy42LzLxCNE8_z1TuZjF4xsJnOlz69hkavmKk0ahwYLXaJGd67b-5E8Dq28eTEYWiUOz8CO4TwwycCo8oxZGDFXCGmJRdZgyyQZDxIuR6BX832gkDYnfMPU2ly77FvgsBIiSnERURq32oc7J16r8HgDGsOYYyd7aM2ub04QZChiLncIhK_FXJNxbhmO8ApmEn7MlYqNGnyu4i_1uIR-NHVX4QDcnMajF_5cNwfwxC3nLxIe_vNrDYXIHeyORfz_CfoZ0qKDJAh4ANDE2Ac4t2XURcqhDANqcukDNV3LcqyJwrEDCQF7mFJ4cpCnYL_i14mbMvKiZ9D1ImxCp5mN3iDcLepXk2vAhZHgodzw6l690ri0cvJ4Xo_ycfLO1JPgHMwkL1ylZT1EZZgc5DIaPxXKmPTYK5rLI30D4VIC9K49XDbDV_DIdzh0tP0bNIXObvLHma44cxobMls6PP1OXKx0SiDs-aYTZqPFhKRrWEcZWk2Mb1L65S91A3Q-KlKu3L1saAd597QTLFFROf3Fedr6V-isjACWR1BQ5uwHMXWBmk3ggzDVj7A7uCq4jooRUaU7rof-7bliAzGXOiApMhq7oIbTxtiPHg5CNK_LqS6cDaYRnOoK8Cd_MRpxTEPcFd69pdN4ZRWwrXwjzx4d_BusO2f-Hm1wtARTUa1dat2oTxhOymf5d_iMPZvmdIsQ3g2VpQ5QBpyqS3bzZ9X6XEoWwaLF_AHXGew1HA7JRrt4BMLkyiNKu0N9WS0bjYOojbl2Cz0D4fUx6wwSJxHnI4kitXxVMr71c3Q1vK86nf64uqv4JdPKMAI3s213mAXs6n2DGsUkY4KiheShvt6e_FI8NqT1e4_VbEmDdWyNk5dNhZcvfEr86EOoBc_dqS7UbPXR6FeHhwbbjv_vAvdiG3umanc7YQcIKa3PqMitLLlOBwXt-_blW9mT-JGMxLJopoptXzzWwxAWmE2c0uk6tlT5le_aTpy6S0w_2ibyVqX5LuchYZk4ROZcpNvqI4whBHbFbaZnwSc7tRdomRsonLADEjOMWKB1JSDsojSoOCneoTjllV8_4f6Xm2LM209T2mksABVu3v8bP5z2mEX4dAkTRySVQC8JPddx6Ajas1BSqMQX7wm8EjuzESUbRsFGDd-_XyhySD1ot4JJTcq07xYBs-j5lL6trvNzLkP5uWoW1ZZTSKNjzVSUg864rhTHA5uEu4qPSupjYei8MkR0QhFgIygAWD3wrxn8j7D6nS5PhNGqIAOaDmlZg-4K0jpwM8REDN_JIOWEK9OXO8v_TcJUPWFKFDSh2JxNuPg5OXXFFEyYGfM1nv8pVA83vNJS_ubm6VWkrDuq1ztNUmBpiDVjVAcArsbdaOr2JKmiI4fDZqeO5ZUpnzLGmmXaGXAcdoVzN8LF0v1Zd0XEf3E_9qEgSncQA"
+}
+2025-08-01 18:58:51,545 - INFO - 🔐 reCAPTCHA response: {'success': True, 'challenge_ts': '2025-08-01T18:58:27Z', 'hostname': 'salescriptor.com', 'score': 1.0, 'action': 'submit'}
+2025-08-01 18:59:13,151 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 18:59:13,159 - INFO - ✅ OpenAI returned in 21.61s
+2025-08-01 19:00:21,170 - INFO - 📥 Form POST received:
+2025-08-01 19:00:21,171 - INFO - {
+  "rep_name": "Chase Cordova",
+  "rep_email": "tom@salesdrip.com",
+  "rep_company": "Freight Pro Logistics",
+  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
+  "objection_needs": "We are happy with our current carrier.",
+  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
+  "objection_source": "We\u2019ve been burned by brokers.",
+  "objection_price": "You are 10% higher than my other quote.",
+  "objection_time": "This is our slow season.",
+  "target_name": "JDH Corp",
+  "target_url": "https://www.jhdcorp.com/",
+  "recent_news": "No recent posts found.",
+  "locations": "Ontario, California; the United States; Southeast Asia; Netherlands; Germany; Canada; China; India",
+  "facts": "certifications: BRC,Kosher,Halal,ISO,USA & EU Organic,FDA,HACCP\r\nother details: Over 20 years experience as a herbal extract manufacturer in China,700+ herbal extracts available,Own dedicated plantation and processing plant,Partners with cooperative factories in multiple countries,Focus on providing high-quality raw material solutions at competitive prices\r\noverview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+  "products_services": "product types: Herbal Extracts,Vitamins,Amino Acids,Fruit & Vegetable Powders,Proteins,Food Additives",
+  "social_media": "LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/",
+  "g-recaptcha-response": "03AFcWeA4MDe58vofSYvQ94IDFGHdGr1uqthlGNSnPbDot-QARrS9Ypck4WCN2Ahh0tIOfNOw-HZuMyzMHLkUqCqzQtATIFXe_GtPZGhITKqy8tPLyIS1RRkbmnNZt7AIOIfJhSrCzc1cMOAVoVjxJ85jGokn5nIRnIdA6CnkKdetxlk8XqHs-2deYxSStWItd3cf0by36BWu9FdPFfiBO0tS5y6nm8r71NyWKKItA-mqOzDoxjrKvkSsdPUqkXnuSB0GiTE9sxEMkoSF1pguhdCbLONq7sV7Td41XMyFdeTcUsEVpSGMGZRDXFLmKZ9YWshZyrG1CDT1dCxdQ2IANdraWMTdPqyx3H3CN3jTIj2Z1NPBtwXs0SmAfz3DetP230MdTVmCJi5f0gpaZq_vT22XncDdgqS_b28jZQhRdJtTzXB6Rdj5VIVTx-C4uuW54PJdM18c32CPe3MuHGsrfKAlRX2Tnu9kew-0jSz62QEIC1ZQ-Nu-odSMvwUZnaLxRdBeubD-X4Ts5HkbG1dH3YGE6UxRUUnA5qo10vNaOjFP7JyOIXJEDNOgl-1zqPy_sICfg3JX5tLGXGrk-L_maFU2GLZplAdIcvnfdz0CrLVrUUuTqkWL3VSC1ei9wdYFzp_izsx7trDY99BVy9lmMF03XUrGXK4OzCXXD23cqiyb1BIjlJQ1e9VQd1uHSAx30o8fmktFjqXCgW5dOYphYZRv3AmnZheA3amfm5GEHLo1PA4UDiDW2G3AzfY_zS-Dk4Tmq5B4Yj6kt_LIK7iVKJ4KemnNf67Tkr4lwunMNGGc_EF8NXSeRkM9o-UlE_C40VsIBj13sJBFmL3ZV7_Ylkj_awYv52pg-DIAI29R2ecLpy6lemVL4bEdqLGmLy8Bxz4yEGWE68k-g6g8OCewVE4LD2rBBNSIDUr2nGAlYvANRz2ELaa3E82giLACNI_LxjTvM-PfJlneuAY7Y6mNsPqszom5U6b9eOWuaUNYV1-wJlkEuVXxz_fMwu9nngefBi7qZ8nSEF2Gd6h4iswlD9M2K1g2dX5VDsYGJF2H-KaRZbCxOIcQm0GzXOKJkvwcUOLKGDgwsCSdK8LxDKDZ4SxE42lB6trTijKU3N2nf0vrIgTDUxREkZKwzqxfgYjsfyFnEfRRttWsSULOEUNxOkkJf8Ukmky3Ucucf-qC5wHPNamXu52zRxWxWK_Y3F5RYRMjtgudZp8uvrWHMaWz3JxhCEKF3emOvWuq4QJTLjlLPDO3MNHYmwhurqiBMXJ-pf904bCQ_RxmwQjgEqI0bms0R_ewpYiRD4L1CLHeKajavBz8hfXn3rTwHq3k7mYCBL9GHF83hlVrel7uwASUUIYDkikJgy27gSlKuOmHEX5v-O9bzvcnu1I4MCmeGTe6PIEZeM0E8jniVKrdTvRNDEgj9SiROFnmvXCE3BNcPOijFQ5L7LpclADcrDV2TiCvc5PvCZiEBbY40CFlUod8qpnDSAntMc0ZF7uJxeqr7D3FW7SXyoSzD-I0f5XLcS36rX8cdDyF002IOxsLcCvl_HG8u5t6h9KvC9jtO6KxmyqfXnIVErNpO6Qbq-NiU3YY_J4ADPAZhc-mfLljJ0HqXdjPTOtR3fUsrkjLmOEnKeEViIUfOMJaL2dnhgzX6dxrBBqpd6mbHBuZk6V5izp_qHA6_hTJy2CtfdvPvCvwUZCmxVoMeyH-NbAv7N_mDUK2YhOg5EeN3M6ASlIJdjxhpPNY7zF5KFPNAGRwvwmaOflEnfBRVGmf8S1GBMTURjj3gNAuGjmGfGp3BTLAvpd6B19lKYWBgsM7Xk8hCYhWTM0TsOdt8XB9dPLFAbrI-4hzVNKh-o7k6F1wLMMkmXoMueTKcP9ZSy3ur7UVQ9lFGfX7XHwKQIuWlu6ndg-MGCWXVVQ3yaMdYkfbdO5D_qkirzWEyqyVMTe_ZYd49PoIxhCvbU2VN_NJUKuipDxtb3tapgSm05B_hi3l2k_5F5RZhwi2Dq75Ux-pA5cyvu97x7ahe5oFA2v7ypZObz-MqpRANF6uDARdAjsDGamgezwflRcTXiC6arZDD396QSPlgz7dVJ66erOgeji6OCC-EuYyeZLdgtahmEXpd0opMDIFQj5uI3ssJXLKm0i9-F7YFIelFiPyHKPqS3BYkO7-nXrgOZ9JKD2Cl73jZ"
+}
+2025-08-01 19:00:21,237 - INFO - 🔐 reCAPTCHA response: {'success': False, 'error-codes': ['timeout-or-duplicate']}
+2025-08-01 19:00:23,476 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 19:00:23,502 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 19:00:23,502 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 19:00:23,561 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 19:00:23,584 - INFO - Found 3 URLs in the sitemap
+2025-08-01 19:00:23,584 - INFO - Identified 0 potential blog links.
+2025-08-01 19:00:23,584 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 19:00:23,585 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 19:00:24,277 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 19:00:24,355 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 19:00:24,355 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 19:00:24,407 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 19:00:24,407 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 19:00:24,407 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 19:00:24,430 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 19:00:24,430 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 19:00:24,430 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 19:00:24,465 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 19:00:24,465 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 19:00:24,466 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 19:00:24,562 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 19:00:24,562 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 19:00:24,583 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 19:00:24,583 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 19:00:24,643 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 19:00:24,665 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 19:00:24,668 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 19:00:24,669 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 19:00:24,672 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 19:00:24,690 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 19:00:24,691 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 19:00:24,744 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 19:00:24,744 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 19:00:24,744 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 19:00:24,767 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 19:00:31,011 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:00:31,023 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is a herbal extract supplier and ingredient manufacturer headquartered in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Food Additives",
+      "API",
+  ...
+2025-08-01 19:00:31,023 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 19:00:31,199 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 19:00:31,223 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 19:00:31,224 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 19:00:31,224 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 19:00:31,246 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 19:00:31,246 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 19:00:31,246 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 19:00:31,352 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 19:00:59,585 - INFO - 📥 Form POST received:
+2025-08-01 19:00:59,586 - INFO - {
+  "rep_name": "Chase Cordova",
+  "rep_email": "tom@salesdrip.com",
+  "rep_company": "Freight Pro Logistics",
+  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
+  "objection_needs": "We are happy with our current carrier.",
+  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
+  "objection_source": "We\u2019ve been burned by brokers.",
+  "objection_price": "You are 10% higher than my other quote.",
+  "objection_time": "This is our slow season.",
+  "target_name": "JDH Corp",
+  "target_url": "https://www.jhdcorp.com/",
+  "recent_news": "No recent posts found.",
+  "locations": "Ontario, California; the United States; Southeast Asia; Netherlands; Germany; Canada; China; India",
+  "facts": "certifications: BRC,Kosher,Halal,ISO,USA & EU Organic,FDA,HACCP\r\nother details: 20+ years as a herbal extract manufacturer in China,Partners with cooperative factories in multiple countries,Offers over 700 herbal extracts and other products,Integration of planting, production, and processing,Owns dedicated plantations and processing plants\r\noverview: JHD Corp is a herbal extract supplier and ingredient manufacturer headquartered in Ontario, California, with global operations.",
+  "products_services": "product types: Herbal Extracts,Vitamins,Amino Acids,Food Additives,Fruit & Vegetable Powders,Capsules",
+  "social_media": "LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/",
+  "g-recaptcha-response": "03AFcWeA4CkTQqHPCbT9FRB_hU4-RYGgjul-ZCGbW3ZpgWF_NfYVII3sfg2iiZd4PgmWevJOotNi6UYxrACIUN30GY_hp0lTqnrBKWIAHz9k3jkOPj873fd9gF4id1QfX3bF30KFwiqQoAMRgrt58RTPSxaIVtkWKgyCjqLC5jY6grrd051k98LUuosVFKj5S5fRCNSJwHAqzJ7MLzryG-GVTVeSxlxCFJ8oAPrqgfn-RvB3PxSkxDN_w2aLRUA4BxRRmxu4Pg_kv9_jfPg8anjNYl5KnenYdGwhV2AjtBFaL6AsRtWJP3T_NGatCUN3odv-4LEDiiAI7kP4NwxybTKGba5tzd5KnmF3Tf6dubeTLbI7ZyyIIu9IKW7j6sqJdH_HbAvsuEUer9FT5bxrzjezMuSrxo778NiAFjG0jY3IdKbwzaY4EKX3OFps17F9nSlcTyZy7vCZ6s8zXXaXLhQz93PJS46UkHy6Y6e7jLxq_VqMmSWGo3aCejyFnnBDppsEku29VK5CXGb0AIMs1iionpAR0usGSI_b7myPIBMmFVmhl81MIfxZk280RtpigdFVCm0-N1ziKYqCduB9wuPmyz0RSiDSmhDJLwz6e531_fyQxhu9PjLIvThgBRLNIdi_1Z0UR6i4C8Q6vjZXLTJ7nxNKyfgcXbTEflNo1pLTCjF2OefYKvMAs9aEedNrSrhXZzedyugru3GwOkG5um1XK_WMqSYd2IvXagArHHi_R8ONkYJDorE8ecb9RGcZENTbe4vIWcbf4m0EOJoO1DsjJmXxqZj2nSxoUIMnCgGWKUraP5opF3H5Pye09gIWlLIcWiy9rYQJpSlKv_TUqdzcSyx66Kj55NuyA25Cx8vP4vNX8Fhmbr_Ob94iNTWbVPLITfBx6VyXUprvKOIY8kJ-6M0iN22sQwUuxrTldlwlSXFzqrGYYGpLhNUOls60ZTNSazsriDKIcgow0uZu0HVNvqwpJnLouaDJxKC71cNaLl4ynFuB4cUd1QiDAg8MHNuHYsFKo3jD3hnYxa1nyShNSmcl6Cc73uLfwEDKyhKkYSMgjrqE7nC2PIXpEeDlQUAFkeXBgpeqd-SkMqH6OrNp5kzZBwDmjeR3a2H43wrfoBd_v8-3A3NuEfRHS0KqeNp17PlNXa90gosJsKrxekgeBUjSRwiWyZ3s9WQfXyo7bZcMI8mkt9u5eNz4kFOX19HFinYaRbXycHTAxoc5riA62BtUEOgGNuhULsejLaysFbv5guv5fkJls-b5KBlPXiBPbLdauvkg3sQ0B4xEExarJeOCymcf-xtLENxbxStYLFhjSrbO1ODxGrWATOuqQAqxD23VGldj_ocu2Y13w2bjqGKW14vQUCwxXdsSp8e4hhQWiRiB4XHiGd4WohE_pfVHVqeUx-gzROiFW2K-KzbozSpJYppENM7RUIuFrj-SrcRsm2TmgK0TpsJJmioRSJOKMfpwhpgumTsDeHYweJZCVuIfSEACRVjOxnY0NITMgaqPusl4kZNQbwXItwfKq30Yf7NfP06zj9q2pMZg6Ps2sWA89OSeqj4xLl9llUA8lA5H_z73VJ8WnoZGRTtTB8WVu99eJiUEFkFLnuEzb78dnWJa-3FTs7QDqdRTbyEI1SU_zmcScF3Y_6XzHd25lziyAse_w61d6zjIUW0kf9girnJ61sSs9wpTRO7ApnUoDSqSOtzpEPg3FzSuMtH_NB49yGdwjsXHTbetg34ySx9Yfas5qnubB1JO5javfWGRpdDMO42U5Z0DpHHNEQYxinomIyEnhKSF02DdSLqJpcpKioXHZjc0nHeF-zA5UKXumjkqDfLjsRvA_LfUi9Mur5YCHf1GTolQskzIulPrfddRXGiLdWtN9uMAVVRBRNFzJPqxtjrNvYAvMa7-YaEmmMenz7djCOw_0g4UJXtD4digI3JWCibSMQ8K1k6xQwaKfMAi2lp3dOuWqU3DVQutsWKHS_Mp2WrRmq3exSSBM9WbBzSpc1v3ZEbGWKsZLU3f8QXJBG2YPvCFSk31CG6sNGuFqwvQ5rJs9ooQpBrKP7VAkXs_Uu-TiYOLMddEiyZVwouJLVdTq3z4v5wsewVPfvcntV627YIGWmC2XjdM-IupgcGl_Jo-IO-HZOLZizB9UqNjl9vju2E2r5zlibJ3UxAcmIbdbQoVV2"
+}
+2025-08-01 19:00:59,651 - INFO - 🔐 reCAPTCHA response: {'success': True, 'challenge_ts': '2025-08-01T19:00:21Z', 'hostname': 'salescriptor.com', 'score': 1.0, 'action': 'submit'}
+2025-08-01 19:01:25,450 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 19:01:25,494 - INFO - ✅ OpenAI returned in 25.84s
+2025-08-01 19:01:50,508 - INFO - [DEBUG] Login response status: 200
+2025-08-01 19:01:50,514 - INFO - GreenRope token acquired
+2025-08-01 19:01:50,816 - INFO - ✅ Contact script.only@ai.local updated successfully in SalesDrip CRM.

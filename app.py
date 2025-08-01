@@ -86,10 +86,20 @@ def handle_form():
             missing = [k for k in rep_keys + target_keys if not request.form.get(k)]
             return render_template("form.html", error=f"❌ Missing required fields: {', '.join(missing)}", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY, rep_data=rep_data, target_data=target_data)
 
-        # --- Prompt Descriptions ---
+        # --- Correct Prompt Descriptions ---
         prompt_descriptions = [
-            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",
-        ] * 11
+            "Opening: Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-ended factual question about the target company related to freight between USA and Canada.",
+            "Customer Assessment: Ask a closed-ended question that probes how the target manages its freight operations across USA/Canada.",
+            "Needs Assessment: Ask a closed-ended question about the company’s current or upcoming freight needs.",
+            "Risk Assessment: Ask a closed-ended question that highlights risk and consequences of not addressing freight gaps.",
+            "Solution Assessment: Ask a closed-ended question about what the company looks for in a freight partner.",
+            "Needs Objection: Ask a closed-ended question countering the 'we're happy with our current carrier' objection.",
+            "Service Objection: Ask a closed-ended question addressing prior service dissatisfaction.",
+            "Source Objection: Ask a closed-ended question addressing concerns about using brokers.",
+            "Price Objection: Ask a closed-ended question about value relative to cost.",
+            "Time Objection: Ask a closed-ended question countering the 'not a good time' objection.",
+            "Closing Question: Ask a closed-ended final call-to-action or decision qualifier question."
+        ]
 
         # --- Build prompt with strict formatting guidance ---
         prompt = f"""
@@ -149,13 +159,10 @@ Instructions:
                 if current["label"]:
                     script_items.append(current)
                 idx = int(line.split(".")[0]) - 1
-                if idx < len(prompt_descriptions):
-                    current = {
-                        "label": prompt_descriptions[idx],
-                        "options": []
-                    }
-                else:
-                    current = {"label": "Extra", "options": []}
+                current = {
+                    "label": prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Extra Block {idx+1}",
+                    "options": []
+                }
             elif line.startswith("- "):
                 current["options"].append(line[2:].strip())
 

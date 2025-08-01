@@ -301,12 +301,10 @@
         <div class="qa-box" id="qa-box-{{ group_index }}">
           <div class="qa-label">{{ item.label }}</div>
           <div class="qa-prompt">
-            <label for="prompt-{{ group_index }}">Prompt Instruction:</label>
-            {% for desc in prompt_descriptions %}
-  <input type="hidden" name="prompt_descriptions" value="{{ desc }}">
-{% endfor %}
-
+            <label for="prompt-{{ loop.index0 }}">Prompt Instruction:</label>
+            <textarea name="prompt_descriptions" rows="2" style="width: 100%;">{{ item.label }}</textarea>
           </div>
+          
           <div class="qa-output">
             <label for="qa-text-{{ group_index }}">Selected AI Output:</label>
             <textarea class="qa-text" id="qa-text-{{ group_index }}" rows="2">{{ item.options[0] if item.options|length > 0 else '' }}</textarea>
