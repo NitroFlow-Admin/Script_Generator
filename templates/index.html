@@ -209,63 +209,53 @@
   <div id="sidebar" class="sidebar">
     <div class="sidebar-content">
       <form id="editInputsForm" method="POST" action="/" onsubmit="return handleRegenerate(event)">
+        {% set rep_fields = [
+          ('Name', 'rep_name'),
+          ('Email', 'rep_email'),
+          ('Company', 'rep_company'),
+          ('What are you selling?', 'product'),
+          ('Needs Objection', 'objection_needs'),
+          ('Service Objection', 'objection_service'),
+          ('Source Objection', 'objection_source'),
+          ('Price Objection', 'objection_price'),
+          ('Time Objection', 'objection_time')
+        ] %}
+
         <h3>Sales Rep Info</h3>
-      
-        <label>Name:</label>
-        <input type="text" name="rep_name" value="{{ rep_data.rep_name }}">
-      
-        <label>Email:</label>
-        <input type="email" name="rep_email" value="{{ rep_data.rep_email }}">
-      
-        <label>Company:</label>
-        <input type="text" name="rep_company" value="{{ rep_data.rep_company }}">
-      
-        <label>What are you selling?</label>
-        <textarea name="product">{{ rep_data.product }}</textarea>
-      
-        <label>Needs Objection:</label>
-        <textarea name="objection_needs">{{ rep_data.objection_needs }}</textarea>
-      
-        <label>Service Objection:</label>
-        <textarea name="objection_service">{{ rep_data.objection_service }}</textarea>
-      
-        <label>Source Objection:</label>
-        <textarea name="objection_source">{{ rep_data.objection_source }}</textarea>
-      
-        <label>Price Objection:</label>
-        <textarea name="objection_price">{{ rep_data.objection_price }}</textarea>
-      
-        <label>Time Objection:</label>
-        <textarea name="objection_time">{{ rep_data.objection_time }}</textarea>
-      
+        {% for label, name in rep_fields %}
+          <label>{{ label }}:</label>
+          {% if name == 'product' or name.startswith('objection_') %}
+            <textarea name="{{ name }}">{{ rep_data.get(name, '') }}</textarea>
+          {% else %}
+            <input type="text" name="{{ name }}" value="{{ rep_data.get(name, '') }}">
+          {% endif %}
+        {% endfor %}
+
         <h3>Target Company Info</h3>
-      
-        <label>Company Name:</label>
-        <input type="text" name="target_name" value="{{ target_data.target_name }}">
-      
-        <label>Website:</label>
-        <input type="url" name="target_url" value="{{ target_data.target_url }}">
-      
-        <label>Recent News:</label>
-        <textarea name="recent_news">{{ target_data.recent_news }}</textarea>
-      
-        <label>Locations:</label>
-        <textarea name="locations">{{ target_data.locations }}</textarea>
-      
-        <label>Facts or Stats:</label>
-        <textarea name="facts">{{ target_data.facts }}</textarea>
-      
-        <label>Products/Services:</label>
-        <textarea name="products_services">{{ target_data.products_services }}</textarea>
-      
-        <label>Social Media:</label>
-        <textarea name="social_media">{{ target_data.social_media }}</textarea>
-      
+        {% set target_fields = [
+          ('Company Name', 'target_name'),
+          ('Website', 'target_url'),
+          ('Recent News', 'recent_news'),
+          ('Locations', 'locations'),
+          ('Facts or Stats', 'facts'),
+          ('Products/Services', 'products_services'),
+          ('Social Media', 'social_media')
+        ] %}
+
+        {% for label, name in target_fields %}
+          <label>{{ label }}:</label>
+          {% if name == 'target_url' %}
+            <input type="url" name="{{ name }}" value="{{ target_data.get(name, '') }}">
+          {% else %}
+            <textarea name="{{ name }}">{{ target_data.get(name, '') }}</textarea>
+          {% endif %}
+        {% endfor %}
+
         <button type="submit">Regenerate</button>
       </form>
-      
     </div>
   </div>
+
 
   <div id="sidebar-toggle" class="sidebar-toggle" onclick="toggleSidebar()">
     <div class="hamburger">
@@ -467,16 +457,7 @@
     window.addEventListener("load", () => {
       // Hide overlay if it somehow persisted
       const overlay = document.getElementById("loadingOverlay");
-      if (overlay) overlay.style.display = "none";
-  
-      // Clear stale form values
-      const fieldsToClear = [
-        "recent_news", "locations", "facts", "products_services", "social_media"
-      ];
-      fieldsToClear.forEach(name => {
-        const el = document.querySelector(`[name="${name}"]`);
-        if (el) el.value = '';
-      });
+      if (overlay) overlay.style.display = "none";  
   
       // Reset sidebar toggle
       const toggle = document.getElementById("sidebar-toggle");

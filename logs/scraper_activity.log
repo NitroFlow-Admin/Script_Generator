@@ -458,3 +458,117 @@ ValueError: Incomplete results from AI.
 2025-08-01 17:28:57,966 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
 2025-08-01 17:29:32,212 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-08-01 17:29:32,239 - INFO - ✅ OpenAI responded in 31.36s
+2025-08-01 17:37:24,520 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:37:24,527 - INFO - ✅ OpenAI responded in 20.50s
+2025-08-01 17:38:52,425 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 17:38:52,451 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 17:38:52,452 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 17:38:52,504 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 17:38:52,549 - INFO - Found 3 URLs in the sitemap
+2025-08-01 17:38:52,549 - INFO - Identified 0 potential blog links.
+2025-08-01 17:38:52,549 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 17:38:52,549 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 17:38:53,251 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 17:38:53,331 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 17:38:53,332 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 17:38:53,380 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 17:38:53,380 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 17:38:53,380 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 17:38:53,402 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 17:38:53,403 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 17:38:53,403 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 17:38:53,434 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 17:38:53,434 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 17:38:53,435 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 17:38:53,489 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 17:38:53,490 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 17:38:53,514 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 17:38:53,515 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 17:38:53,574 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 17:38:53,604 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 17:38:53,604 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 17:38:53,606 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 17:38:53,612 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 17:38:53,673 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 17:38:53,673 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 17:38:53,673 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 17:38:53,674 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 17:38:53,674 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 17:38:53,709 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 17:38:59,300 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:38:59,309 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is a herbal extract supplier and ingredient manufacturer headquartered in Ontario, California, with global operations.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Fruit & Vegetable Powders",
+    ...
+2025-08-01 17:38:59,309 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 17:38:59,497 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 17:38:59,521 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 17:38:59,521 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 17:38:59,521 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 17:38:59,548 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 17:38:59,548 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 17:38:59,548 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 17:38:59,652 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 17:39:22,109 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:39:22,118 - INFO - ✅ OpenAI responded in 21.63s
+2025-08-01 17:41:11,839 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:41:11,859 - INFO - ✅ OpenAI responded in 20.72s
+2025-08-01 17:41:48,238 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:41:48,252 - INFO - ✅ OpenAI responded in 26.01s
+2025-08-01 17:46:09,004 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:46:09,016 - INFO - ✅ OpenAI responded in 24.56s
+2025-08-01 17:49:51,330 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:49:51,338 - INFO - ✅ OpenAI responded in 33.61s
+2025-08-01 17:50:16,311 - INFO - 📡 Starting research for: https://www.kdcapital.com/
+2025-08-01 17:50:16,914 - INFO - [robots.txt] Can fetch https://www.kdcapital.com/? True
+2025-08-01 17:50:16,914 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/
+2025-08-01 17:50:17,758 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/sitemap.xml
+2025-08-01 17:50:18,513 - INFO - Found 5 URLs in the sitemap
+2025-08-01 17:50:18,513 - INFO - Identified 0 potential blog links.
+2025-08-01 17:50:18,513 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 17:50:18,514 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 17:50:19,144 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com
+2025-08-01 17:50:19,944 - INFO - [PAGE TEXT] https://www.kdcapital.com --> Used CNC Machines for Sale - KD Capital Equipment Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC Horizontal Machining ...
+2025-08-01 17:50:19,945 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/about
+2025-08-01 17:50:21,082 - INFO - [PAGE TEXT] https://www.kdcapital.com/about --> KD Capital: Used Plastic, CNC, Fabrication Machine Dealer | About Us Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC Ho...
+2025-08-01 17:50:21,083 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/about-us
+2025-08-01 17:50:22,257 - INFO - [PAGE TEXT] https://www.kdcapital.com/about-us --> KD Capital: Used Plastic, CNC, Fabrication Machine Dealer | About Us Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC Ho...
+2025-08-01 17:50:22,258 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact
+2025-08-01 17:50:23,398 - INFO - [PAGE TEXT] https://www.kdcapital.com/contact --> Contact Us - KD Capital Equipment - The Industry's Most Trusted Source Home 480-922-1674 Activate Pricing Contact Us Activate Pricing Cart Cart 0 Search for: Search for: Machine Categories Plastics Machinery Blow Molders (42) Chillers (9) Extruders (42) Granulators - Shredders - Pulverizers (29) Injection Molding Machines (64) Plastic Auxiliary Equipment (19) Plastic Robots (2) Plastic Rotational Molding (4) Thermoforming (23) CNC Machines CNC Boring Mills (4) CNC Glass / Stone Machines (4) CNC ...
+2025-08-01 17:50:23,398 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact-us
+2025-08-01 17:50:24,157 - INFO - [SKIP RETRY] Status 404 for https://www.kdcapital.com/contact-us
+2025-08-01 17:50:24,158 - INFO - [SKIP] https://www.kdcapital.com/contact-us not fetched.
+2025-08-01 17:50:24,158 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/locations
+2025-08-01 17:50:24,937 - INFO - [SKIP RETRY] Status 404 for https://www.kdcapital.com/locations
+2025-08-01 17:50:24,937 - INFO - [SKIP] https://www.kdcapital.com/locations not fetched.
+2025-08-01 17:50:25,416 - INFO - [EXTRACTED LOCATIONS] ['South Carolina', 'Boring Mills', 'Pennsylvania', 'California', 'Washington', 'St. James', 'Missouri', 'Arizona', 'Florida', 'Texas', 'Ohio', 'Us']
+2025-08-01 17:50:26,240 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/company
+2025-08-01 17:50:26,345 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/ (6421 chars)
+2025-08-01 17:50:26,611 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/about-us (7180 chars)
+2025-08-01 17:50:26,641 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/overview (6421 chars)
+2025-08-01 17:50:26,670 - INFO - [FACT SCRAPE] ✅ https://www.kdcapital.com/about (7180 chars)
+2025-08-01 17:50:27,084 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/who-we-are
+2025-08-01 17:50:27,095 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/our-story
+2025-08-01 17:50:27,359 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/mission
+2025-08-01 17:50:27,387 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/vision
+2025-08-01 17:50:27,393 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.kdcapital.com/contact-us
+2025-08-01 17:50:37,278 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:50:37,285 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "KD Capital Equipment is a family-owned and operated business, recognized as one of the largest used machinery dealers in North America.",
+    "products_services": [
+      "Used CNC Machinery for Sale",
+      "Used Plastic Machinery for Sale",
+      "Used Fabri...
+2025-08-01 17:50:37,286 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/
+2025-08-01 17:50:38,117 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/about
+2025-08-01 17:50:39,294 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/contact
+2025-08-01 17:50:40,408 - INFO - [GET] Attempt 1 - Fetching https://www.kdcapital.com/home
+2025-08-01 17:50:41,498 - INFO - [SOCIAL MEDIA FOUND] {'Facebook': 'https://www.facebook.com/kdcapitalequipment/', 'Instagram': 'https://www.instagram.com/kdcapitalequipment/'}
+2025-08-01 17:51:16,834 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:51:16,855 - INFO - ✅ OpenAI responded in 32.11s
