@@ -70,6 +70,122 @@ def handle_form():
         if not result.get("success") or result.get("score", 0) < 0.5:
             return render_template("form.html", error="reCAPTCHA verification failed. Please try again.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
 
+        # Gather form data
+        rep_data = {key: request.form.get(key, "") for key in ["rep_email", "rep_name", "rep_company", "product", "objection_needs", "objection_service", "objection_source", "objection_price", "objection_time"]}
+        target_data = {key: request.form.get(key, "") for key in ["target_name", "target_url", "recent_news", "locations", "facts", "products_services", "social_media"]}
+
+        if not all(rep_data.values()) or not all(target_data.values()):
+            return render_template("form.html", error="Please complete all required fields.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+        # Prompt instructions
+        prompt_descriptions = [
+            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",  # Opening Script
+            "Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-end factual question about the target company that pertains to freight to, from or between its locations in the USA and Canada.",  # Customer Assessment
+            "A closed-ended question about the customer’s freight service needs relating to, from or between the locations in the USA and Canada.",  # Needs Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Risk Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Solution Assessment
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Needs Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Service Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Source Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Price Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada.",  # Time Objection
+            "A closed-ended question that includes the risk and the consequence of not addressing it for freight service to, from or between the locations in the USA and Canada."   # Closing Question
+        ]
+
+        # Construct multi-version OpenAI prompt
+        system_prompt = f"""
+You are a professional cold call script assistant.
+Sales Rep: {rep_data['rep_name']} from {rep_data['rep_company']}.
+They are selling: {rep_data['product']}.
+Target company: {target_data['target_name']}.
+
+For each of the following 11 prompts, generate 4 short, professional, **closed-ended** sentences. 
+Return them grouped by prompt number like this:
+
+1.
+- Version 1
+- Version 2
+- Version 3
+- Version 4
+2.
+- Version 1
+...
+"""
+
+        system_prompt += "\n\nPrompts:\n" + "\n".join([f"{i+1}. {desc}" for i, desc in enumerate(prompt_descriptions)])
+
+        # Call OpenAI
+        import time
+        start_time = time.time()
+
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": system_prompt}],
+            temperature=0.6,
+            max_tokens=3500
+        )
+
+        logging.info(f"✅ OpenAI responded in {time.time() - start_time:.2f}s")
+
+        content = response.choices[0].message.content.strip()
+
+        # Parse response
+        import re
+        from collections import defaultdict
+
+        groups = defaultdict(list)
+        current_index = None
+        for line in content.splitlines():
+            line = line.strip()
+            if re.match(r"^\d+\.\s*$", line):  # "1."
+                current_index = int(line.replace(".", ""))
+            elif current_index and line.startswith("- "):
+                text = line[2:].strip()
+                if text and text not in groups[current_index]:
+                    groups[current_index].append(text)
+
+        # Assemble script_items
+        script_items = []
+        for i, desc in enumerate(prompt_descriptions, start=1):
+            versions = groups.get(i, [])
+            while len(versions) < 4:
+                versions.append(versions[-1] if versions else "N/A")
+            script_items.append({
+                "label": desc,
+                "options": versions[:4]
+            })
+
+        return render_template(
+            "index.html",
+            script_items=script_items,
+            rep_data=rep_data,
+            target_data=target_data,
+            prompt_descriptions=prompt_descriptions,
+            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
+        )
+
+    except Exception as e:
+        logging.exception("❌ Error during script generation")
+        return render_template("form.html", error=f"An internal error occurred: {str(e)}", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+def handle_form():
+    if request.method == "GET":
+        return render_template("form.html", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+    try:
+        # reCAPTCHA v3 verification
+        recaptcha_response = request.form.get("g-recaptcha-response", "")
+        if not recaptcha_response:
+            return render_template("form.html", error="Missing reCAPTCHA response.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
+        verify_resp = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify",
+            data={"secret": RECAPTCHA_SECRET_KEY, "response": recaptcha_response}
+        )
+        result = verify_resp.json()
+        if not result.get("success") or result.get("score", 0) < 0.5:
+            return render_template("form.html", error="reCAPTCHA verification failed. Please try again.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
+
         # Sales rep + target form data
         rep_data = {key: request.form.get(key, "") for key in ["rep_email", "rep_name", "rep_company", "product", "objection_needs", "objection_service", "objection_source", "objection_price", "objection_time"]}
         target_data = {key: request.form.get(key, "") for key in ["target_name", "target_url", "recent_news", "locations", "facts", "products_services", "social_media"]}

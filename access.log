@@ -3160,3 +3160,8 @@
  - - [01/Aug/2025:17:19:51 +0000] "GET /wp-admin/setup-config.php HTTP/1.0" 404 207 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
  - - [01/Aug/2025:17:20:11 +0000] "GET /wordpress/wp-admin/setup-config.php HTTP/1.0" 404 207 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
  - - [01/Aug/2025:17:20:16 +0000] "GET /wp-admin/setup-config.php HTTP/1.0" 404 207 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+ - - [01/Aug/2025:17:28:10 +0000] "GET / HTTP/1.0" 200 10995 "http://www.salescriptor.com" "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
+ - - [01/Aug/2025:17:28:41 +0000] "GET / HTTP/1.0" 200 10995 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+ - - [01/Aug/2025:17:28:44 +0000] "GET / HTTP/1.0" 200 10995 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+ - - [01/Aug/2025:17:28:57 +0000] "POST /run-autoresearch HTTP/1.0" 200 1021 "https://salescriptor.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+ - - [01/Aug/2025:17:29:32 +0000] "POST / HTTP/1.0" 200 50881 "https://salescriptor.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"

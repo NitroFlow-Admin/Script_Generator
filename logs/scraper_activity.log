@@ -403,3 +403,58 @@ ValueError: Incomplete results from AI.
 2025-08-01 16:16:28,217 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
 2025-08-01 16:16:34,730 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-08-01 16:16:34,738 - INFO - ✅ OpenAI script generated in 4.73s
+2025-08-01 17:28:47,148 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-01 17:28:47,288 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-01 17:28:47,289 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 17:28:47,352 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-01 17:28:47,424 - INFO - Found 3 URLs in the sitemap
+2025-08-01 17:28:47,425 - INFO - Identified 0 potential blog links.
+2025-08-01 17:28:47,425 - INFO - ❌ No blog links found in the sitemap.
+2025-08-01 17:28:47,425 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-01 17:28:48,318 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-01 17:28:48,432 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-01 17:28:48,433 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 17:28:48,531 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 17:28:48,531 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-01 17:28:48,531 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-01 17:28:48,667 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-01 17:28:48,667 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-01 17:28:48,667 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 17:28:48,763 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 17:28:48,763 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-01 17:28:48,763 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-01 17:28:48,829 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-01 17:28:48,829 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-01 17:28:48,916 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-01 17:28:48,916 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-01 17:28:49,041 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-01 17:28:49,069 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-01 17:28:49,073 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-01 17:28:49,137 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-01 17:28:49,140 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-01 17:28:49,144 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-01 17:28:49,166 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-01 17:28:49,167 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-01 17:28:49,223 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-01 17:28:49,223 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-01 17:28:49,231 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-01 17:28:57,536 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:28:57,591 - INFO - [AI RAW RESPONSE] {
+  "company_facts": {
+    "overview": "JHD Corp is an ingredient manufacturer and solution provider headquartered in Ontario, California, specializing in herbal extracts with a global presence.",
+    "products_services": [
+      "Herbal Extracts",
+      "Vitamins",
+      "Amino Acids",
+      "Food ...
+2025-08-01 17:28:57,592 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-01 17:28:57,726 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-01 17:28:57,839 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-01 17:28:57,839 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-01 17:28:57,839 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-01 17:28:57,859 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-01 17:28:57,860 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-01 17:28:57,860 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-01 17:28:57,966 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-01 17:29:32,212 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-01 17:29:32,239 - INFO - ✅ OpenAI responded in 31.36s
