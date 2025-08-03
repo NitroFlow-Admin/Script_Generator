@@ -52,6 +52,7 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 sys.excepthook = handle_exception
 
 
+
 @app.route("/", methods=["GET", "POST"])
 def handle_form():
     if request.method == "GET":
@@ -398,6 +399,127 @@ def run_autoresearch():
     except Exception as e:
         log_event(f"❌ /run-autoresearch failed: {e}")
         return jsonify({"error": "Something went wrong."}), 500
+
+
+@app.route("/auto-script-from-salesdrip", methods=["POST"])
+def auto_script_from_salesdrip():
+    try:
+        from salesdrip_export import save_script_to_crm
+        import time
+        import re
+
+        def parse_salesdrip_blob(blob: str) -> dict:
+            blob = blob.replace('<br>', '\n').replace('<br/>', '\n')
+            pattern = r'"([^"]+)":"((?:[^"\\]|\\.)*?)"'
+            matches = re.findall(pattern, blob)
+            return {k: v.replace('\\"', '"').replace('\\\\', '\\') for k, v in matches}
+
+        # Step 1: Grab raw request body
+        raw_body = request.get_data(as_text=True)
+        logging.info(f"📨 Raw SalesDrip webhook body:\n{raw_body}")
+
+        # Step 2: Parse blob without relying on strict JSON
+        data = parse_salesdrip_blob(raw_body)
+
+        # Step 3: Extract fields using human-readable keys
+        rep_data = {
+            "rep_email": data.get("SalesRep Email", ""),
+            "rep_name": data.get("SalesRep Name", ""),
+            "rep_company": data.get("SalesRep Company", ""),
+            "product": data.get("SalesRep Product/service", ""),
+            "objection_needs": data.get("SalesRep Needs Objection", ""),
+            "objection_service": data.get("SalesRep Service Objection", ""),
+            "objection_source": data.get("SalesRep Source Objection", ""),
+            "objection_price": data.get("SalesRep Price Objection", ""),
+            "objection_time": data.get("SalesRep Time Objection", "")
+        }
+
+        target_data = {
+            "target_name": data.get("CompanyName", ""),
+            "target_url": data.get("CompanyWebsite", ""),
+            "recent_news": data.get("Recent Blog/News Posts", ""),
+            "locations": data.get("Company Locations", ""),
+            "facts": data.get("Company Facts", ""),
+            "products_services": data.get("Products & Services", ""),
+            "social_media": data.get("Social Media or Other Notes", "")
+        }
+
+        email = data.get("Email", "")
+        contact_id = data.get("ContactID", "")
+
+        # Step 4: Build the prompt
+        prompt_descriptions = [
+            "Opening: Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-ended factual question about the target company related to freight between USA and Canada.",
+            "Customer Assessment: Ask a closed-ended question that probes how the target manages its freight operations across USA/Canada.",
+            "Needs Assessment: Ask a closed-ended question about the company’s current or upcoming freight needs.",
+            "Risk Assessment: Ask a closed-ended question that highlights risk and consequences of not addressing freight gaps.",
+            "Solution Assessment: Ask a closed-ended question about what the company looks for in a freight partner.",
+            "Needs Objection: Ask a closed-ended question countering the 'we're happy with our current carrier' objection.",
+            "Service Objection: Ask a closed-ended question addressing prior service dissatisfaction.",
+            "Source Objection: Ask a closed-ended question addressing concerns about using brokers.",
+            "Price Objection: Ask a closed-ended question about value relative to cost.",
+            "Time Objection: Ask a closed-ended question countering the 'not a good time' objection.",
+            "Closing Question: Ask a closed-ended final call-to-action or decision qualifier question."
+        ]
+
+        prompt = f"""
+You are a professional cold call script assistant.
+
+Sales Rep: {rep_data['rep_name']} from {rep_data['rep_company']}.
+They are selling: {rep_data['product']}.
+Target company: {target_data['target_name']}.
+
+Please return exactly 11 blocks.
+Each block must be numbered 1–11, and contain exactly 4 bullet points:
+- version A
+- version B
+- version C
+- version D
+
+Do not add commentary. Do not change format. Do not skip numbers.
+
+Instructions:
+""" + "\n".join([f"{i+1}. {desc}" for i, desc in enumerate(prompt_descriptions)])
+
+        # Step 5: Generate script
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5,
+            max_tokens=2500
+        )
+        raw_output = response.choices[0].message.content.strip()
+
+        # Step 6: Parse the script output
+        script_items = []
+        current = {"label": "", "options": []}
+        lines = raw_output.splitlines()
+        for line in lines:
+            line = line.strip()
+            if re.match(r"^\d+\.$", line):
+                if current["label"]:
+                    script_items.append(current)
+                idx = int(line.split(".")[0]) - 1
+                current = {
+                    "label": prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Extra Block {idx+1}",
+                    "options": []
+                }
+            elif line.startswith("- "):
+                current["options"].append(line[2:].strip())
+        if current["label"]:
+            script_items.append(current)
+
+        if len(script_items) != 11 or any(len(item["options"]) != 4 for item in script_items):
+            logging.error("❌ Script format error — check OpenAI output")
+            return "❌ Script formatting issue", 500
+
+        # Step 7: Save to CRM
+        success = save_script_to_crm(email, rep_data, target_data, script_items, contact_id=contact_id)
+        return jsonify({"status": "✅ Script generated and synced" if success else "⚠️ Script generated but failed to sync"}), 200
+
+    except Exception as e:
+        logging.exception("🔥 Auto-script webhook error")
+        return f"❌ Error: {str(e)}", 500
 
 
 if __name__ == "__main__":

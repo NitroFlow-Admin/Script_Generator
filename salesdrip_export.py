@@ -6,7 +6,8 @@ from salesdrip_auth import get_greenrope_token
 
 GREENROPE_ACCOUNT = os.getenv("GREENROPE_ACCOUNT_ID")
 
-def save_script_to_crm(email, rep_data, target_data, script_items):
+
+def save_script_to_crm(email, rep_data, target_data, script_items, contact_id=None):
     token = get_greenrope_token()
     headers = {
         "Authorization": f"Bearer {token}",
@@ -14,8 +15,12 @@ def save_script_to_crm(email, rep_data, target_data, script_items):
         "Content-Type": "application/json"
     }
 
-    contact_id = 2
     group_name = "***2025 Ai Integrated Sales"
+
+    # Validate and clean contact_id
+    if not contact_id or not str(contact_id).isdigit():
+        raise ValueError("❌ Invalid or missing contact_id")
+    contact_id = int(contact_id)
 
     def safe_option(item, index):
         try:
@@ -95,7 +100,7 @@ def save_script_to_crm(email, rep_data, target_data, script_items):
     user_fields = [
         {"FieldNum": fnum, "FieldValue": safe_option(item, idx)}
         for (fnum, item, idx) in field_map
-        if safe_option(item, idx).strip()  # only include non-blank
+        if safe_option(item, idx).strip()
     ]
 
     payload = {
@@ -128,7 +133,11 @@ def save_script_to_crm(email, rep_data, target_data, script_items):
         logging.error(f"[ERROR] Failed to update contact {email}: {e}", exc_info=True)
         return False
 
+
+
 def save_research_to_crm(email, company_name, research_data, contact_id):
+    import re
+
     token = get_greenrope_token()
     headers = {
         "Authorization": f"Bearer {token}",
@@ -138,69 +147,71 @@ def save_research_to_crm(email, company_name, research_data, contact_id):
 
     group_name = "***2025 Ai Integrated Sales"
 
-    # Validate contact_id strictly
     if not contact_id or not str(contact_id).isdigit():
         raise ValueError("❌ Invalid or missing contact_id")
 
-    # Extract facts and nested products_services if necessary
     facts = research_data.get("facts", {})
     products_services = research_data.get("products_services")
 
     if not products_services and isinstance(facts, dict):
         products_services = facts.pop("products_services", None)
 
-    # Format fields as plain text
+    def strip_html(text):
+        return re.sub(r'<[^>]+>', '', str(text)).replace('\n', ' ').strip()
+
     def format_facts(f):
         if not isinstance(f, dict):
-            return str(f)
+            return strip_html(f)
 
         excluded_keys = {"products_services", "locations"}
         cleaned = {k: v for k, v in f.items() if k not in excluded_keys}
 
-        lines = []
+        parts = []
         for key, value in cleaned.items():
             if isinstance(value, list):
-                value_str = "; ".join(str(v) for v in value)
+                value_str = "; ".join(strip_html(v) for v in value)
             elif isinstance(value, dict):
-                value_str = "; ".join(f"{k}: {v}" for k, v in value.items())
+                value_str = "; ".join(f"{strip_html(k)}: {strip_html(v)}" for k, v in value.items())
             else:
-                value_str = str(value)
-            lines.append(f"{key.capitalize()}: {value_str}")
-        return "\n".join(lines)
+                value_str = strip_html(value)
+            parts.append(f"{key.capitalize()}: {value_str}")
+        return "; ".join(parts)
 
     def format_products(p):
         if not p:
             return "No products or services found."
 
-        lines = []
-
+        values = []
         if isinstance(p, dict):
-            for key, val in p.items():
+            for val in p.values():
                 if isinstance(val, list):
-                    lines.extend(str(v) for v in val)
+                    values.extend(strip_html(v) for v in val)
                 elif isinstance(val, str):
-                    lines.append(val)
+                    values.append(strip_html(val))
         elif isinstance(p, list):
-            lines.extend(str(v) for v in p)
+            values.extend(strip_html(v) for v in p)
         else:
-            lines.append(str(p))
+            values.append(strip_html(p))
 
-        return "\n".join(lines)
+        return "; ".join(values)
 
     def format_blogs(articles):
         if not articles:
             return "No recent blog posts found."
-        lines = []
+        entries = []
         for a in articles:
-            lines.append(f"{a.get('title', '')}\n{a.get('url', '')}\n{a.get('excerpt', '')}\n")
-        return "\n".join(lines)
+            title = strip_html(a.get('title', ''))
+            url = a.get('url', '')
+            excerpt = strip_html(a.get('excerpt', ''))
+            entries.append(f"{title} ({url}) - {excerpt}")
+        return "; ".join(entries)
 
     user_fields = [
         {"FieldNum": 1034, "FieldValue": format_blogs(research_data.get("recent_blog_posts", []))},
-        {"FieldNum": 1035, "FieldValue": research_data.get("locations", "")},
+        {"FieldNum": 1035, "FieldValue": strip_html(research_data.get("locations", ""))},
         {"FieldNum": 1036, "FieldValue": format_facts(facts)},
         {"FieldNum": 1037, "FieldValue": format_products(products_services)},
-        {"FieldNum": 1038, "FieldValue": research_data.get("social_media", "")}
+        {"FieldNum": 1038, "FieldValue": strip_html(research_data.get("social_media", ""))}
     ]
 
     payload = {
