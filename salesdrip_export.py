@@ -108,8 +108,6 @@ def save_script_to_crm(email, rep_data, target_data, script_items, contact_id=No
             {
                 "contactId": contact_id,
                 "Email": email,
-                "Firstname": rep_data.get("rep_name", ""),
-                "Company": rep_data.get("rep_company", ""),
                 "Groups": [{"GroupName": group_name}],
                 "UserDefinedFields": user_fields
             }
@@ -219,8 +217,6 @@ def save_research_to_crm(email, company_name, research_data, contact_id):
             {
                 "contactId": int(contact_id),
                 "Email": email,
-                "Firstname": company_name,
-                "Company": company_name,
                 "Groups": [{"GroupName": group_name}],
                 "UserDefinedFields": user_fields
             }

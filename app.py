@@ -444,6 +444,7 @@ def auto_script_from_salesdrip():
             "social_media": data.get("Social Media or Other Notes", "")
         }
 
+        # This should be the *target’s* contact info
         email = data.get("Email", "")
         contact_id = data.get("ContactID", "")
 
@@ -513,7 +514,7 @@ Instructions:
             logging.error("❌ Script format error — check OpenAI output")
             return "❌ Script formatting issue", 500
 
-        # Step 7: Save to CRM
+        # Step 7: Save to CRM (uses *target's* email and contact ID)
         success = save_script_to_crm(email, rep_data, target_data, script_items, contact_id=contact_id)
         return jsonify({"status": "✅ Script generated and synced" if success else "⚠️ Script generated but failed to sync"}), 200
 

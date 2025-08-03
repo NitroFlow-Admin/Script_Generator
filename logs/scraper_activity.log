@@ -1,72 +1,75 @@
-2025-08-03 22:53:46,906 - INFO - 📬 Incoming webhook payload: {
-  "CompanyName": "JDH Corp",
+2025-08-03 23:14:40,741 - INFO - 📬 Incoming webhook payload: {
+  "CompanyName": "Freight Pro Logistics",
   "CompanyWebsite": "https://www.jhdcorp.com/",
   "Email": "j.doe@salesdrip.com",
   "ContactID": "10216"
 }
-2025-08-03 22:53:46,906 - INFO - 🌐 Auto-research webhook hit for JDH Corp (https://www.jhdcorp.com/) — ContactID: 10216
-2025-08-03 22:53:46,906 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
-2025-08-03 22:53:47,001 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
-2025-08-03 22:53:47,001 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
-2025-08-03 22:53:47,038 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
-2025-08-03 22:53:47,065 - INFO - Found 3 URLs in the sitemap
-2025-08-03 22:53:47,065 - INFO - Identified 0 potential blog links.
-2025-08-03 22:53:47,065 - INFO - ❌ No blog links found in the sitemap.
-2025-08-03 22:53:47,066 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
-2025-08-03 22:53:47,694 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
-2025-08-03 22:53:47,775 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
-2025-08-03 22:53:47,776 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
-2025-08-03 22:53:47,867 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
-2025-08-03 22:53:47,868 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
-2025-08-03 22:53:47,868 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
-2025-08-03 22:53:47,992 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
-2025-08-03 22:53:47,993 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
-2025-08-03 22:53:47,993 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
-2025-08-03 22:53:48,094 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
-2025-08-03 22:53:48,095 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
-2025-08-03 22:53:48,095 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
-2025-08-03 22:53:48,150 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
-2025-08-03 22:53:48,150 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
-2025-08-03 22:53:48,278 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
-2025-08-03 22:53:48,278 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
-2025-08-03 22:53:48,336 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
-2025-08-03 22:53:48,360 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
-2025-08-03 22:53:48,362 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
-2025-08-03 22:53:48,423 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
-2025-08-03 22:53:48,450 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
-2025-08-03 22:53:48,450 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
-2025-08-03 22:53:48,458 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
-2025-08-03 22:53:48,472 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
-2025-08-03 22:53:48,516 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
-2025-08-03 22:53:48,519 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
-2025-08-03 22:53:48,556 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
-2025-08-03 22:53:57,782 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-08-03 22:53:57,848 - INFO - [AI RAW RESPONSE] {
+2025-08-03 23:14:40,741 - INFO - 🌐 Auto-research webhook hit for Freight Pro Logistics (https://www.jhdcorp.com/) — ContactID: 10216
+2025-08-03 23:14:40,741 - INFO - 📡 Starting research for: https://www.jhdcorp.com/
+2025-08-03 23:14:40,766 - INFO - [robots.txt] Can fetch https://www.jhdcorp.com/? True
+2025-08-03 23:14:40,766 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-03 23:14:40,828 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/sitemap.xml
+2025-08-03 23:14:40,854 - INFO - Found 3 URLs in the sitemap
+2025-08-03 23:14:40,854 - INFO - Identified 0 potential blog links.
+2025-08-03 23:14:40,855 - INFO - ❌ No blog links found in the sitemap.
+2025-08-03 23:14:40,855 - INFO - ⚠️ No blog links found. Moving on to scrape homepage for location information.
+2025-08-03 23:14:41,591 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com
+2025-08-03 23:14:41,676 - INFO - [PAGE TEXT] https://www.jhdcorp.com --> US/Canada/EU Warehouses Herbal Extract Supplier- JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us About  JHD CORP Ingredient Manufacturer & Solution Provider JHD Corp is located in Ontario, California. The company has numerous partners and cooperative factories in the United States, Canada, China, India and Southeast Asia. Besides innovation and developme...
+2025-08-03 23:14:41,677 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-03 23:14:41,702 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-03 23:14:41,702 - INFO - [SKIP] https://www.jhdcorp.com/about not fetched.
+2025-08-03 23:14:41,702 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about-us
+2025-08-03 23:14:41,724 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about-us
+2025-08-03 23:14:41,724 - INFO - [SKIP] https://www.jhdcorp.com/about-us not fetched.
+2025-08-03 23:14:41,724 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-03 23:14:41,754 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-03 23:14:41,754 - INFO - [SKIP] https://www.jhdcorp.com/contact not fetched.
+2025-08-03 23:14:41,754 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact-us
+2025-08-03 23:14:41,813 - INFO - [PAGE TEXT] https://www.jhdcorp.com/contact-us --> Contact Us | JHD-Corp top of page Mail info@jhdcorp.com Phone +1-626-270-1888 Home About Us Service . Products Herbal Extract Vitamins Amino Acid & others Product list Major-product Certificate Contact Us Customer Services Sincerely serve you Need Help? Contact us if you need any assistance. First Name Last Name Email Message Thanks for submitting! Send Head Office - US Location Official Business Location 2077 S Vineyard Ave, Ontario, CA 91761 Phone +1-626-270-1888 Mail info@jhdcorp.com Company ...
+2025-08-03 23:14:41,813 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/locations
+2025-08-03 23:14:41,835 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/locations
+2025-08-03 23:14:41,836 - INFO - [SKIP] https://www.jhdcorp.com/locations not fetched.
+2025-08-03 23:14:41,896 - INFO - [EXTRACTED LOCATIONS] ['the United States', 'Netherlands', 'California', 'Ontario', 'Organic', 'Canada', 'China', 'India', 'US']
+2025-08-03 23:14:41,920 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about
+2025-08-03 23:14:41,925 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/overview
+2025-08-03 23:14:41,929 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/company
+2025-08-03 23:14:41,935 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/about-us
+2025-08-03 23:14:41,992 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/ (2188 chars)
+2025-08-03 23:14:41,993 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/who-we-are
+2025-08-03 23:14:41,993 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/vision
+2025-08-03 23:14:41,993 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/mission
+2025-08-03 23:14:41,994 - INFO - [FACT SCRAPE] ❌ Failed to fetch https://www.jhdcorp.com/our-story
+2025-08-03 23:14:42,028 - INFO - [FACT SCRAPE] ✅ https://www.jhdcorp.com/contact-us (812 chars)
+2025-08-03 23:14:51,752 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-03 23:14:51,761 - INFO - [AI RAW RESPONSE] {
   "company_facts": {
-    "overview": "JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.",
+    "overview": "JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, headquartered in Ontario, California, with global operations.",
     "products_services": [
       "Herbal Extracts",
       "Vitamins",
       "Amino Acids",
-      "Fruit & Ve...
-2025-08-03 22:53:57,849 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
-2025-08-03 22:53:57,965 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
-2025-08-03 22:53:57,987 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
-2025-08-03 22:53:57,988 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
-2025-08-03 22:53:57,988 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
-2025-08-03 22:53:58,039 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
-2025-08-03 22:53:58,039 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
-2025-08-03 22:53:58,039 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
-2025-08-03 22:53:58,143 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
-2025-08-03 22:54:02,649 - INFO - [DEBUG] Login response status: 200
-2025-08-03 22:54:02,655 - INFO - GreenRope token acquired
-2025-08-03 22:54:02,955 - INFO - ✅ Contact j.doe@salesdrip.com (ID: 10216) research fields updated successfully.
-2025-08-03 22:54:43,539 - INFO - 📨 Raw SalesDrip webhook body:
-{"CompanyName":"JDH Corp","CompanyWebsite":"https://www.jhdcorp.com/","Email":"j.doe@salesdrip.com","ContactID":"10216","Recent Blog/News Posts":"No recent blog posts found.","Company Locations":"the United States; Netherlands; California; Ontario; Organic; Canada; China; India; US","Company Facts":"Overview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.; Contact_info: phone: +1-626-270-1888; email: info@jhdcorp.com; address: 2077 S Vineyard Ave, Ontario, CA 91761; Certifications: BRC; Kosher; Halal; ISO; USA & EU Organic; FDA; HACCP; Other_details: Over 20 years of experience as a herbal extract manufacturer in China; Partners with cooperative factories in multiple countries; Offers high-quality raw material solutions at competitive prices; Owns processing plant for fruit and vegetable powders and capsules; Features products like Panax Ginseng Extract, Milk Thistle Extract, Organic Ginger Powder, and more","Products & Services":"Herbal Extracts; Vitamins; Amino Acids; Fruit & Vegetable Powders; Food Additives; API","Social Media or Other Notes":"LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/","SalesRep Email":"tom@salesdrip.com","SalesRep Name":"Chase Cordova","SalesRep Company":"Freight Pro Logistics","SalesRep Product/service":"Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.","SalesRep Needs Objection":"We are happy with our current carrier.","SalesRep Service Objection":"We used you in the past and switched because you didn’t meet our needs.","SalesRep Source Objection":"We’ve been burned by brokers.","SalesRep Price Objection":"You are 10% higher than my other quote.","SalesRep Time Objection":"This is our slow season."}
-2025-08-03 22:55:08,042 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-08-03 22:55:13,315 - INFO - [DEBUG] Login response status: 200
-2025-08-03 22:55:13,324 - INFO - GreenRope token acquired
-2025-08-03 22:55:13,703 - INFO - ✅ Contact j.doe@salesdrip.com updated successfully in SalesDrip CRM.
-2025-08-03 22:55:38,749 - INFO - 📨 Raw SalesDrip webhook body:
-{"CompanyName":"Freight Pro Logistics","CompanyWebsite":"https://www.jhdcorp.com/","Email":"j.doe@salesdrip.com","ContactID":"10216","Recent Blog/News Posts":"No recent blog posts found.","Company Locations":"the United States; Netherlands; California; Ontario; Organic; Canada; China; India; US","Company Facts":"Overview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, located in Ontario, California, with global operations.; Contact_info: phone: +1-626-270-1888; email: info@jhdcorp.com; address: 2077 S Vineyard Ave, Ontario, CA 91761; Certifications: BRC; Kosher; Halal; ISO; USA & EU Organic; FDA; HACCP; Other_details: Over 20 years of experience as a herbal extract manufacturer in China; Partners with cooperative factories in multiple countries; Offers high-quality raw material solutions at competitive prices; Owns processing plant for fruit and vegetable powders and capsules; Features products like Panax Ginseng Extract, Milk Thistle Extract, Organic Ginger Powder, and more","Products & Services":"Herbal Extracts; Vitamins; Amino Acids; Fruit & Vegetable Powders; Food Additives; API","Social Media or Other Notes":"LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/","SalesRep Email":"tom@salesdrip.com","SalesRep Name":"Chase Cordova","SalesRep Company":"Freight Pro Logistics","SalesRep Product/service":"Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.","SalesRep Needs Objection":"We are happy with our current carrier.","SalesRep Service Objection":"We used you in the past and switched because you didn’t meet our needs.","SalesRep Source Objection":"We’ve been burned by brokers.","SalesRep Price Objection":"You are 10% higher than my other quote.","SalesRep Time Objection":"This is our slow season."}
-2025-08-03 22:55:59,469 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+      "Frui...
+2025-08-03 23:14:51,762 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/
+2025-08-03 23:14:51,933 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/about
+2025-08-03 23:14:51,959 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/about
+2025-08-03 23:14:51,960 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/about
+2025-08-03 23:14:51,960 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/contact
+2025-08-03 23:14:51,991 - INFO - [SKIP RETRY] Status 404 for https://www.jhdcorp.com/contact
+2025-08-03 23:14:51,991 - INFO - [SOCIAL] Could not fetch https://www.jhdcorp.com/contact
+2025-08-03 23:14:51,991 - INFO - [GET] Attempt 1 - Fetching https://www.jhdcorp.com/home
+2025-08-03 23:14:52,104 - INFO - [SOCIAL MEDIA FOUND] {'LinkedIn': 'https://www.linkedin.com/company/jhdcorp/', 'Twitter': 'https://twitter.com/JhdCorp', 'Instagram': 'https://www.instagram.com/jhdcorp_ins/'}
+2025-08-03 23:14:57,325 - INFO - [DEBUG] Login response status: 200
+2025-08-03 23:14:57,330 - INFO - GreenRope token acquired
+2025-08-03 23:14:57,637 - INFO - ✅ Contact j.doe@salesdrip.com (ID: 10216) research fields updated successfully.
+2025-08-03 23:15:13,164 - INFO - 📨 Raw SalesDrip webhook body:
+{"CompanyName":"Freight Pro Logistics","CompanyWebsite":"https://www.jhdcorp.com/","Email":"j.doe@salesdrip.com","ContactID":"10216","Recent Blog/News Posts":"No recent blog posts found.","Company Locations":"the United States; Netherlands; California; Ontario; Organic; Canada; China; India; US","Company Facts":"Overview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, headquartered in Ontario, California, with global operations.; Contact_info: phone: +1-626-270-1888; email: info@jhdcorp.com; address: 2077 S Vineyard Ave, Ontario, CA 91761; Certifications: BRC; Kosher; Halal; ISO; USA & EU Organic; FDA; HACCP; Other_details: 20+ years as a herbal extract manufacturer in China; Owns dedicated plantation and processing plant; Provides high-quality raw material solutions at competitive prices; Partners with cooperative factories in multiple countries; Offers over 700 herbal extract products","Products & Services":"Herbal Extracts; Vitamins; Amino Acids; Fruit & Vegetable Powders; Botanical Extracts; Proteins; Food Additives; API","Social Media or Other Notes":"LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/","SalesRep Email":"tom@salesdrip.com","SalesRep Name":"Chase Cordova","SalesRep Company":"Freight Pro Logistics","SalesRep Product/service":"Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.","SalesRep Needs Objection":"We are happy with our current carrier.","SalesRep Service Objection":"We used you in the past and switched because you didn’t meet our needs.","SalesRep Source Objection":"We’ve been burned by brokers.","SalesRep Price Objection":"You are 10% higher than my other quote.","SalesRep Time Objection":"This is our slow season."}
+2025-08-03 23:15:32,655 - INFO - 📨 Raw SalesDrip webhook body:
+{"CompanyName":"Freight Pro Logistics","CompanyWebsite":"https://www.jhdcorp.com/","Email":"j.doe@salesdrip.com","ContactID":"10216","Recent Blog/News Posts":"No recent blog posts found.","Company Locations":"the United States; Netherlands; California; Ontario; Organic; Canada; China; India; US","Company Facts":"Overview: JHD Corp is an ingredient manufacturer and solution provider specializing in herbal extracts, headquartered in Ontario, California, with global operations.; Contact_info: phone: +1-626-270-1888; email: info@jhdcorp.com; address: 2077 S Vineyard Ave, Ontario, CA 91761; Certifications: BRC; Kosher; Halal; ISO; USA & EU Organic; FDA; HACCP; Other_details: 20+ years as a herbal extract manufacturer in China; Owns dedicated plantation and processing plant; Provides high-quality raw material solutions at competitive prices; Partners with cooperative factories in multiple countries; Offers over 700 herbal extract products","Products & Services":"Herbal Extracts; Vitamins; Amino Acids; Fruit & Vegetable Powders; Botanical Extracts; Proteins; Food Additives; API","Social Media or Other Notes":"LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/","SalesRep Email":"tom@salesdrip.com","SalesRep Name":"Chase Cordova","SalesRep Company":"Freight Pro Logistics","SalesRep Product/service":"Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.","SalesRep Needs Objection":"We are happy with our current carrier.","SalesRep Service Objection":"We used you in the past and switched because you didn’t meet our needs.","SalesRep Source Objection":"We’ve been burned by brokers.","SalesRep Price Objection":"You are 10% higher than my other quote.","SalesRep Time Objection":"This is our slow season."}
+2025-08-03 23:15:39,603 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-03 23:15:44,123 - INFO - [DEBUG] Login response status: 200
+2025-08-03 23:15:44,128 - INFO - GreenRope token acquired
+2025-08-03 23:15:44,492 - INFO - ✅ Contact j.doe@salesdrip.com updated successfully in SalesDrip CRM.
+2025-08-03 23:15:59,571 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-03 23:16:03,929 - INFO - [DEBUG] Login response status: 200
+2025-08-03 23:16:03,935 - INFO - GreenRope token acquired
+2025-08-03 23:16:04,346 - INFO - ✅ Contact j.doe@salesdrip.com updated successfully in SalesDrip CRM.
