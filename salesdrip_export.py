@@ -127,3 +127,108 @@ def save_script_to_crm(email, rep_data, target_data, script_items):
     except Exception as e:
         logging.error(f"[ERROR] Failed to update contact {email}: {e}", exc_info=True)
         return False
+
+def save_research_to_crm(email, company_name, research_data, contact_id):
+    token = get_greenrope_token()
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "accountID": GREENROPE_ACCOUNT,
+        "Content-Type": "application/json"
+    }
+
+    group_name = "***2025 Ai Integrated Sales"
+
+    # Validate contact_id strictly
+    if not contact_id or not str(contact_id).isdigit():
+        raise ValueError("❌ Invalid or missing contact_id")
+
+    # Extract facts and nested products_services if necessary
+    facts = research_data.get("facts", {})
+    products_services = research_data.get("products_services")
+
+    if not products_services and isinstance(facts, dict):
+        products_services = facts.pop("products_services", None)
+
+    # Format fields as plain text
+    def format_facts(f):
+        if not isinstance(f, dict):
+            return str(f)
+
+        excluded_keys = {"products_services", "locations"}
+        cleaned = {k: v for k, v in f.items() if k not in excluded_keys}
+
+        lines = []
+        for key, value in cleaned.items():
+            if isinstance(value, list):
+                value_str = "; ".join(str(v) for v in value)
+            elif isinstance(value, dict):
+                value_str = "; ".join(f"{k}: {v}" for k, v in value.items())
+            else:
+                value_str = str(value)
+            lines.append(f"{key.capitalize()}: {value_str}")
+        return "\n".join(lines)
+
+    def format_products(p):
+        if not p:
+            return "No products or services found."
+
+        lines = []
+
+        if isinstance(p, dict):
+            for key, val in p.items():
+                if isinstance(val, list):
+                    lines.extend(str(v) for v in val)
+                elif isinstance(val, str):
+                    lines.append(val)
+        elif isinstance(p, list):
+            lines.extend(str(v) for v in p)
+        else:
+            lines.append(str(p))
+
+        return "\n".join(lines)
+
+    def format_blogs(articles):
+        if not articles:
+            return "No recent blog posts found."
+        lines = []
+        for a in articles:
+            lines.append(f"{a.get('title', '')}\n{a.get('url', '')}\n{a.get('excerpt', '')}\n")
+        return "\n".join(lines)
+
+    user_fields = [
+        {"FieldNum": 1034, "FieldValue": format_blogs(research_data.get("recent_blog_posts", []))},
+        {"FieldNum": 1035, "FieldValue": research_data.get("locations", "")},
+        {"FieldNum": 1036, "FieldValue": format_facts(facts)},
+        {"FieldNum": 1037, "FieldValue": format_products(products_services)},
+        {"FieldNum": 1038, "FieldValue": research_data.get("social_media", "")}
+    ]
+
+    payload = {
+        "Contacts": [
+            {
+                "contactId": int(contact_id),
+                "Email": email,
+                "Firstname": company_name,
+                "Company": company_name,
+                "Groups": [{"GroupName": group_name}],
+                "UserDefinedFields": user_fields
+            }
+        ]
+    }
+
+    logging.debug("[DEBUG] Research Payload to SalesDrip:\n%s", json.dumps(payload, indent=2))
+
+    try:
+        response = requests.put(
+            "https://api.stgi.net/v2/api/contact",
+            headers=headers,
+            json=payload,
+            timeout=10
+        )
+        logging.debug("[DEBUG] SalesDrip response: %s", response.text)
+        response.raise_for_status()
+        logging.info(f"✅ Contact {email} (ID: {contact_id}) research fields updated successfully.")
+        return True
+    except Exception as e:
+        logging.error(f"[ERROR] Failed to update research data for contact {email} (ID: {contact_id}): {e}", exc_info=True)
+        return False

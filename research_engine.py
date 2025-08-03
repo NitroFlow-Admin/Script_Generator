@@ -522,6 +522,8 @@ def extract_company_facts_from_domain(url: str) -> dict:
     return extract_company_facts_from_text(combined_text)
 
 
+
+
 # --- Entry Point ---
 if __name__ == "__main__":
     domain = "https://www.salesdrip.com/"  # Example domain

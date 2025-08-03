@@ -15,3 +15,4 @@ www.bridgestoneamericas.com blocked: User-agent: * disallowed or root path is bl
 www.bridgestoneamericas.com blocked: User-agent: * disallowed or root path is blocked
 www.hankooktire.com blocked: User-agent: * disallowed or root path is blocked
 zennatires.com blocked: User-agent: * disallowed or root path is blocked
+ blocked: Homepage unreachable or connection reset

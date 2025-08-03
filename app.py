@@ -242,10 +242,76 @@ def push_to_salesdrip():
     except Exception as e:
         logging.exception("Error pushing to SalesDrip")
         return f"❌ Error: {str(e)}", 500
+    
+    
 
 
 ### Update in app.py (inside run_autoresearch route) ###
-### Update in app.py (inside run_autoresearch route) ###
+
+@app.route("/auto-research-from-salesdrip", methods=["POST"])
+def auto_research_from_salesdrip():
+    try:
+        data = request.get_json(force=True)
+        logging.info(f"📬 Incoming webhook payload: {json.dumps(data, indent=2)}")
+
+        domain = data.get("CompanyWebsite", "").strip()
+        if domain and not domain.startswith("http"):
+            domain = f"https://{domain}"
+
+        company_name = data.get("CompanyName", "").strip()
+        email = data.get("Email", "").strip()
+        contact_id = data.get("ContactID", "").strip()
+
+        if not domain or not company_name or not email or not contact_id:
+            logging.warning("❌ Missing one or more required fields.")
+            return "❌ Missing CompanyWebsite, CompanyName, Email, or ContactID", 400
+
+        logging.info(f"🌐 Auto-research webhook hit for {company_name} ({domain}) — ContactID: {contact_id}")
+
+        results = run_ethical_scraper(domain)
+        from salesdrip_export import save_research_to_crm
+
+        # Build research payload
+        research_payload = {
+            "facts": results.get("company_facts", {}),
+            "products_services": results.get("products_services", {}),
+            "locations": results.get("locations", ""),
+            "recent_blog_posts": results.get("articles", []),
+            "social_media": "; ".join(f"{k}: {v}" for k, v in results.get("social_media", {}).items())
+        }
+
+        # Save using real contact ID
+        save_research_to_crm(email, company_name, research_payload, contact_id=contact_id)
+
+        if "error" in results:
+            return f"❌ Research failed: {results['error']}", 500
+
+        # Format the summary text for webhook return (plain text, readable in SalesDrip)
+        summary = f"""🧠 Auto-Research Results for {company_name}
+
+🌍 Locations:
+{results.get("locations", "N/A")}
+
+🏢 Company Facts:
+{json.dumps(results.get("company_facts", {}), indent=2)}
+
+🛍 Products & Services:
+{json.dumps(results.get("products_services", {}), indent=2)}
+
+📣 Social Media:
+{'; '.join(f'{k}: {v}' for k, v in results.get('social_media', {}).items()) or 'N/A'}
+
+📰 Recent Blog Posts:
+"""
+        for article in results.get("articles", []):
+            summary += f"- {article['title']}\n  {article['url']}\n  {article['excerpt']}\n\n"
+
+        return summary.strip(), 200, {"Content-Type": "text/plain"}
+
+    except Exception as e:
+        logging.exception("🔥 Auto-research webhook error")
+        return f"❌ Error: {str(e)}", 500
+
 
 @app.route("/run-autoresearch", methods=["POST"])
 def run_autoresearch():
