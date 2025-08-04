@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -9,6 +10,7 @@ class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, nullable=False)
     users = db.relationship('User', backref='team', lazy=True)
+    prompts = db.relationship('Prompt', backref='team', lazy=True)  # optional, but recommended
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -30,3 +32,12 @@ class User(UserMixin, db.Model):
 
     def is_rep(self):
         return self.role == 'rep'
+
+class Prompt(db.Model):
+    __tablename__ = 'prompts'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False)
+    text = db.Column(db.Text, nullable=False)
+    versions = db.Column(db.Integer, nullable=False, default=1)
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)

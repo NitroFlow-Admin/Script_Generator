@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>Manager Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .dashboard-section { display: none; }
+    .dashboard-section.active { display: block; }
+  </style>
 </head>
 <body class="bg-light">
   <div class="container mt-5">
@@ -13,28 +17,280 @@
         <p><strong>Team:</strong> {{ user.team.name }}</p>
         <hr>
 
-        <h5 class="mt-4">📋 Start New Cold Call Script</h5>
-        <a href="/form" class="btn btn-success mb-3">Launch Intake Form</a>
+        <!-- Toggle Buttons -->
+  
+<div class="btn-group mb-4" role="group">
+    <button class="btn btn-outline-primary active" id="btn-overview" onclick="showSection('overview')">Overview</button>
+    <button class="btn btn-outline-primary" id="btn-teams" onclick="showSection('teams')">Teams</button>
+  </div>
+  
 
-        <h5 class="mt-4">👥 Team Members</h5>
-        {% if user.team.users %}
-          <ul class="list-group">
-            {% for member in user.team.users %}
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ member.name }} ({{ member.email }}) — {{ member.role|capitalize }}
-                {% if member.id == user.id %}
-                  <span class="badge bg-primary">You</span>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p>No team members yet.</p>
-        {% endif %}
+        <!-- SECTION: Overview -->
+        <div id="overview" class="dashboard-section active">
+          <h5>📊 Token Usage & Cost</h5>
+          <p>Total Tokens Used: {{ token_usage }}</p>
+          <p>Total Cost: ${{ total_cost }}</p>
+
+          <h5 class="mt-4">👥 Reps You Manage</h5>
+          {% if user.team.users %}
+            <ul class="list-group">
+              {% for member in user.team.users %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ member.name }} ({{ member.email }}) — {{ member.role|capitalize }}
+                  {% if member.id == user.id %}
+                    <span class="badge bg-primary">You</span>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No team members yet.</p>
+          {% endif %}
+        </div>
+
+        <!-- SECTION: Show Teams -->
+<div id="teams" class="dashboard-section">
+    <h5>🏢 Team Overview</h5>
+  
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Token Usage</th>
+          <th>Cost</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for team in teams %}
+        <tr>
+          <td>{{ team.name }}</td>
+          <td>{{ team.token_usage or 0 }}</td>
+          <td>${{ team.cost or 0 }}</td>
+          <td>
+            <a href="/manage-team/{{ team.id }}" class="btn btn-sm btn-outline-primary me-2">Manage</a>
+            <form method="POST" action="/delete-team/{{ team.id }}" style="display:inline;" onsubmit="return confirm('Delete this team?');">
+              <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+    <hr class="my-4">
+  
+    <!-- Create New Team -->
+    <h6 class="mb-3">➕ Create a New Team</h6>
+    <form method="POST" action="/create-team" class="d-flex gap-2">
+      <input name="team_name" class="form-control" placeholder="New Team Name" required>
+      <button type="submit" class="btn btn-success">Create</button>
+    </form>
+  </div>
 
         <a href="/logout" class="btn btn-outline-secondary mt-4 float-end">Logout</a>
       </div>
     </div>
   </div>
+  <!-- Edit Prompt Modal -->
+<div class="modal fade" id="editPromptModal" tabindex="-1" aria-labelledby="editPromptLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="editPromptForm" class="modal-content" onsubmit="submitPromptEdit(event)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editPromptLabel">Edit Prompt</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editPromptId">
+          <div class="mb-2">
+            <label>Title:</label>
+            <input type="text" id="editPromptTitle" class="form-control" required>
+          </div>
+          <div class="mb-2">
+            <label>Instruction:</label>
+            <textarea id="editPromptText" class="form-control" rows="3" required></textarea>
+          </div>
+          <div class="mb-2">
+            <label>Versions (1–4):</label>
+            <input type="number" id="editPromptVersions" class="form-control" min="1" max="4" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Toggle Logic -->
+  <script>
+    function showSection(id) {
+  document.querySelectorAll('.dashboard-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
+
+  // Highlight active tab
+  document.querySelectorAll('.btn-group .btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`btn-${id}`);
+  if (activeBtn) activeBtn.classList.add('active');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const section = params.get('section') || 'overview';
+  showSection(section);
+});
+
+  </script>
+  
+ 
+  <script>
+    async function loadTeamPrompts() {
+      const teamId = document.getElementById('teamSelector').value;
+      const promptList = document.getElementById('promptList');
+      const promptItems = document.getElementById('promptItems');
+      const newPromptForm = document.getElementById('newPromptForm');
+  
+      promptItems.innerHTML = '';
+      promptList.style.display = 'none';
+      newPromptForm.style.display = 'none';
+  
+      if (!teamId) return;
+  
+      try {
+        const response = await fetch(`/api/prompts/${teamId}`);
+        if (!response.ok) throw new Error("Failed to fetch prompts");
+  
+        const prompts = await response.json();
+        window.currentPromptList = prompts;
+        promptList.style.display = 'block';
+        newPromptForm.style.display = 'block';
+  
+        prompts.forEach(prompt => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item d-flex justify-content-between align-items-start flex-column flex-md-row';
+  
+          li.innerHTML = `
+            <div class="mb-2">
+              <h6 class="mb-1">${prompt.title}</h6>
+              <small>${prompt.text}</small><br>
+              <small>Versions: ${prompt.versions}</small>
+            </div>
+            <div>
+              <button class="btn btn-sm btn-outline-secondary me-2" onclick="editPrompt(${prompt.id})">Edit</button>
+              <button class="btn btn-sm btn-outline-danger" onclick="deletePrompt(${prompt.id})">Delete</button>
+            </div>
+          `;
+          promptItems.appendChild(li);
+        });
+  
+      } catch (err) {
+        console.error(err);
+        alert("⚠️ Could not load prompts for that team.");
+      }
+    }
+ 
+    async function addPrompt(event) {
+  event.preventDefault();
+
+  const teamId = document.getElementById('teamSelector').value;
+  const title = document.getElementById('newPromptTitle').value.trim();
+  const text = document.getElementById('newPromptText').value.trim();
+  const versions = parseInt(document.getElementById('newPromptVersions').value);
+
+  if (!teamId || !title || !text || !versions) {
+    alert("All fields are required.");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/prompts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title, text, versions, team_id: teamId })
+    });
+
+    if (!response.ok) throw new Error("Failed to save prompt.");
+
+    document.getElementById("promptForm").reset();
+    loadTeamPrompts(); // reload list
+    alert("✅ Prompt saved.");
+  } catch (err) {
+    console.error(err);
+    alert("❌ Failed to save prompt.");
+  }
+}
+
+
+
+let currentEditPrompt = null;
+
+function editPrompt(promptId) {
+  const prompt = window.currentPromptList.find(p => p.id === promptId);
+  if (!prompt) return alert("Prompt not found.");
+
+  document.getElementById('editPromptId').value = prompt.id;
+  document.getElementById('editPromptTitle').value = prompt.title;
+  document.getElementById('editPromptText').value = prompt.text;
+  document.getElementById('editPromptVersions').value = prompt.versions;
+
+  const modal = new bootstrap.Modal(document.getElementById('editPromptModal'));
+  modal.show();
+}
+
+async function submitPromptEdit(event) {
+  event.preventDefault();
+
+  const id = document.getElementById('editPromptId').value;
+  const title = document.getElementById('editPromptTitle').value.trim();
+  const text = document.getElementById('editPromptText').value.trim();
+  const versions = parseInt(document.getElementById('editPromptVersions').value);
+
+  try {
+    const response = await fetch(`/api/prompts/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, text, versions })
+    });
+
+    if (!response.ok) throw new Error("Update failed");
+    loadTeamPrompts();
+
+    const modal = bootstrap.Modal.getInstance(document.getElementById('editPromptModal'));
+    modal.hide();
+    alert("✅ Prompt updated.");
+  } catch (err) {
+    console.error(err);
+    alert("❌ Failed to update prompt.");
+  }
+}
+
+  
+    async function deletePrompt(promptId) {
+  if (!confirm("Delete this prompt?")) return;
+
+  try {
+    const response = await fetch(`/api/prompts/${promptId}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) throw new Error("Delete failed");
+    
+    loadTeamPrompts();  // Refresh list
+    alert("🗑 Prompt deleted.");
+  } catch (err) {
+    console.error(err);
+    alert("❌ Could not delete prompt.");
+  }
+}
+
+  </script>
+  
+
 </body>
 </html>

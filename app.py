@@ -494,11 +494,13 @@ def logout():
     logout_user()
     return redirect("/login")
 
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
     if current_user.role == "manager":
-        return render_template("manager_dashboard.html", user=current_user)
+        all_teams = Team.query.all()
+        return render_template("manager_dashboard.html", user=current_user, teams=all_teams)
     else:
         return render_template("rep_dashboard.html", user=current_user)
 
@@ -555,9 +557,34 @@ def form():
         RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
     )
 
+from models import db
+
+with app.app_context():
+    db.create_all()
+
+
 @app.route("/")
 def homepage():
     return render_template("home.html")
+
+from models import Prompt  # make sure Prompt is imported
+
+@app.route("/api/prompts/<int:team_id>", methods=["GET"])
+@login_required
+def get_prompts_for_team(team_id):
+    if current_user.role != "manager":
+        return jsonify({"error": "Unauthorized"}), 403
+
+    prompts = Prompt.query.filter_by(team_id=team_id).all()
+
+    return jsonify([
+        {
+            "id": prompt.id,
+            "title": prompt.title,
+            "text": prompt.text,
+            "versions": prompt.versions
+        } for prompt in prompts
+    ])
 
 
 @app.route("/auto-script-from-salesdrip", methods=["POST"])
@@ -686,6 +713,115 @@ Instructions:
         logging.exception("🔥 Auto-script webhook error")
         return f"❌ Error: {str(e)}", 500
 
+from models import Prompt
+
+@app.route("/api/prompts/<int:prompt_id>", methods=["DELETE"])
+@login_required
+def delete_prompt(prompt_id):
+    if current_user.role != "manager":
+        return jsonify({"error": "Unauthorized"}), 403
+
+    prompt = Prompt.query.get(prompt_id)
+    if not prompt:
+        return jsonify({"error": "Prompt not found"}), 404
+
+    db.session.delete(prompt)
+    db.session.commit()
+    return jsonify({"status": "deleted"})
+
+
+@app.route("/delete-team/<int:team_id>", methods=["POST"])
+@login_required
+def delete_team(team_id):
+    if current_user.role != "manager":
+        return "Unauthorized", 403
+
+    team = Team.query.get_or_404(team_id)
+
+    # Optional: prevent deleting the team the manager is currently part of
+    if team.id == current_user.team_id:
+        flash("❌ You cannot delete your own team.", "error")
+        return redirect("/dashboard?section=teams")
+
+    db.session.delete(team)
+    db.session.commit()
+
+    flash("✅ Team deleted.", "success")
+    return redirect("/dashboard?section=teams")
+
+
+@app.route("/api/prompts/<int:prompt_id>", methods=["PUT"])
+@login_required
+def update_prompt(prompt_id):
+    if current_user.role != "manager":
+        return jsonify({"error": "Unauthorized"}), 403
+
+    prompt = Prompt.query.get(prompt_id)
+    if not prompt:
+        return jsonify({"error": "Prompt not found"}), 404
+
+    data = request.get_json()
+    prompt.title = data.get("title", prompt.title).strip()
+    prompt.text = data.get("text", prompt.text).strip()
+    prompt.versions = int(data.get("versions", prompt.versions))
+
+    db.session.commit()
+    return jsonify({"status": "updated"})
+
+
+from models import Team
+from flask import redirect, request, flash
+
+@app.route("/create-team", methods=["POST"])
+@login_required
+def create_team():
+    if current_user.role != "manager":
+        return "Unauthorized", 403
+
+    team_name = request.form.get("team_name", "").strip()
+    if not team_name:
+        flash("Team name is required.", "error")
+        return redirect("/dashboard?section=teams")
+
+    existing = Team.query.filter_by(name=team_name).first()
+    if existing:
+        flash("A team with that name already exists.", "error")
+        return redirect("/dashboard?section=teams")
+
+
+    new_team = Team(name=team_name)
+    db.session.add(new_team)
+    db.session.commit()
+
+    flash(f"✅ Team '{team_name}' created.")
+    return redirect("/dashboard?section=teams")
+
+
+
+
+@app.route("/api/prompts", methods=["POST"])
+@login_required
+def create_prompt():
+    if current_user.role != "manager":
+        return jsonify({"error": "Unauthorized"}), 403
+
+    data = request.get_json()
+    title = data.get("title", "").strip()
+    text = data.get("text", "").strip()
+    versions = int(data.get("versions", 1))
+    team_id = int(data.get("team_id"))
+
+    if not title or not text or not team_id:
+        return jsonify({"error": "Missing fields"}), 400
+
+    prompt = Prompt(title=title, text=text, versions=versions, team_id=team_id)
+    db.session.add(prompt)
+    db.session.commit()
+
+    return jsonify({"status": "success", "id": prompt.id})
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+ 
