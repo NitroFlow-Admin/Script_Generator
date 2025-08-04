@@ -208,7 +208,7 @@
 <body>
   <div id="sidebar" class="sidebar">
     <div class="sidebar-content">
-      <form id="editInputsForm" method="POST" action="/" onsubmit="return handleRegenerate(event)">
+      <form id="editInputsForm" method="POST" action="/generate" onsubmit="return handleRegenerate(event)">
         {% set rep_fields = [
           ('Name', 'rep_name'),
           ('Email', 'rep_email'),
@@ -267,7 +267,7 @@
 
   <h1>Cold Call Script Generator</h1>
 
-  <form id="regenForm" method="POST" action="/">
+  <form id="regenForm" method="POST" action="/generate">
     <input type="hidden" name="rep_email" value="{{ rep_data.rep_email }}">
     <input type="hidden" name="rep_name" value="{{ rep_data.rep_name }}">
     <input type="hidden" name="rep_company" value="{{ rep_data.rep_company }}">

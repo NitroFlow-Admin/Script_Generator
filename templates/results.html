@@ -1,0 +1,84 @@
+{% extends "index.html" %}
+
+{% block body %}
+<script>
+  window.addEventListener("load", () => {
+    const overlay = document.getElementById("loadingOverlay");
+    if (overlay) overlay.style.display = "none";
+
+    const toggle = document.getElementById("sidebar-toggle");
+    if (toggle) toggle.style.left = "0px";
+
+    const form = document.getElementById("editInputsForm");
+    if (form) {
+      form.addEventListener("submit", () => {
+        document.getElementById("sidebar").classList.remove("open");
+        toggle.style.left = "0px";
+      });
+    }
+  });
+</script>
+
+<form id="regenForm" method="POST" action="/generate">
+  <!-- Hidden Inputs for POST Regeneration -->
+  {% for key, value in rep_data.items() %}
+    <input type="hidden" name="{{ key }}" value="{{ value }}">
+  {% endfor %}
+  {% for key, value in target_data.items() %}
+    <input type="hidden" name="{{ key }}" value="{{ value }}">
+  {% endfor %}
+  {% for i in range(11) %}
+    {% for j in range(script_items[i].options|length) %}
+      <input type="hidden" name="script_item_{{ i }}" value="{{ script_items[i].options[j] }}">
+    {% endfor %}
+  {% endfor %}
+
+  <!-- Render Script Blocks -->
+  <div class="section">
+    <h3>AI-Generated Sales Call Prompts</h3>
+    <div class="qa-blocks">
+      {% for item in script_items %}
+      {% set group_index = loop.index %}
+      <div class="qa-box" id="qa-box-{{ group_index }}">
+        <div class="qa-label">{{ item.label }}</div>
+        <div class="qa-prompt">
+          <label for="prompt-{{ loop.index0 }}">Prompt Instruction:</label>
+          <textarea name="prompt_descriptions" rows="2" style="width: 100%;">{{ item.label }}</textarea>
+        </div>
+        <div class="qa-output">
+          <label for="qa-text-{{ group_index }}">Selected AI Output:</label>
+          <textarea class="qa-text" id="qa-text-{{ group_index }}" rows="2">{{ item.options[0] if item.options|length > 0 else '' }}</textarea>
+        </div>
+        <div class="version-buttons">
+          {% for opt in item.options[:4] %}
+          <button 
+            type="button"
+            data-group="{{ group_index }}"
+            data-option="{{ loop.index0 }}"
+            id="btn-{{ group_index }}-{{ loop.index0 }}"
+            class="{% if loop.index0 == 0 %}active{% endif %}"
+            onclick="handleToggle(this)">
+            {{ loop.index }}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <button type="button" class="button" onclick="generateWithCaptcha()">Regenerate Script</button>
+</form>
+
+<!-- Push to CRM -->
+<form method="POST" action="/push-to-salesdrip">
+  {% for item in script_items %}
+    {% set i = loop.index0 %}
+    {% for opt in item.options %}
+      <input type="hidden" name="script_item_{{ i }}" value="{{ opt }}">
+    {% endfor %}
+  {% endfor %}
+  <button type="submit" style="margin-top: 1rem;">📤 Push to SalesDrip</button>
+</form>
+
+{% endblock %}

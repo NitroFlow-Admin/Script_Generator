@@ -51,15 +51,11 @@
     button:hover {
       background-color: #006A3B;
     }
-    .grecaptcha-badge {
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
   </style>
 </head>
 <body>
 
-  <form id="mainForm" method="POST" action="/" onsubmit="return handleFormSubmit(event)">
+  <form id="mainForm" method="POST" action="/generate" onsubmit="return handleFormSubmit(event)">
     <!-- Rep Section -->
     <div id="rep-section" class="section active">
 <h2>Sales Rep Info</h2>
@@ -153,7 +149,6 @@ If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next
   100% { transform: rotate(360deg); }
 }
 </style>
-<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
 
 <script>
   function nextSection() {
@@ -217,17 +212,8 @@ If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next
     }
   }
 
-  // ✅ THEN RUN reCAPTCHA
-  grecaptcha.ready(function () {
-    grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', { action: 'submit' }).then(function (token) {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "g-recaptcha-response";
-      input.value = token;
-      document.getElementById("mainForm").appendChild(input);
-      document.getElementById("mainForm").submit();
-    });
-  });
+  document.getElementById("mainForm").submit();
+
 
   return false;
 }

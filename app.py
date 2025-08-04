@@ -12,6 +12,8 @@ from openai import OpenAI
 from research_engine import run_ethical_scraper, safe_get, log_event
 from urllib.parse import urljoin
 from pathlib import Path
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from models import db
 import traceback
 
 # Load environment variables
@@ -30,6 +32,30 @@ logging.basicConfig(
 # Flask app setup
 app = Flask(__name__, template_folder="templates", static_folder="static")
 CORS(app)
+
+# Secret key for sessions
+app.secret_key = os.getenv("APP_SECRET_KEY", "dev-secret-key")
+
+# Flask-Login setup
+login_manager = LoginManager()
+login_manager.login_view = "login"
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+# --- Database Configuration ---
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # or a full DB URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+
+# --- Create tables if they don't exist ---
+with app.app_context():
+    db.create_all()
+
 
 
 # API keys and secrets
@@ -50,149 +76,6 @@ def handle_exception(exc_type, exc_value, exc_traceback):
         logging.critical("💥 Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
 
 sys.excepthook = handle_exception
-
-
-
-@app.route("/", methods=["GET", "POST"])
-def handle_form():
-    if request.method == "GET":
-        return render_template("form.html", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
-
-    try:
-        logging.info("📥 Form POST received:")
-        logging.info(json.dumps(request.form.to_dict(), indent=2))
-
-        # --- reCAPTCHA Verification ---
-        recaptcha_response = request.form.get("g-recaptcha-response", "")
-        if not recaptcha_response:
-            return render_template("form.html", error="❌ Missing reCAPTCHA response.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
-
-        verify_resp = requests.post(
-            "https://www.google.com/recaptcha/api/siteverify",
-            data={"secret": RECAPTCHA_SECRET_KEY, "response": recaptcha_response}
-        )
-        result = verify_resp.json()
-        logging.info(f"🔐 reCAPTCHA response: {result}")
-        if not result.get("success") or result.get("score", 0) < 0.5:
-            return render_template("form.html", error="❌ reCAPTCHA verification failed. Please try again.", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY)
-
-        # --- Collect and validate form inputs ---
-        rep_keys = ["rep_email", "rep_name", "rep_company", "product", "objection_needs", "objection_service", "objection_source", "objection_price", "objection_time"]
-        target_keys = ["target_name", "target_url", "recent_news", "locations", "facts", "products_services", "social_media"]
-
-        rep_data = {k: request.form.get(k, "").strip() for k in rep_keys}
-        target_data = {k: request.form.get(k, "").strip() for k in target_keys}
-
-        if not all(rep_data.values()) or not all(target_data.values()):
-            missing = [k for k in rep_keys + target_keys if not request.form.get(k)]
-            return render_template("form.html", error=f"❌ Missing required fields: {', '.join(missing)}", RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY, rep_data=rep_data, target_data=target_data)
-
-        # --- Correct Prompt Descriptions ---
-        prompt_descriptions = [
-            "Opening: Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-ended factual question about the target company related to freight between USA and Canada.",
-            "Customer Assessment: Ask a closed-ended question that probes how the target manages its freight operations across USA/Canada.",
-            "Needs Assessment: Ask a closed-ended question about the company’s current or upcoming freight needs.",
-            "Risk Assessment: Ask a closed-ended question that highlights risk and consequences of not addressing freight gaps.",
-            "Solution Assessment: Ask a closed-ended question about what the company looks for in a freight partner.",
-            "Needs Objection: Ask a closed-ended question countering the 'we're happy with our current carrier' objection.",
-            "Service Objection: Ask a closed-ended question addressing prior service dissatisfaction.",
-            "Source Objection: Ask a closed-ended question addressing concerns about using brokers.",
-            "Price Objection: Ask a closed-ended question about value relative to cost.",
-            "Time Objection: Ask a closed-ended question countering the 'not a good time' objection.",
-            "Closing Question: Ask a closed-ended final call-to-action or decision qualifier question."
-        ]
-
-        # --- Build prompt with strict formatting guidance ---
-        prompt = f"""
-You are a professional cold call script assistant.
-
-Sales Rep: {rep_data['rep_name']} from {rep_data['rep_company']}.
-They are selling: {rep_data['product']}.
-Target company: {target_data['target_name']}.
-
-Please return exactly 11 blocks.
-Each block must be numbered 1–11, and contain exactly 4 bullet points:
-- version A
-- version B
-- version C
-- version D
-
-Do not add commentary. Do not change format. Do not skip numbers.
-
-Example:
-1.
-- version A
-- version B
-- version C
-- version D
-2.
-...
-
-Instructions:
-""" + "\n".join([f"{i+1}. {desc}" for i, desc in enumerate(prompt_descriptions)])
-
-        # --- Call OpenAI ---
-        import time
-        start = time.time()
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.5,
-            max_tokens=2500
-        )
-        raw_output = response.choices[0].message.content.strip()
-
-        with open("logs/openai_raw_output.txt", "w") as f:
-            f.write(raw_output)
-
-        logging.info(f"✅ OpenAI returned in {time.time() - start:.2f}s")
-        logging.debug(f"🧠 Raw Output:\n{raw_output}")
-
-        # --- Parse AI Output ---
-        script_items = []
-        current = {"label": "", "options": []}
-        lines = raw_output.splitlines()
-
-        for line in lines:
-            line = line.strip()
-            import re
-            if re.match(r"^\d+\.$", line):
-                if current["label"]:
-                    script_items.append(current)
-                idx = int(line.split(".")[0]) - 1
-                current = {
-                    "label": prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Extra Block {idx+1}",
-                    "options": []
-                }
-            elif line.startswith("- "):
-                current["options"].append(line[2:].strip())
-
-        if current["label"]:
-            script_items.append(current)
-
-        # Sanity check — must be 11 blocks, each with 4 options
-        if len(script_items) != 11 or any(len(item["options"]) != 4 for item in script_items):
-            raise ValueError("❌ AI response was incomplete or misformatted.")
-
-        return render_template(
-            "index.html",
-            script_items=script_items,
-            rep_data=rep_data,
-            target_data=target_data,
-            prompt_descriptions=prompt_descriptions,
-            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
-        )
-
-    except Exception as e:
-        logging.exception("🔥 Script Generation Error")
-        return render_template(
-            "form.html",
-            error=f"❌ Internal Error: {str(e)}",
-            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY,
-            rep_data=rep_data if 'rep_data' in locals() else {},
-            target_data=target_data if 'target_data' in locals() else {}
-        )
-
 
 
 @app.route("/push-to-salesdrip", methods=["POST"])
@@ -314,6 +197,150 @@ def auto_research_from_salesdrip():
         return f"❌ Error: {str(e)}", 500
 
 
+from flask import session, redirect, url_for
+
+
+
+@app.route("/generate", methods=["POST"])
+@login_required
+def generate_script():
+    try:
+        import time, re
+        from salesdrip_export import save_script_to_crm
+
+        logging.info("📥 Form POST received:")
+        logging.info(json.dumps(request.form.to_dict(), indent=2))
+
+        # --- Collect Inputs ---
+        rep_keys = [
+            "rep_email", "rep_name", "rep_company", "product",
+            "objection_needs", "objection_service", "objection_source",
+            "objection_price", "objection_time"
+        ]
+        target_keys = [
+            "target_name", "target_url", "recent_news", "locations",
+            "facts", "products_services", "social_media"
+        ]
+
+        rep_data = {k: request.form.get(k, "").strip() for k in rep_keys}
+        target_data = {k: request.form.get(k, "").strip() for k in target_keys}
+
+        if not all(rep_data.values()) or not all(target_data.values()):
+            missing = [k for k in rep_keys + target_keys if not request.form.get(k)]
+            return render_template("form.html", error=f"❌ Missing required fields: {', '.join(missing)}", rep_data=rep_data, target_data=target_data)
+
+        # --- Build Prompt ---
+        prompt_descriptions = [
+            "Opening: Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-ended factual question about the target company related to freight between USA and Canada.",
+            "Customer Assessment: Ask a closed-ended question that probes how the target manages its freight operations across USA/Canada.",
+            "Needs Assessment: Ask a closed-ended question about the company’s current or upcoming freight needs.",
+            "Risk Assessment: Ask a closed-ended question that highlights risk and consequences of not addressing freight gaps.",
+            "Solution Assessment: Ask a closed-ended question about what the company looks for in a freight partner.",
+            "Needs Objection: Ask a closed-ended question countering the 'we're happy with our current carrier' objection.",
+            "Service Objection: Ask a closed-ended question addressing prior service dissatisfaction.",
+            "Source Objection: Ask a closed-ended question addressing concerns about using brokers.",
+            "Price Objection: Ask a closed-ended question about value relative to cost.",
+            "Time Objection: Ask a closed-ended question countering the 'not a good time' objection.",
+            "Closing Question: Ask a closed-ended final call-to-action or decision qualifier question."
+        ]
+
+        prompt = f"""
+You are a professional cold call script assistant.
+
+Sales Rep: {rep_data['rep_name']} from {rep_data['rep_company']}.
+They are selling: {rep_data['product']}.
+Target company: {target_data['target_name']}.
+
+Please return exactly 11 blocks.
+Each block must be numbered 1–11, and contain exactly 4 bullet points:
+- version A
+- version B
+- version C
+- version D
+
+Do not add commentary. Do not change format. Do not skip numbers.
+
+Instructions:
+""" + "\n".join([f"{i+1}. {desc}" for i, desc in enumerate(prompt_descriptions)])
+
+        # --- Call OpenAI ---
+        start = time.time()
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.5,
+            max_tokens=2500
+        )
+        raw_output = response.choices[0].message.content.strip()
+        logging.info(f"✅ OpenAI returned in {time.time() - start:.2f}s")
+        logging.debug("🧾 Raw OpenAI response:\n" + raw_output)
+
+        # --- Parse OpenAI Output ---
+        script_items = []
+        current = {"label": "", "options": []}
+        lines = raw_output.splitlines()
+
+        for line in lines:
+            line = line.strip()
+            match = re.match(r"^(\d+)\.\s*(.*)", line)
+            if match:
+                if current["label"]:
+                    script_items.append(current)
+                idx = int(match.group(1)) - 1
+                label_text = match.group(2).strip(": ") or (
+                    prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Block {idx+1}"
+                )
+                current = {
+                    "label": label_text,
+                    "options": []
+                }
+            elif line.startswith("- "):
+                current["options"].append(line[2:].strip())
+        if current["label"]:
+            script_items.append(current)
+
+        # --- Validate Output ---
+        if len(script_items) != 11 or any(len(item["options"]) != 4 for item in script_items):
+            logging.error("❌ Script format error — expected 11 blocks with 4 options each")
+            logging.error("🔍 Raw OpenAI response:\n" + raw_output)
+            return render_template("form.html",
+                                   error="❌ AI response was incomplete or misformatted.",
+                                   rep_data=rep_data,
+                                   target_data=target_data)
+
+        # --- Render /results Directly ---
+        return render_template("results.html",
+                               script_items=script_items,
+                               rep_data=rep_data,
+                               target_data=target_data)
+
+    except Exception as e:
+        logging.exception("🔥 Script Generation Error")
+        return render_template("form.html",
+                               error=f"❌ Internal Error: {str(e)}",
+                               rep_data=rep_data if 'rep_data' in locals() else {},
+                               target_data=target_data if 'target_data' in locals() else {})
+
+
+
+
+
+@app.route("/results")
+@login_required
+def view_results():
+    script_items = session.get("script_items")
+    rep_data = session.get("rep_data")
+    target_data = session.get("target_data")
+
+    if not script_items or not rep_data or not target_data:
+        return redirect(url_for("form"))  # fallback
+
+    return render_template("index.html",
+                           script_items=script_items,
+                           rep_data=rep_data,
+                           target_data=target_data)
+
+
 @app.route("/run-autoresearch", methods=["POST"])
 def run_autoresearch():
     try:
@@ -399,6 +426,104 @@ def run_autoresearch():
     except Exception as e:
         log_event(f"❌ /run-autoresearch failed: {e}")
         return jsonify({"error": "Something went wrong."}), 500
+
+
+from flask import redirect, flash, session
+from models import db, User, Team
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+
+    # --- Get form data ---
+    name = request.form.get("name", "").strip()
+    email = request.form.get("email", "").strip().lower()
+    password = request.form.get("password", "")
+    role = request.form.get("role", "").strip()
+    team_name = request.form.get("team", "").strip()
+
+    # --- Validation ---
+    if not name or not email or not password or role not in {"manager", "rep"} or not team_name:
+        return render_template("register.html", error="All fields are required.")
+
+    # --- Check if user already exists ---
+    if User.query.filter_by(email=email).first():
+        return render_template("register.html", error="❌ Email already registered.")
+
+    # --- Get or create team ---
+    team = Team.query.filter_by(name=team_name).first()
+    if not team:
+        team = Team(name=team_name)
+        db.session.add(team)
+        db.session.commit()
+
+    # --- Create user ---
+    user = User(
+        name=name,
+        email=email,
+        role=role,
+        team_id=team.id
+    )
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+
+    flash("✅ Registered successfully. Please log in.")
+    return redirect("/login")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+
+    email = request.form.get("email", "").strip().lower()
+    password = request.form.get("password", "")
+    user = User.query.filter_by(email=email).first()
+
+    if not user or not user.check_password(password):
+        return render_template("login.html", error="❌ Invalid email or password.")
+
+    login_user(user)
+    return redirect("/dashboard")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/login")
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    if current_user.role == "manager":
+        return render_template("manager_dashboard.html", user=current_user)
+    else:
+        return render_template("rep_dashboard.html", user=current_user)
+
+from flask_login import login_required, current_user
+
+@app.route("/form", methods=["GET"])
+@login_required
+def form():
+    # Pre-fill rep fields from current_user
+    rep_data = {
+        "rep_name": current_user.name,
+        "rep_email": current_user.email,
+        "rep_company": current_user.team.name if current_user.team else "",
+        "product": "",
+        "objection_needs": "",
+        "objection_service": "",
+        "objection_source": "",
+        "objection_price": "",
+        "objection_time": ""
+    }
+    return render_template("form.html", rep_data=rep_data)
+
+@app.route("/")
+def homepage():
+    return render_template("home.html")
+
 
 
 @app.route("/auto-script-from-salesdrip", methods=["POST"])
