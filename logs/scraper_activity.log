@@ -1,63 +1,6 @@
-2025-08-04 15:14:44,434 - INFO - 📥 Form POST received:
-2025-08-04 15:14:44,434 - INFO - {
-  "rep_name": "Chase Cordova",
-  "rep_email": "tom@salesdrip.com",
-  "rep_company": "Freight Pro Logistics",
-  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
-  "objection_needs": "We are happy with our current carrier.",
-  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
-  "objection_source": "We\u2019ve been burned by brokers.",
-  "objection_price": "You are 10% higher than my other quote.",
-  "objection_time": "This is our slow season.",
-  "target_name": "JDH Corp",
-  "target_url": "https://www.jhdcorp.com/",
-  "recent_news": "None",
-  "locations": "Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia\r\n\r\nUSA/Canada/China/German/Netherlands worldwide warehouses",
-  "facts": "20+ years herbal extract manufacturer in China\r\n\r\nWe have our own dedicated plantation with a wide range of planting areas and  a wide variety of planting types.\r\n\r\nWe have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.\r\n\r\nWe boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.\r\n\r\nCertificate\r\nBRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated",
-  "products_services": "Products\r\n700+ herbal extract, fruit & vegetable powders, herbal extracts",
-  "social_media": "Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! \ud83c\udf89 The energy on the floor was electric\u2014so many inspiring conversations, brilliant innovations shared, and new connections made.\u200b\r\nA huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! \ud83d\udd2c\ud83d\udca1\u200b\r\nIf you haven\u2019t made it yet, don\u2019t worry\u2014we\u2019re here TOMORROW and the next day, ready to chat more about our latest p\u2026 See more"
-}
-2025-08-04 15:15:10,573 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-08-04 15:15:10,580 - INFO - ✅ OpenAI returned in 26.15s
-2025-08-04 15:18:30,949 - INFO - 📥 Form POST received:
-2025-08-04 15:18:30,950 - INFO - {
-  "rep_name": "Chase Cordova",
-  "rep_email": "tom@salesdrip.com",
-  "rep_company": "Freight Pro Logistics",
-  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
-  "objection_needs": "We are happy with our current carrier.",
-  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
-  "objection_source": "We\u2019ve been burned by brokers.",
-  "objection_price": "You are 10% higher than my other quote.",
-  "objection_time": "This is our slow season.",
-  "target_name": "JDH Corp",
-  "target_url": "https://www.jhdcorp.com/",
-  "recent_news": "None",
-  "locations": "Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia\r\n\r\nUSA/Canada/China/German/Netherlands worldwide warehouses",
-  "facts": "20+ years herbal extract manufacturer in China\r\n\r\nWe have our own dedicated plantation with a wide range of planting areas and  a wide variety of planting types.\r\n\r\nWe have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.\r\n\r\nWe boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.\r\n\r\nCertificate\r\nBRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated",
-  "products_services": "Products\r\n700+ herbal extract, fruit & vegetable powders, herbal extracts",
-  "social_media": "Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! \ud83c\udf89 The energy on the floor was electric\u2014so many inspiring conversations, brilliant innovations shared, and new connections made.\u200b\r\nA huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! \ud83d\udd2c\ud83d\udca1\u200b\r\nIf you haven\u2019t made it yet, don\u2019t worry\u2014we\u2019re here TOMORROW and the next day, ready to chat more about our latest p\u2026 See more"
-}
-2025-08-04 15:18:50,948 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-08-04 15:18:50,957 - INFO - ✅ OpenAI returned in 20.01s
-2025-08-04 15:19:12,191 - INFO - 📥 Form POST received:
-2025-08-04 15:19:12,191 - INFO - {
-  "rep_name": "Chase Cordova",
-  "rep_email": "tom@salesdrip.com",
-  "rep_company": "Freight Pro Logistics",
-  "product": "Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.",
-  "objection_needs": "We are happy with our current carrier.",
-  "objection_service": "We used you in the past and switched because you didn\u2019t meet our needs.",
-  "objection_source": "We\u2019ve been burned by brokers.",
-  "objection_price": "You are 10% higher than my other quote.",
-  "objection_time": "This is our slow season.",
-  "target_name": "JDH Corp",
-  "target_url": "https://www.jhdcorp.com/",
-  "recent_news": "None",
-  "locations": "Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia\r\n\r\nUSA/Canada/China/German/Netherlands worldwide warehouses",
-  "facts": "20+ years herbal extract manufacturer in China\r\n\r\nWe have our own dedicated plantation with a wide range of planting areas and  a wide variety of planting types.\r\n\r\nWe have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.\r\n\r\nWe boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.\r\n\r\nCertificate\r\nBRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated",
-  "products_services": "Products\r\n700+ herbal extract, fruit & vegetable powders, herbal extracts",
-  "social_media": "Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! \ud83c\udf89 The energy on the floor was electric\u2014so many inspiring conversations, brilliant innovations shared, and new connections made.\u200b\r\nA huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! \ud83d\udd2c\ud83d\udca1\u200b\r\nIf you haven\u2019t made it yet, don\u2019t worry\u2014we\u2019re here TOMORROW and the next day, ready to chat more about our latest p\u2026 See more"
-}
-2025-08-04 15:19:34,816 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-2025-08-04 15:19:34,823 - INFO - ✅ OpenAI returned in 22.63s
+2025-08-04 16:28:22,305 - INFO - 📨 Raw SalesDrip webhook body:
+{"CompanyName":"JDH Corp","CompanyWebsite":"https://www.jhdcorp.com/","Email":"jane@salesdrip.com","ContactID":"10217","Recent Blog/News Posts":"No recent blog posts found.","Company Locations":"the United States; Netherlands; California; Ontario; Organic; Canada; China; India; US","Company Facts":"Overview: JHD Corp is a herbal extract supplier and ingredient manufacturer headquartered in Ontario, California, with global operations.; Contact_info: phone: +1-626-270-1888; email: info@jhdcorp.com; address: 2077 S Vineyard Ave, Ontario, CA 91761; Certifications: BRC; Kosher; Halal; ISO; USA & EU Organic; FDA; HACCP; Other_details: 20+ years as a herbal extract manufacturer in China; Partners with cooperative factories in multiple countries; Owns dedicated plantations and processing plants; Offers over 700 herbal extracts and other products; Focus on high-quality raw material solutions at competitive prices","Products & Services":"Herbal Extracts; Vitamins; Amino Acids; Food Additives; API; Fruit & Vegetable Powders; Botanical Extracts; Proteins","Social Media or Other Notes":"LinkedIn: https://www.linkedin.com/company/jhdcorp/; Twitter: https://twitter.com/JhdCorp; Instagram: https://www.instagram.com/jhdcorp_ins/","SalesRep Email":"Chase@salesdrip.com","SalesRep Name":"Chase Acklam","SalesRep Company":"SalesDrip","SalesRep Product/service":"CRM and Marketing Automation","SalesRep Needs Objection":"We're happy with our current system","SalesRep Service Objection":"We've used you in the past and it was too complicated","SalesRep Source Objection":"We dont think we need a CRM","SalesRep Price Objection":"We cant afford to use a CRM","SalesRep Time Objection":"We're understaffed and dont have time to use a CRM"}
+2025-08-04 16:28:59,935 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-04 16:29:04,725 - INFO - [DEBUG] Login response status: 200
+2025-08-04 16:29:04,767 - INFO - GreenRope token acquired
+2025-08-04 16:29:05,130 - INFO - ✅ Contact jane@salesdrip.com updated successfully in SalesDrip CRM.

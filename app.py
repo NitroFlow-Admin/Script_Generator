@@ -196,22 +196,37 @@ def auto_research_from_salesdrip():
         logging.exception("🔥 Auto-research webhook error")
         return f"❌ Error: {str(e)}", 500
 
-
 from flask import session, redirect, url_for
 
 
-
-@app.route("/generate", methods=["POST"])
+@app.route("/results", methods=["GET", "POST"])
 @login_required
-def generate_script():
+def results():
+    import time, re
+    from openai import OpenAI
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    if request.method == "GET":
+        # Show results from session if available
+        script_items = session.get("script_items")
+        rep_data = session.get("rep_data")
+        target_data = session.get("target_data")
+        prompt_descriptions = session.get("prompt_descriptions")
+
+        if not script_items or not rep_data or not target_data or not prompt_descriptions:
+            logging.warning("⚠️ Missing session data for /results GET. Redirecting to form.")
+            return redirect(url_for("form"))
+
+        return render_template("results.html",
+            script_items=script_items,
+            rep_data=rep_data,
+            target_data=target_data,
+            prompt_descriptions=prompt_descriptions,
+            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
+        )
+
+    # POST: handle form submission and generate script
     try:
-        import time, re
-        from salesdrip_export import save_script_to_crm
-
-        logging.info("📥 Form POST received:")
-        logging.info(json.dumps(request.form.to_dict(), indent=2))
-
-        # --- Collect Inputs ---
         rep_keys = [
             "rep_email", "rep_name", "rep_company", "product",
             "objection_needs", "objection_service", "objection_source",
@@ -229,7 +244,6 @@ def generate_script():
             missing = [k for k in rep_keys + target_keys if not request.form.get(k)]
             return render_template("form.html", error=f"❌ Missing required fields: {', '.join(missing)}", rep_data=rep_data, target_data=target_data)
 
-        # --- Build Prompt ---
         prompt_descriptions = [
             "Opening: Start with 'Good morning' or 'Good afternoon', give the rep's name and company, and ask a closed-ended factual question about the target company related to freight between USA and Canada.",
             "Customer Assessment: Ask a closed-ended question that probes how the target manages its freight operations across USA/Canada.",
@@ -263,7 +277,6 @@ Do not add commentary. Do not change format. Do not skip numbers.
 Instructions:
 """ + "\n".join([f"{i+1}. {desc}" for i, desc in enumerate(prompt_descriptions)])
 
-        # --- Call OpenAI ---
         start = time.time()
         response = client.chat.completions.create(
             model="gpt-4o",
@@ -273,9 +286,8 @@ Instructions:
         )
         raw_output = response.choices[0].message.content.strip()
         logging.info(f"✅ OpenAI returned in {time.time() - start:.2f}s")
-        logging.debug("🧾 Raw OpenAI response:\n" + raw_output)
 
-        # --- Parse OpenAI Output ---
+        # Parse response
         script_items = []
         current = {"label": "", "options": []}
         lines = raw_output.splitlines()
@@ -287,9 +299,9 @@ Instructions:
                 if current["label"]:
                     script_items.append(current)
                 idx = int(match.group(1)) - 1
-                label_text = match.group(2).strip(": ") or (
-                    prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Block {idx+1}"
-                )
+                label_text = match.group(2).strip()
+                if not label_text:
+                    label_text = prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Block {idx+1}"
                 current = {
                     "label": label_text,
                     "options": []
@@ -299,20 +311,27 @@ Instructions:
         if current["label"]:
             script_items.append(current)
 
-        # --- Validate Output ---
         if len(script_items) != 11 or any(len(item["options"]) != 4 for item in script_items):
             logging.error("❌ Script format error — expected 11 blocks with 4 options each")
-            logging.error("🔍 Raw OpenAI response:\n" + raw_output)
+            logging.error("🔍 Full OpenAI response:\n" + raw_output)
             return render_template("form.html",
                                    error="❌ AI response was incomplete or misformatted.",
                                    rep_data=rep_data,
                                    target_data=target_data)
 
-        # --- Render /results Directly ---
+        # Save and render
+        session["script_items"] = script_items
+        session["rep_data"] = rep_data
+        session["target_data"] = target_data
+        session["prompt_descriptions"] = prompt_descriptions
+
         return render_template("results.html",
-                               script_items=script_items,
-                               rep_data=rep_data,
-                               target_data=target_data)
+            script_items=script_items,
+            rep_data=rep_data,
+            target_data=target_data,
+            prompt_descriptions=prompt_descriptions,
+            RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
+        )
 
     except Exception as e:
         logging.exception("🔥 Script Generation Error")
@@ -321,24 +340,6 @@ Instructions:
                                rep_data=rep_data if 'rep_data' in locals() else {},
                                target_data=target_data if 'target_data' in locals() else {})
 
-
-
-
-
-@app.route("/results")
-@login_required
-def view_results():
-    script_items = session.get("script_items")
-    rep_data = session.get("rep_data")
-    target_data = session.get("target_data")
-
-    if not script_items or not rep_data or not target_data:
-        return redirect(url_for("form"))  # fallback
-
-    return render_template("index.html",
-                           script_items=script_items,
-                           rep_data=rep_data,
-                           target_data=target_data)
 
 
 @app.route("/run-autoresearch", methods=["POST"])
@@ -506,7 +507,24 @@ from flask_login import login_required, current_user
 @app.route("/form", methods=["GET"])
 @login_required
 def form():
-    # Pre-fill rep fields from current_user
+    from flask import session
+
+    regen = request.args.get("regen") == "true"
+
+    # Handle regeneration from saved session
+    if regen:
+        rep_data = session.get("rep_data")
+        target_data = session.get("target_data")
+
+        if not rep_data or not target_data:
+            logging.warning("⚠️ Missing session data for regeneration.")
+            return redirect(url_for("form"))  # fallback to blank
+
+        # Trigger script generation again by simulating the /generate flow
+        logging.info("🔁 Regenerating script via /form?regen=true redirect")
+        return redirect(url_for("generate_script"))
+
+    # Default: Pre-fill from logged-in user
     rep_data = {
         "rep_name": current_user.name,
         "rep_email": current_user.email,
@@ -518,12 +536,28 @@ def form():
         "objection_price": "",
         "objection_time": ""
     }
-    return render_template("form.html", rep_data=rep_data)
+
+    # Empty target data
+    target_data = {
+        "target_name": "",
+        "target_url": "",
+        "recent_news": "",
+        "locations": "",
+        "facts": "",
+        "products_services": "",
+        "social_media": ""
+    }
+
+    return render_template(
+        "form.html",
+        rep_data=rep_data,
+        target_data=target_data,
+        RECAPTCHA_SITE_KEY=RECAPTCHA_SITE_KEY
+    )
 
 @app.route("/")
 def homepage():
     return render_template("home.html")
-
 
 
 @app.route("/auto-script-from-salesdrip", methods=["POST"])
@@ -569,7 +603,6 @@ def auto_script_from_salesdrip():
             "social_media": data.get("Social Media or Other Notes", "")
         }
 
-        # This should be the *target’s* contact info
         email = data.get("Email", "")
         contact_id = data.get("ContactID", "")
 
@@ -616,18 +649,23 @@ Instructions:
         )
         raw_output = response.choices[0].message.content.strip()
 
-        # Step 6: Parse the script output
+        # Step 6: Parse the script output (supports "1. Opening:" format)
         script_items = []
         current = {"label": "", "options": []}
         lines = raw_output.splitlines()
+
         for line in lines:
             line = line.strip()
-            if re.match(r"^\d+\.$", line):
+            match = re.match(r"^(\d+)\.\s*(.*)", line)
+            if match:
                 if current["label"]:
                     script_items.append(current)
-                idx = int(line.split(".")[0]) - 1
+                idx = int(match.group(1)) - 1
+                label_text = match.group(2).strip()
+                if not label_text:
+                    label_text = prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Block {idx+1}"
                 current = {
-                    "label": prompt_descriptions[idx] if idx < len(prompt_descriptions) else f"Extra Block {idx+1}",
+                    "label": label_text,
                     "options": []
                 }
             elif line.startswith("- "):
@@ -637,6 +675,7 @@ Instructions:
 
         if len(script_items) != 11 or any(len(item["options"]) != 4 for item in script_items):
             logging.error("❌ Script format error — check OpenAI output")
+            logging.error("🔍 Raw output:\n" + raw_output)
             return "❌ Script formatting issue", 500
 
         # Step 7: Save to CRM (uses *target's* email and contact ID)

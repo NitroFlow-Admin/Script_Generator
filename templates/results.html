@@ -17,58 +17,67 @@
       });
     }
   });
+
+  function regenerateScript() {
+    const overlay = document.getElementById("loadingOverlay");
+    if (overlay) overlay.style.display = "flex";
+    window.location.href = "/form?regen=true";
+  }
+
+  function handleToggle(btn) {
+    const groupIndex = parseInt(btn.getAttribute("data-group"));
+    const optionIndex = parseInt(btn.getAttribute("data-option"));
+    const qaText = document.getElementById(`qa-text-${groupIndex}`);
+    const options = JSON.parse(document.getElementById("script-data").textContent)[groupIndex - 1].options;
+
+    if (qaText && options[optionIndex]) {
+      qaText.value = options[optionIndex];
+    }
+
+    const buttons = document.querySelectorAll(`#qa-box-${groupIndex} .version-buttons button`);
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  }
 </script>
 
-<form id="regenForm" method="POST" action="/generate">
-  <!-- Hidden Inputs for POST Regeneration -->
-  {% for key, value in rep_data.items() %}
-    <input type="hidden" name="{{ key }}" value="{{ value }}">
-  {% endfor %}
-  {% for key, value in target_data.items() %}
-    <input type="hidden" name="{{ key }}" value="{{ value }}">
-  {% endfor %}
-  {% for i in range(11) %}
-    {% for j in range(script_items[i].options|length) %}
-      <input type="hidden" name="script_item_{{ i }}" value="{{ script_items[i].options[j] }}">
-    {% endfor %}
-  {% endfor %}
-
-  <!-- Render Script Blocks -->
-  <div class="section">
-    <h3>AI-Generated Sales Call Prompts</h3>
-    <div class="qa-blocks">
-      {% for item in script_items %}
-      {% set group_index = loop.index %}
-      <div class="qa-box" id="qa-box-{{ group_index }}">
-        <div class="qa-label">{{ item.label }}</div>
-        <div class="qa-prompt">
-          <label for="prompt-{{ loop.index0 }}">Prompt Instruction:</label>
-          <textarea name="prompt_descriptions" rows="2" style="width: 100%;">{{ item.label }}</textarea>
-        </div>
-        <div class="qa-output">
-          <label for="qa-text-{{ group_index }}">Selected AI Output:</label>
-          <textarea class="qa-text" id="qa-text-{{ group_index }}" rows="2">{{ item.options[0] if item.options|length > 0 else '' }}</textarea>
-        </div>
-        <div class="version-buttons">
-          {% for opt in item.options[:4] %}
-          <button 
-            type="button"
-            data-group="{{ group_index }}"
-            data-option="{{ loop.index0 }}"
-            id="btn-{{ group_index }}-{{ loop.index0 }}"
-            class="{% if loop.index0 == 0 %}active{% endif %}"
-            onclick="handleToggle(this)">
-            {{ loop.index }}
-          </button>
-          {% endfor %}
-        </div>
+<!-- Script blocks -->
+<div class="section">
+  <h3>AI-Generated Sales Call Prompts</h3>
+  <div class="qa-blocks">
+    {% for item in script_items %}
+    {% set group_index = loop.index %}
+    <div class="qa-box" id="qa-box-{{ group_index }}">
+      <div class="qa-label">{{ loop.index }}. {{ prompt_descriptions[loop.index0] }}</div>
+      <div class="qa-prompt">
+        <label for="prompt-{{ loop.index0 }}">Prompt Instruction:</label>
+        <textarea name="prompt_descriptions" rows="2" style="width: 100%;" readonly>
+            {{ prompt_descriptions[loop.index0] | trim }}
+            </textarea>            
       </div>
-      {% endfor %}
+      <div class="qa-output">
+        <label for="qa-text-{{ group_index }}">Selected AI Output:</label>
+        <textarea class="qa-text" id="qa-text-{{ group_index }}" rows="2">{{ item.options[0] if item.options|length > 0 else '' }}</textarea>
+      </div>
+      <div class="version-buttons">
+        {% for opt in item.options[:4] %}
+        <button 
+          type="button"
+          data-group="{{ group_index }}"
+          data-option="{{ loop.index0 }}"
+          id="btn-{{ group_index }}-{{ loop.index0 }}"
+          class="{% if loop.index0 == 0 %}active{% endif %}"
+          onclick="handleToggle(this)">
+          {{ ['A', 'B', 'C', 'D'][loop.index0] }}
+        </button>
+        {% endfor %}
+      </div>
     </div>
+    {% endfor %}
   </div>
+</div>
 
-  <button type="button" class="button" onclick="generateWithCaptcha()">Regenerate Script</button>
-</form>
+<!-- Regenerate Button -->
+<button type="button" class="button" onclick="regenerateScript()">🔄 Regenerate Script</button>
 
 <!-- Push to CRM -->
 <form method="POST" action="/push-to-salesdrip">
@@ -81,4 +90,21 @@
   <button type="submit" style="margin-top: 1rem;">📤 Push to SalesDrip</button>
 </form>
 
+<!-- Script Data for JS -->
+<script type="application/json" id="script-data">
+  {{ script_items | tojson }}
+</script>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.95); z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family: Arial, sans-serif;">
+  <div class="spinner" style="width: 48px; height: 48px; border: 5px solid #ddd; border-top: 5px solid #006A3B; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
+  <h2 id="loadingText" style="color:#006A3B;">Compiling Research...</h2>
+</div>
+
+<style>
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 {% endblock %}

@@ -121,7 +121,7 @@ def save_script_to_crm(email, rep_data, target_data, script_items, contact_id=No
             "https://api.stgi.net/v2/api/contact",
             headers=headers,
             json=payload,
-            timeout=10
+            timeout=(10, 45)  # 10s connect timeout, 45s read timeout
         )
         logging.debug("[DEBUG] SalesDrip response: %s", response.text)
         response.raise_for_status()
@@ -230,7 +230,7 @@ def save_research_to_crm(email, company_name, research_data, contact_id):
             "https://api.stgi.net/v2/api/contact",
             headers=headers,
             json=payload,
-            timeout=10
+            timeout=(10, 45)  # 10s connect timeout, 45s read timeout
         )
         logging.debug("[DEBUG] SalesDrip response: %s", response.text)
         response.raise_for_status()

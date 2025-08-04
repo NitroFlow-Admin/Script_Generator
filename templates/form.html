@@ -11,7 +11,7 @@
     }
     h2 {
       margin-top: 0;
-      color: 006A3B;
+      color: #006A3B;
     }
     label {
       font-weight: bold;
@@ -49,257 +49,214 @@
       cursor: pointer;
     }
     button:hover {
-      background-color: #006A3B;
+      background-color: #004f2b;
     }
   </style>
 </head>
 <body>
 
-  <form id="mainForm" method="POST" action="/generate" onsubmit="return handleFormSubmit(event)">
+  <form id="mainForm" method="POST" action="/results" onsubmit="return handleFormSubmit(event)">
     <!-- Rep Section -->
     <div id="rep-section" class="section active">
-<h2>Sales Rep Info</h2>
-<label>Your Name:</label>
-<input type="text" name="rep_name" value="Chase Cordova">
+      <h2>Sales Rep Info</h2>
 
-<label>Email:</label>
-<input type="email" name="rep_email" placeholder="tom@salesdrip.com" value="">
+      <label>Your Name:</label>
+      <input type="text" name="rep_name" value="Chase Cordova">
 
-<label>Your Company:</label>
-<input type="text" name="rep_company" value="Freight Pro Logistics">
+      <label>Email:</label>
+      <input type="email" name="rep_email" placeholder="tom@salesdrip.com" value="">
 
-<label>Product or Service:</label>
-<textarea name="product">Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.</textarea>
+      <label>Your Company:</label>
+      <input type="text" name="rep_company" value="Freight Pro Logistics">
 
-<label>Needs Objection:</label>
-<textarea name="objection_needs">We are happy with our current carrier.</textarea>
+      <label>Product or Service:</label>
+      <textarea name="product">Freight Pro Logistics provides freight broker Truckload, Less than truckload, expedited and warehousing services in the United States and Canada.</textarea>
 
-<label>Service Objection:</label>
-<textarea name="objection_service">We used you in the past and switched because you didn’t meet our needs.</textarea>
+      <label>Needs Objection:</label>
+      <textarea name="objection_needs">We are happy with our current carrier.</textarea>
 
-<label>Source Objection:</label>
-<textarea name="objection_source">We’ve been burned by brokers.</textarea>
+      <label>Service Objection:</label>
+      <textarea name="objection_service">We used you in the past and switched because you didn’t meet our needs.</textarea>
 
-<label>Price Objection:</label>
-<textarea name="objection_price">You are 10% higher than my other quote.</textarea>
+      <label>Source Objection:</label>
+      <textarea name="objection_source">We’ve been burned by brokers.</textarea>
 
-<label>Time Objection:</label>
-<textarea name="objection_time">This is our slow season.</textarea>
+      <label>Price Objection:</label>
+      <textarea name="objection_price">You are 10% higher than my other quote.</textarea>
 
-    
+      <label>Time Objection:</label>
+      <textarea name="objection_time">This is our slow season.</textarea>
+
       <button type="button" onclick="nextSection()">Next</button>
     </div>
-  
- <!-- Target Section -->
-<!-- Target Section -->
-<div id="target-section" class="section">
-  <h2>Target Company Info</h2>
 
-  <label>Company Name:</label>
-  <input type="text" name="target_name" placeholder="JDH Corp">
+    <!-- Target Section -->
+    <div id="target-section" class="section">
+      <h2>Target Company Info</h2>
 
-  <label>Company Website:</label>
-  <input type="url" name="target_url" placeholder="https://www.jhdcorp.com/">
-  <button type="button" onclick="runAutoResearch()" style="margin-bottom: 20px;">🔍 Auto-Research</button>
+      <label>Company Name:</label>
+      <input type="text" name="target_name" placeholder="JDH Corp">
 
-  <label>Recent Blog/News Posts:</label>
-  <textarea name="recent_news" placeholder="None"></textarea>
+      <label>Company Website:</label>
+      <input type="url" name="target_url" placeholder="https://www.jhdcorp.com/">
+      <button type="button" onclick="runAutoResearch()" style="margin-bottom: 20px;">🔍 Auto-Research</button>
 
-  <label>Company Locations:</label>
-  <textarea name="locations" placeholder="Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia
+      <label>Recent Blog/News Posts:</label>
+      <textarea name="recent_news" placeholder="None"></textarea>
+
+      <label>Company Locations:</label>
+      <textarea name="locations" placeholder="Ontario, California; Vancouver, Canada; New Jersey; Essen, Germany; Netherlands; Shanghai, China; Shenzhen, China; Sydney, Australia
 
 USA/Canada/China/German/Netherlands worldwide warehouses"></textarea>
 
-  <label>Company Facts:</label>
-  <textarea name="facts" placeholder="20+ years herbal extract manufacturer in China
+      <label>Company Facts:</label>
+      <textarea name="facts" placeholder="20+ years herbal extract manufacturer in China..."></textarea>
 
-We have our own dedicated plantation with a wide range of planting areas and  a wide variety of planting types.
+      <label>Products & Services:</label>
+      <textarea name="products_services" placeholder="700+ herbal extract, fruit & vegetable powders, herbal extracts"></textarea>
 
-We have our own processing plant which can be used to process fruit and vegetable powders as well as capsules.
+      <label>Social Media or Other Notes:</label>
+      <textarea name="social_media" placeholder="Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia!..."></textarea>
 
-We boast a broad product range that includes botanical extracts, amino acids, vitamins, proteins, and other ingredients.
-
-Certificate
-BRC/Kosher/Halal/ISO/USA & EU Organic/FDA/HACCP etc certificated"></textarea>
-
-  <label>Products & Services:</label>
-  <textarea name="products_services" placeholder="Products
-700+ herbal extract, fruit & vegetable powders, herbal extracts"></textarea>
-
-  <label>Social Media or Other Notes:</label>
-  <textarea name="social_media" placeholder="Facebook 7/25/25 - What a fantastic Day 2 at Bio Asia! 🎉 The energy on the floor was electric—so many inspiring conversations, brilliant innovations shared, and new connections made.​
-A huge thank you to everyone who stopped by our booth, asked those curious questions, and swapped ideas with our team. Your passion for biotech and healthcare is what makes this event so special! 🔬💡​
-If you haven’t made it yet, don’t worry—we’re here TOMORROW and the next day, ready to chat more about our latest p… See more"></textarea>
-
-  <button type="submit">Generate Cold Call Script</button>
-</div>
-
-
+      <button type="submit">Generate Cold Call Script</button>
+    </div>
   </form>
-  <!-- Loading overlay -->
+
+  <!-- Loading Overlay -->
   <div id="loadingOverlay" style="position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.95); z-index: 9999; align-items:center; justify-content:center; flex-direction:column; font-family: Arial, sans-serif; display: none;">
+    <div class="spinner" style="width: 48px; height: 48px; border: 5px solid #ddd; border-top: 5px solid #006A3B; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
+    <h2 id="loadingText" style="color:#006A3B;">Compiling Research...</h2>
+  </div>
 
-  <div class="spinner" style="width: 48px; height: 48px; border: 5px solid #ddd; border-top: 5px solid #006A3B; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
-  <h2 id="loadingText" style="color:#006A3B;">Compiling Research...</h2>
-</div>
-
-<style>
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
-
-<script>
-  function nextSection() {
-    document.getElementById("rep-section").classList.remove("active");
-    document.getElementById("target-section").classList.add("active");
-    window.scrollTo(0, 0);
-  }
-
-  function handleFormSubmit(event) {
-  event.preventDefault(); // Prevent default form submission
-
-  const overlay = document.getElementById("loadingOverlay");
-  const loadingText = document.getElementById("loadingText");
-  const steps = [
-    "Compiling research...",
-    "Building Script Version 1...",
-    "Building Script Version 2...",
-    "Building Script Version 3...",
-    "Building Script Version 4...",
-    "Finishing up..."
-  ];
-  let step = 0;
-
-  overlay.style.display = "flex";
-  loadingText.textContent = steps[0];
-
-  const interval = setInterval(() => {
-    step++;
-    if (step < steps.length) {
-      loadingText.textContent = steps[step];
-    } else {
-      clearInterval(interval);
+  <style>
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-  }, 800);
+  </style>
 
-  // ✅ FILL ALL EMPTY FIELDS WITH PLACEHOLDERS
-  document.querySelectorAll("input, textarea").forEach(field => {
-    if (!field.value.trim() && field.placeholder) {
-      field.value = field.placeholder;
-    }
-  });
-
-  // ✅ VALIDATE REQUIRED FIELDS AFTER FILLING
-  const required = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
-  for (let name of required) {
-    const el = document.querySelector(`[name="${name}"]`);
-    if (!el || !el.value.trim()) {
-      alert("Please complete all required fields.");
-      overlay.style.display = "none";
-
-      if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
-        document.getElementById("rep-section").classList.add("active");
-        document.getElementById("target-section").classList.remove("active");
-      } else {
-        document.getElementById("rep-section").classList.remove("active");
-        document.getElementById("target-section").classList.add("active");
-      }
-
-      el?.focus();
-      return false;
-    }
-  }
-
-  document.getElementById("mainForm").submit();
-
-
-  return false;
-}
-
-
-  async function runAutoResearch() {
-    const urlField = document.querySelector('[name="target_url"]');
-const nameField = document.querySelector('[name="target_name"]');
-const url = urlField.value.trim() || urlField.placeholder;
-const name = nameField.value.trim() || nameField.placeholder;
-
-    const overlay = document.getElementById("loadingOverlay");
-    const loadingText = document.getElementById("loadingText");
-
-    if (!url || !name) {
-      alert("Please enter both the company name and website before running Auto-Research.");
-      return;
+  <script>
+    function nextSection() {
+      document.getElementById("rep-section").classList.remove("active");
+      document.getElementById("target-section").classList.add("active");
+      window.scrollTo(0, 0);
     }
 
-    overlay.style.display = "flex";
-    loadingText.textContent = "Scanning Website & News...";
+    function handleFormSubmit(event) {
+      event.preventDefault();
 
-    // Clear fields
-    ["recent_news", "locations", "facts", "products_services", "social_media"].forEach(name => {
-      const el = document.querySelector(`[name="${name}"]`);
-      if (el) el.value = '';
-    });
+      const overlay = document.getElementById("loadingOverlay");
+      const loadingText = document.getElementById("loadingText");
+      const steps = [
+        "Compiling research...",
+        "Building Script Version 1...",
+        "Building Script Version 2...",
+        "Building Script Version 3...",
+        "Building Script Version 4...",
+        "Finishing up..."
+      ];
+      let step = 0;
 
-    try {
-      const response = await fetch("/run-autoresearch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, name })
+      overlay.style.display = "flex";
+      loadingText.textContent = steps[0];
+
+      const interval = setInterval(() => {
+        step++;
+        if (step < steps.length) {
+          loadingText.textContent = steps[step];
+        } else {
+          clearInterval(interval);
+        }
+      }, 800);
+
+      document.querySelectorAll("input, textarea").forEach(field => {
+        if (!field.value.trim() && field.placeholder) {
+          field.value = field.placeholder;
+        }
       });
 
-      const data = await response.json();
-      overlay.style.display = "none";
+      const required = ["rep_name", "rep_email", "rep_company", "product", "target_name", "target_url"];
+      for (let name of required) {
+        const el = document.querySelector(`[name="${name}"]`);
+        if (!el || !el.value.trim()) {
+          alert("Please complete all required fields.");
+          overlay.style.display = "none";
 
-      if (data.error) {
-        alert("Error: " + data.error);
+          if (["rep_name", "rep_email", "rep_company", "product"].includes(name)) {
+            document.getElementById("rep-section").classList.add("active");
+            document.getElementById("target-section").classList.remove("active");
+          } else {
+            document.getElementById("rep-section").classList.remove("active");
+            document.getElementById("target-section").classList.add("active");
+          }
+
+          el?.focus();
+          return false;
+        }
+      }
+
+      document.getElementById("mainForm").submit();
+      return false;
+    }
+
+    async function runAutoResearch() {
+      const url = document.querySelector('[name="target_url"]').value.trim();
+      const name = document.querySelector('[name="target_name"]').value.trim();
+      const overlay = document.getElementById("loadingOverlay");
+      const loadingText = document.getElementById("loadingText");
+
+      if (!url || !name) {
+        alert("Please enter both the company name and website before running Auto-Research.");
         return;
       }
 
-      const blogBox = document.querySelector('[name="recent_news"]');
-      if (Array.isArray(data.recent_blog_posts)) {
-  blogBox.value = data.recent_blog_posts.map(post =>
-    `• ${post.title}\n${post.url}\n${post.excerpt}`
-  ).join('\n\n');
-} else if (typeof data.recent_blog_posts === 'string') {
-  blogBox.value = data.recent_blog_posts.trim();
-} else {
-  blogBox.value = '';
-}
+      overlay.style.display = "flex";
+      loadingText.textContent = "Scanning Website & News...";
 
- 
+      try {
+        const response = await fetch("/run-autoresearch", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url, name })
+        });
 
+        const data = await response.json();
+        overlay.style.display = "none";
 
-      document.querySelector('[name="locations"]').value = (data.locations || '').toString().trim();
-      document.querySelector('[name="social_media"]').value = (data.social_media || '').toString().trim();
+        if (data.error) {
+          alert("Error: " + data.error);
+          return;
+        }
 
-      let facts = data.facts;
-      if (typeof facts === 'object' && facts !== null) {
-        facts = Object.entries(facts).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join('\n');
+        const blogBox = document.querySelector('[name="recent_news"]');
+        blogBox.value = Array.isArray(data.recent_blog_posts)
+          ? data.recent_blog_posts.map(p => `• ${p.title}\n${p.url}\n${p.excerpt}`).join('\n\n')
+          : (data.recent_blog_posts || '');
+
+        document.querySelector('[name="locations"]').value = data.locations || '';
+        document.querySelector('[name="social_media"]').value = data.social_media || '';
+
+        const formatObj = (obj) => (
+          typeof obj === 'object' && obj !== null
+            ? Object.entries(obj).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join('\n')
+            : obj || ''
+        );
+
+        document.querySelector('[name="facts"]').value = formatObj(data.facts);
+        document.querySelector('[name="products_services"]').value = formatObj(data.products_services);
+
+      } catch (err) {
+        console.error("Auto-research error:", err);
+        overlay.style.display = "none";
+        alert("An unexpected error occurred while fetching research.");
       }
-      document.querySelector('[name="facts"]').value = facts || '';
+    }
 
-      let products = data.products_services;
-      if (typeof products === 'object' && products !== null) {
-        products = Object.entries(products).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join('\n');
-      }
-      document.querySelector('[name="products_services"]').value = products || '';
-
-    } catch (err) {
-  console.error("Fetch error:", err);
-  overlay.style.display = "none";
-  alert("An unexpected error occurred while fetching research.");
-}
-
-  }
-
-  // ✅ Unified reliable onload
-  window.addEventListener("load", () => {
-    const overlay = document.getElementById("loadingOverlay");
-    if (overlay) overlay.style.display = "none";
-  });
-</script>
+    window.addEventListener("load", () => {
+      const overlay = document.getElementById("loadingOverlay");
+      if (overlay) overlay.style.display = "none";
+    });
+  </script>
 
 </body>
 </html>
